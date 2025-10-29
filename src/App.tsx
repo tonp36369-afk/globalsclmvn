@@ -606,10 +606,24 @@ export default function App() {
         <div style={{ ...sectionWrap, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "flex-start" }}>
           {/* left - Contact Info */}
           <div>
-            <h2 style={{ ...h2, textAlign: "left" }}>Liên hệ & Hợp tác</h2>
-            <p style={{ color: "#475569", marginTop: 8, marginBottom: 24 }}>
+            <h2 style={{ ...h2, textAlign: "left", margin: "0 0 8px 0" }}>Liên hệ & Hợp tác</h2>
+            <p style={{ color: "#475569", marginTop: 0, marginBottom: 24 }}>
               Liên hệ trực tiếp với SCLM qua các kênh chính thức dưới đây. Đội ngũ luôn sẵn sàng hỗ trợ bạn 24/7.
             </p>
+            
+            {/* Ảnh anhapp20.jpg */}
+            <div style={{ marginTop: 20 }}>
+              <img 
+                src="/anhapp20.jpg" 
+                alt="SCLM App" 
+                style={{ 
+                  width: "100%", 
+                  height: "auto",
+                  borderRadius: 16,
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.15)"
+                }} 
+              />
+            </div>
           </div>
 
           {/* right - Contact channels */}
