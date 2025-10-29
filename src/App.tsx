@@ -121,24 +121,39 @@ export default function App() {
       </section>
 
       {/* ===== ABOUT ===== */}
-      <section id="about" style={{ padding: "70px 0", background: "linear-gradient(180deg, #f8fbff, #ffffff)" }}>
+      <section id="about" style={{ padding: "70px 0", background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" }}>
         <div style={sectionWrap}>
-          <h2 style={h2}>Về SCLM Global</h2>
-          <p style={pLead}>
-            SCLM là nền tảng kết nối doanh nghiệp với chuỗi cung ứng quốc tế. Chúng tôi tối ưu logistics, kho vận, tích hợp công nghệ,
-            và mô hình cửa hàng trung gian để doanh nghiệp tăng tốc không cần ôm hàng hay lo đầu ra.
-          </p>
+          <h2 style={{ ...h2, color: "#ffffff" }}>Về SCLM Global</h2>
+          
+          {/* Khung văn bản nổi bật */}
+          <div style={{
+            background: "rgba(255,255,255,0.95)",
+            borderRadius: 16,
+            padding: "30px 40px",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+            maxWidth: 820,
+            margin: "20px auto 0",
+          }}>
+            <p style={{ textAlign: "center", color: "#1e293b", fontSize: 17, lineHeight: 1.7, margin: 0 }}>
+              SCLM là nền tảng kết nối doanh nghiệp với chuỗi cung ứng quốc tế. Chúng tôi tối ưu logistics, kho vận, tích hợp công nghệ,
+              và mô hình cửa hàng trung gian để doanh nghiệp tăng tốc không cần ôm hàng hay lo đầu ra.
+            </p>
+          </div>
 
           {/* Stats */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 16, marginTop: 28 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 16, marginTop: 40 }}>
             {[
               ["2.000+", "Nhà cung ứng kết nối"],
               ["25+", "Quốc gia hợp tác"],
               ["10.000+", "Đơn hàng/tháng"],
               ["24/7", "Hỗ trợ – đối soát minh bạch"],
             ].map(([num, label]) => (
-              <div key={label} style={statBox}>
-                <div style={{ fontSize: 34, fontWeight: 900, color: "#0a2e65" }}>{num}</div>
+              <div key={label} style={{
+                ...statBox,
+                background: "rgba(255,255,255,0.95)",
+                border: "2px solid rgba(255,255,255,0.3)",
+              }}>
+                <div style={{ fontSize: 34, fontWeight: 900, color: "#667eea" }}>{num}</div>
                 <div style={{ color: "#475569" }}>{label}</div>
               </div>
             ))}
@@ -254,11 +269,22 @@ export default function App() {
 
             {/* External Cục Thuế logo requested */}
             <div style={{ textAlign: 'center', marginTop: 12 }}>
-              <img
-                src="https://dichvucong.gov.vn/p/home/theme/img/header/logo.png"
-                alt="Logo Cục Thuế (Nguồn: dichvucong.gov.vn)"
-                style={{ width: 140, height: 'auto', objectFit: 'contain', borderRadius: 6 }}
-              />
+              <a href="https://dichvucong.gov.vn" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="https://dichvucong.gov.vn/p/home/theme/img/header/logo.png"
+                  alt="Logo Cục Thuế (Nguồn: dichvucong.gov.vn)"
+                  style={{ 
+                    width: 140, 
+                    height: 'auto', 
+                    objectFit: 'contain', 
+                    borderRadius: 6,
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s',
+                  }}
+                  onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                />
+              </a>
             </div>
 
             <div style={{ 
@@ -389,7 +415,7 @@ export default function App() {
             color: '#e2e8f0'
           }}>
             <div style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: 12 }}>
-              <img src="/logo-thue.png" alt="Logo Cục Thuế" style={{ width: 110, height: 110, objectFit: 'contain', borderRadius: 8, background: '#fff', padding: 6 }} />
+              <img src="https://dichvucong.gov.vn/p/home/theme/img/header/logo.png" alt="Logo Cục Thuế" style={{ width: 110, height: 110, objectFit: 'contain', borderRadius: 8, background: '#fff', padding: 6 }} />
               <div>
                 <h3 style={{ margin: 0, fontSize: 18, color: '#facc15' }}>🇻🇳 GIẢM THUẾ GIAO THƯƠNG — HỖ TRỢ DOANH NGHIỆP VIỆT NAM</h3>
                 <p style={{ margin: '8px 0 0', color: '#94a3b8', maxWidth: 720 }}>
@@ -420,7 +446,7 @@ export default function App() {
 
             <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.04)', display: 'flex', gap: 18, alignItems: 'flex-start' }}>
               <div style={{ minWidth: 120 }}>
-                <img src="/logo-thue.png" alt="Logo Cục Thuế" style={{ width: 100, height: 100, objectFit: 'contain' }} />
+                <img src="https://dichvucong.gov.vn/p/home/theme/img/header/logo.png" alt="Logo Cục Thuế" style={{ width: 100, height: 100, objectFit: 'contain' }} />
               </div>
               <div style={{ color: '#e2e8f0' }}>
                 <p style={{ margin: 0, fontWeight: 700 }}>Thuế Việt Nam - Cục Thuế</p>
