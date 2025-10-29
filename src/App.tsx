@@ -431,6 +431,20 @@ export default function App() {
               Mở biểu mẫu đăng ký SCLM
             </button>
           </div>
+          
+          {/* 3 logo nhỏ */}
+          <div style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 20,
+            margin: "30px auto",
+            maxWidth: 600,
+          }}>
+            <img src="/4.jpg" alt="Logo 1" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
+            <img src="/2.jpg" alt="Logo 2" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
+            <img src="/1.jpg" alt="Logo 3" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
+          </div>
 
           {showForm && (
             <div>
@@ -704,6 +718,16 @@ export default function App() {
               }}>
                 📞 Liên hệ & Kết nối với SCLM Global
               </h3>
+              
+              <p style={{
+                margin: "0 0 20px 0",
+                fontSize: 14,
+                color: "#facc15",
+                textAlign: "center",
+                fontWeight: 600,
+              }}>
+                👉 Click vào các kênh bên dưới để kết nối ngay
+              </p>
 
               <div style={{ display: "grid", gap: 16, textAlign: "left" }}>
                 {/* Website */}
