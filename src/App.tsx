@@ -256,8 +256,36 @@ export default function App() {
             marginTop: 16,
             letterSpacing: 0.2,
           }}>
-            “SCLM GLOBAL – Nơi phụ nữ bắt đầu hành trình kinh doanh tự chủ”
+            "SCLM GLOBAL – Nơi phụ nữ bắt đầu hành trình kinh doanh tự chủ"
           </p>
+
+          {/* Nội dung về phụ nữ khởi nghiệp */}
+          <div style={{
+            background: "rgba(255,255,255,0.15)",
+            borderRadius: 12,
+            padding: "24px 32px",
+            maxWidth: 820,
+            margin: "20px auto 0",
+            backdropFilter: "blur(10px)",
+            border: "1px solid rgba(255,255,255,0.2)",
+          }}>
+            <p style={{ textAlign: "center", color: "#ffffff", fontSize: 16, lineHeight: 1.7, margin: "0 0 16px 0" }}>
+              <strong>SCLM GLOBAL</strong> đồng hành cùng phụ nữ Việt trong hành trình khởi nghiệp, cung cấp kiến thức, công cụ và giải pháp toàn diện để tự chủ tài chính, phát triển thương hiệu và mở rộng thị trường.
+            </p>
+            <ul style={{ 
+              textAlign: "left", 
+              color: "#ffffff", 
+              fontSize: 15, 
+              lineHeight: 1.8, 
+              margin: 0, 
+              paddingLeft: 20,
+              listStyleType: "disc"
+            }}>
+              <li>Phụ nữ nội trợ – muốn chủ động tài chính, có thời gian linh hoạt.</li>
+              <li>Phụ nữ chưa từng kinh doanh – nhưng có đam mê và mong muốn phát triển.</li>
+              <li>Phụ nữ kinh doanh nhỏ lẻ – muốn mở rộng và phát triển bền vững.</li>
+            </ul>
+          </div>
 
           {/* Stats */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 16, marginTop: 40 }}>
@@ -588,15 +616,6 @@ export default function App() {
               <p style={{ margin: '8px 0' }}>
                 Kể từ lần sau, doanh nghiệp chỉ cần nhận sao kê ngân hàng và đóng thuế online — không cần đến Kho Bạc Nhà Nước. Chính sách này góp phần hiện đại hoá quy trình quản lý, giảm thủ tục hành chính theo <strong>Nghị quyết 136/NQ-CP (27/12/2017)</strong> và <strong>Nghị quyết 66/NQ-CP (26/3/2025)</strong>.
               </p>
-              
-              <p style={{ margin: '8px 0' }}>
-                <strong>SCLM GLOBAL</strong> đồng hành cùng phụ nữ Việt trong hành trình khởi nghiệp, cung cấp kiến thức, công cụ và giải pháp toàn diện để tự chủ tài chính, phát triển thương hiệu và mở rộng thị trường.
-              </p>
-              <ul style={{ margin: '8px 0 0 20px', color: '#94a3b8' }}>
-                <li>Phụ nữ nội trợ – muốn chủ động tài chính, có thời gian linh hoạt.</li>
-                <li>Phụ nữ chưa từng kinh doanh – nhưng có đam mê và mong muốn phát triển.</li>
-                <li>Phụ nữ kinh doanh nhỏ lẻ – muốn mở rộng và phát triển bền vững.</li>
-              </ul>
             </div>
 
             <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.04)', display: 'flex', gap: 18, alignItems: 'flex-start' }}>
