@@ -319,14 +319,15 @@ export default function App() {
           <h2 style={h2}>Đăng ký tham gia hoạt động tiếp nhận xử lý trung gian</h2>
           <p style={pLead}>Để tham gia chương trình hoạt động của SCLM, vui lòng bấm vào nút dưới đây để mở biểu mẫu đăng ký chính thức. Sau khi hoàn tất, đội ngũ SCLM sẽ liên hệ để xác minh và hướng dẫn chi tiết.</p>
           
-          {/* 3 ảnh app SCLM */}
+          {/* Ảnh app SCLM - 2 khung */}
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gridTemplateColumns: "1fr 1fr",
             gap: 20,
             maxWidth: 920,
             margin: "40px auto",
           }}>
+            {/* Khung 1: Ảnh 3.jpg */}
             <div style={{
               borderRadius: 16,
               overflow: "hidden",
@@ -338,8 +339,8 @@ export default function App() {
             onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
               <img 
-                src="/appsclm2.jpg" 
-                alt="SCLM App 2" 
+                src="/3.jpg" 
+                alt="SCLM App" 
                 style={{ 
                   width: "100%", 
                   height: "auto",
@@ -350,12 +351,16 @@ export default function App() {
               />
             </div>
             
+            {/* Khung 2: 2 ảnh appsclm3 và appsclm11 chồng lên nhau */}
             <div style={{
               borderRadius: 16,
               overflow: "hidden",
               boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
               transition: "transform 0.3s ease",
               background: "#ffffff",
+              display: "flex",
+              flexDirection: "column",
+              gap: 10,
             }}
             onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-8px)'}
             onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
@@ -366,30 +371,16 @@ export default function App() {
                 style={{ 
                   width: "100%", 
                   height: "auto",
-                  minHeight: 320,
                   objectFit: "contain",
                   display: "block"
                 }} 
               />
-            </div>
-            
-            <div style={{
-              borderRadius: 16,
-              overflow: "hidden",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
-              transition: "transform 0.3s ease",
-              background: "#ffffff",
-            }}
-            onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-8px)'}
-            onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
               <img 
                 src="/appsclm11.jpg" 
                 alt="SCLM App 11" 
                 style={{ 
                   width: "100%", 
                   height: "auto",
-                  minHeight: 320,
                   objectFit: "contain",
                   display: "block"
                 }} 
