@@ -614,7 +614,7 @@ export default function App() {
             {/* Ảnh anhapp20.jpg */}
             <div style={{ marginTop: 20 }}>
               <img 
-                src="/anhapp20.jpg" 
+                src="/sclmapp20.jpg" 
                 alt="SCLM App" 
                 style={{ 
                   width: "100%", 
