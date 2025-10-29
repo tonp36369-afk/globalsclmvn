@@ -598,46 +598,57 @@ export default function App() {
           <p style={{ ...pLead, marginTop: 16, fontWeight: 600, color: "#0a2e65" }}>
             🚀 SCLM không chỉ mang đến nền tảng công nghệ mà còn là người đồng hành chiến lược, hỗ trợ xây dựng thương hiệu, tối ưu vận hành và mở rộng quy mô bền vững.
           </p>
+        </div>
+      </section>
 
-          {/* Thông tin liên hệ chính thức */}
+      {/* ===== CONTACT (FORM GỬI MAIL THẬT) ===== */}
+      <section id="contact" style={{ padding: "70px 0", background: "linear-gradient(180deg, #ffffff, #f4f8ff)" }}>
+        <div style={{ ...sectionWrap, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "flex-start" }}>
+          {/* left - Contact Info */}
+          <div>
+            <h2 style={{ ...h2, textAlign: "left" }}>Liên hệ & Hợp tác</h2>
+            <p style={{ color: "#475569", marginTop: 8, marginBottom: 24 }}>
+              Liên hệ trực tiếp với SCLM qua các kênh chính thức dưới đây. Đội ngũ luôn sẵn sàng hỗ trợ bạn 24/7.
+            </p>
+          </div>
+
+          {/* right - Contact channels */}
           <div style={{
-            maxWidth: 700,
-            margin: "40px auto 0",
             background: "linear-gradient(135deg, #0a2e65 0%, #154a9a 100%)",
             borderRadius: 20,
-            padding: "36px 40px",
+            padding: "36px 32px",
             boxShadow: "0 12px 32px rgba(10,46,101,0.25)",
             color: "#ffffff",
           }}>
             <h3 style={{
               margin: "0 0 24px 0",
-              fontSize: "1.5rem",
+              fontSize: "1.4rem",
               fontWeight: 800,
               color: "#ffffff",
               letterSpacing: 0.3,
+              textAlign: "center",
             }}>
               📞 Liên hệ & Kết nối với SCLM Global
             </h3>
 
-            <div style={{ display: "grid", gap: 18, textAlign: "left" }}>
+            <div style={{ display: "grid", gap: 16, textAlign: "left" }}>
               {/* Website */}
               <div style={{
                 background: "rgba(255,255,255,0.1)",
                 borderRadius: 12,
-                padding: "16px 20px",
+                padding: "14px 18px",
                 display: "flex",
                 alignItems: "center",
-                gap: 14,
-                transition: "all 0.3s",
+                gap: 12,
                 border: "1px solid rgba(255,255,255,0.15)",
               }}>
-                <div style={{ fontSize: 28 }}>🌐</div>
-                <div>
-                  <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 4 }}>Website chính thức</div>
+                <div style={{ fontSize: 24 }}>🌐</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 12, opacity: 0.85, marginBottom: 3 }}>Website chính thức</div>
                   <a href="https://sclm.vn" target="_blank" rel="noopener noreferrer" style={{
                     color: "#facc15",
                     fontWeight: 700,
-                    fontSize: 17,
+                    fontSize: 16,
                     textDecoration: "none",
                   }}>
                     www.sclm.vn
@@ -649,19 +660,19 @@ export default function App() {
               <div style={{
                 background: "rgba(255,255,255,0.1)",
                 borderRadius: 12,
-                padding: "16px 20px",
+                padding: "14px 18px",
                 display: "flex",
                 alignItems: "center",
-                gap: 14,
+                gap: 12,
                 border: "1px solid rgba(255,255,255,0.15)",
               }}>
-                <div style={{ fontSize: 28 }}>📱</div>
-                <div>
-                  <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 4 }}>Hotline hỗ trợ 24/7</div>
-                  <div style={{ fontWeight: 700, fontSize: 17 }}>
-                    <a href="tel:0582779977" style={{ color: "#ffffff", textDecoration: "none", marginRight: 12 }}>0582 779 977</a>
+                <div style={{ fontSize: 24 }}>📱</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 12, opacity: 0.85, marginBottom: 3 }}>Hotline hỗ trợ 24/7</div>
+                  <div style={{ fontWeight: 700, fontSize: 16 }}>
+                    <a href="tel:0582779977" style={{ color: "#ffffff", textDecoration: "none", marginRight: 10 }}>0582 779 977</a>
                     <span style={{ opacity: 0.6 }}>|</span>
-                    <a href="tel:0947886611" style={{ color: "#ffffff", textDecoration: "none", marginLeft: 12 }}>0947 886 611</a>
+                    <a href="tel:0947886611" style={{ color: "#ffffff", textDecoration: "none", marginLeft: 10 }}>0947 886 611</a>
                   </div>
                 </div>
               </div>
@@ -670,19 +681,19 @@ export default function App() {
               <div style={{
                 background: "rgba(255,255,255,0.1)",
                 borderRadius: 12,
-                padding: "16px 20px",
+                padding: "14px 18px",
                 display: "flex",
                 alignItems: "center",
-                gap: 14,
+                gap: 12,
                 border: "1px solid rgba(255,255,255,0.15)",
               }}>
-                <div style={{ fontSize: 28 }}>📘</div>
-                <div>
-                  <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 4 }}>Facebook (Tích xanh doanh nghiệp)</div>
+                <div style={{ fontSize: 24 }}>📘</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 12, opacity: 0.85, marginBottom: 3 }}>Facebook (Tích xanh doanh nghiệp)</div>
                   <a href="http://www.facebook.sclm.global.vn" target="_blank" rel="noopener noreferrer" style={{
                     color: "#facc15",
                     fontWeight: 700,
-                    fontSize: 17,
+                    fontSize: 16,
                     textDecoration: "none",
                   }}>
                     www.facebook.sclm.global.vn
@@ -694,19 +705,19 @@ export default function App() {
               <div style={{
                 background: "rgba(255,255,255,0.1)",
                 borderRadius: 12,
-                padding: "16px 20px",
+                padding: "14px 18px",
                 display: "flex",
                 alignItems: "center",
-                gap: 14,
+                gap: 12,
                 border: "1px solid rgba(255,255,255,0.15)",
               }}>
-                <div style={{ fontSize: 28 }}>💬</div>
-                <div>
-                  <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 4 }}>Chat trực tiếp qua Viber Business</div>
+                <div style={{ fontSize: 24 }}>💬</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 12, opacity: 0.85, marginBottom: 3 }}>Chat trực tiếp qua Viber Business</div>
                   <a href="https://connect.viber.com/business/af63f9c6-b3a9-11f0-8f93-16a159ce570c" target="_blank" rel="noopener noreferrer" style={{
                     color: "#facc15",
                     fontWeight: 700,
-                    fontSize: 17,
+                    fontSize: 16,
                     textDecoration: "none",
                   }}>
                     SCLM Global Business
@@ -718,19 +729,19 @@ export default function App() {
               <div style={{
                 background: "rgba(255,255,255,0.1)",
                 borderRadius: 12,
-                padding: "16px 20px",
+                padding: "14px 18px",
                 display: "flex",
                 alignItems: "center",
-                gap: 14,
+                gap: 12,
                 border: "1px solid rgba(255,255,255,0.15)",
               }}>
-                <div style={{ fontSize: 28 }}>✉️</div>
-                <div>
-                  <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 4 }}>Email hỗ trợ khách hàng</div>
+                <div style={{ fontSize: 24 }}>✉️</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 12, opacity: 0.85, marginBottom: 3 }}>Email hỗ trợ khách hàng</div>
                   <a href="mailto:sclm.customer@gmail.com" style={{
                     color: "#facc15",
                     fontWeight: 700,
-                    fontSize: 17,
+                    fontSize: 16,
                     textDecoration: "none",
                   }}>
                     sclm.customer@gmail.com
@@ -740,8 +751,8 @@ export default function App() {
             </div>
 
             <p style={{
-              marginTop: 24,
-              fontSize: 14,
+              marginTop: 20,
+              fontSize: 13,
               opacity: 0.9,
               lineHeight: 1.6,
               textAlign: "center",
@@ -749,32 +760,6 @@ export default function App() {
               Đội ngũ SCLM luôn sẵn sàng tư vấn và hỗ trợ bạn 24/7 qua mọi kênh liên hệ trên
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* ===== CONTACT (FORM GỬI MAIL THẬT) ===== */}
-      <section id="contact" style={{ padding: "70px 0", background: "linear-gradient(180deg, #ffffff, #f4f8ff)" }}>
-        <div style={{ ...sectionWrap, display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: 22, alignItems: "center" }}>
-          {/* left */}
-          <div>
-            <h2 style={{ ...h2, textAlign: "left" }}>Liên hệ & Hợp tác</h2>
-            <p style={{ color: "#475569", marginTop: 8 }}>
-              Điền thông tin để đội ngũ SCLM liên hệ trong ngày. Mọi dữ liệu được **đối soát minh bạch** trong hệ thống.
-            </p>
-          </div>
-
-          {/* right: FORM */}
-          <form ref={formRef} onSubmit={sendEmail} style={formStyle}>
-            <input name="from_name" placeholder="Họ và tên" required style={input} />
-            <input name="from_email" type="email" placeholder="Email" required style={input} />
-            <input name="phone" placeholder="Số điện thoại" required style={input} />
-            <textarea name="message" placeholder="Nội dung cần liên hệ" rows={5} required style={input} />
-            <button type="submit" style={btn}>
-              {status === "sending" ? "Đang gửi..." : "Gửi liên hệ"}
-            </button>
-            {status === "ok" && <div style={noteOk}>✅ Gửi thành công! Anh/chị vui lòng kiểm tra hộp thư.</div>}
-            {status === "err" && <div style={noteErr}>❌ Gửi thất bại! Vui lòng thử lại sau.</div>}
-          </form>
         </div>
       </section>
 
@@ -869,24 +854,6 @@ const cardIcon: React.CSSProperties = {
   marginBottom: 10,
   fontWeight: 800,
 };
-const formStyle: React.CSSProperties = {
-  background: "#ffffff",
-  borderRadius: 16,
-  padding: 20,
-  boxShadow: "0 10px 22px rgba(2,6,23,.06)",
-  border: "1px solid #e2e8f0",
-  display: "grid",
-  gap: 12,
-};
-const input: React.CSSProperties = {
-  padding: "12px 14px",
-  borderRadius: 10,
-  border: "1px solid #cbd5e1",
-  outline: "none",
-  fontSize: 15,
-};
-const noteOk: React.CSSProperties = { color: "#0a2e65", fontWeight: 600 };
-const noteErr: React.CSSProperties = { color: "#b91c1c", fontWeight: 600 };
 
 /** ====== FORM STYLES ====== */
 const labelStyle: React.CSSProperties = {
