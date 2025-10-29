@@ -450,7 +450,7 @@ export default function App() {
             color: '#e2e8f0'
           }}>
             <div style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: 12 }}>
-              <img src="https://dichvucong.gov.vn/p/home/theme/img/header/logo.png" alt="Logo Cục Thuế" style={{ width: 110, height: 110, objectFit: 'contain', borderRadius: 8, background: '#fff', padding: 6 }} />
+              <img src="https://dangky.dichvucong.gov.vn/content/698e3c6e522f6948637426e907ba3188.svg" alt="Logo Cục Thuế" style={{ width: 110, height: 110, objectFit: 'contain', borderRadius: 8, background: '#fff', padding: 6 }} />
               <div>
                 <h3 style={{ margin: 0, fontSize: 18, color: '#facc15' }}>🇻🇳 GIẢM THUẾ GIAO THƯƠNG — HỖ TRỢ DOANH NGHIỆP VIỆT NAM</h3>
                 <p style={{ margin: '8px 0 0', color: '#94a3b8', maxWidth: 720 }}>
@@ -481,7 +481,7 @@ export default function App() {
 
             <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.04)', display: 'flex', gap: 18, alignItems: 'flex-start' }}>
               <div style={{ minWidth: 120 }}>
-                <img src="https://dichvucong.gov.vn/p/home/theme/img/header/logo.png" alt="Logo Cục Thuế" style={{ width: 100, height: 100, objectFit: 'contain' }} />
+                <img src="https://dangky.dichvucong.gov.vn/content/698e3c6e522f6948637426e907ba3188.svg" alt="Logo Cục Thuế" style={{ width: 100, height: 100, objectFit: 'contain' }} />
               </div>
               <div style={{ color: '#e2e8f0' }}>
                 <p style={{ margin: 0, fontWeight: 700 }}>Thuế Việt Nam - Cục Thuế</p>
