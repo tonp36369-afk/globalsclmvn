@@ -287,6 +287,41 @@ export default function App() {
               </a>
             </div>
 
+            {/* Thông báo tuân thủ quy định */}
+            <div style={{
+              maxWidth: 650,
+              margin: '20px auto',
+              padding: '20px 24px',
+              background: 'linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%)',
+              borderLeft: '4px solid #f57c00',
+              borderRadius: 12,
+              boxShadow: '0 4px 12px rgba(245,124,0,0.15)',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+                <div style={{ fontSize: 24, marginTop: 2 }}>⚠️</div>
+                <div style={{ flex: 1 }}>
+                  <h4 style={{ 
+                    margin: '0 0 12px 0', 
+                    fontSize: 16, 
+                    fontWeight: 700, 
+                    color: '#e65100',
+                    letterSpacing: 0.3
+                  }}>
+                    Vui lòng tuân thủ quy định & hoạt động minh bạch theo chính sách của SCLM
+                  </h4>
+                  <p style={{ margin: '0 0 8px 0', fontSize: 14, color: '#5d4037', lineHeight: 1.6 }}>
+                    Hệ thống SCLM là đơn vị trung gian tiếp nhận và xử lý thông tin cho các doanh nghiệp, hoạt động minh bạch, tuân thủ pháp luật Việt Nam.
+                  </p>
+                  <p style={{ margin: '0 0 8px 0', fontSize: 14, color: '#5d4037', lineHeight: 1.6 }}>
+                    Toàn bộ hoạt động của hệ thống được đăng ký và quản lý theo quy định của Cục Thuế Nhà nước Trung ương.
+                  </p>
+                  <p style={{ margin: 0, fontSize: 14, color: '#5d4037', lineHeight: 1.6, fontWeight: 600 }}>
+                    <span style={{ color: '#1976d2' }}>✓</span> SCLM Global – đã được Meta xác minh tích xanh doanh nghiệp.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div style={{ 
               marginTop: '30px',
               padding: '20px',
