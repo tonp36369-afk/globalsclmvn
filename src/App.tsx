@@ -3,9 +3,9 @@ import emailjs from "@emailjs/browser";
 import "./App.css";
 
 /** ====== CẤU HÌNH EMAILJS ====== */
-const SERVICE_ID = "service_xxxxxx"; // Thay bằng Service ID của bạn
-const TEMPLATE_ID = "template_lngj6w8"; // Template ID có vẻ đúng
-const PUBLIC_KEY = "public_key_xxxxx"; // Thay bằng Public Key của bạn
+const SERVICE_ID = "service_tb5zo3i"; // Service ID đã được cấu hình
+const TEMPLATE_ID = "template_kkjhug9"; // Template ID: Contact Us
+const PUBLIC_KEY = "OfCOrhRJrYm5SmrnF"; // Public Key đã được cấu hình
 
 /** ====== STYLE TIỆN DỤNG ====== */
 const sectionWrap: React.CSSProperties = { maxWidth: 1100, margin: "0 auto", padding: "0 20px" };
@@ -99,10 +99,10 @@ export default function App() {
           <nav style={{ display: "flex", gap: 18 }}>
             <a href="#about" style={navA}>Giới thiệu</a>
             <a href="#solutions" style={navA}>Giải pháp</a>
-            <a href="#partners" style={navA}>Hợp tác</a>
+            <a href="https://connect.viber.com/business/af63f9c6-b3a9-11f0-8f93-16a159ce570c" target="_blank" rel="noreferrer" style={navA}>Hợp tác</a>
             <a href="#contact" style={navA}>Liên hệ</a>
           </nav>
-          <a href="#contact" style={{ ...btn, padding: "10px 16px" }}>Trở thành đối tác</a>
+          <a href="https://connect.viber.com/business/af63f9c6-b3a9-11f0-8f93-16a159ce570c" target="_blank" rel="noreferrer" style={{ ...btn, padding: "10px 16px" }}>Trở thành đối tác</a>
         </div>
       </header>
 
@@ -125,7 +125,7 @@ export default function App() {
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <a href="https://sclm.vn" target="_blank" rel="noreferrer" style={btn}>Truy cập website chính thức</a>
-            <a href="#contact" style={btnGhost}>Đăng ký hợp tác</a>
+            <a href="https://connect.viber.com/business/af63f9c6-b3a9-11f0-8f93-16a159ce570c" target="_blank" rel="noreferrer" style={btnGhost}>Đăng ký hợp tác</a>
           </div>
 
           {/* Banner Slider */}
@@ -314,7 +314,7 @@ export default function App() {
       </section>
 
       {/* ===== REGISTER FORM ===== */}
-      <section id="register" style={{ padding: "70px 0", background: "#f4f6f9" }}>
+      <section id="register" style={{ padding: "70px 0", background: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)" }}>
         <div style={sectionWrap}>
           <h2 style={h2}>Đăng ký tham gia hoạt động tiếp nhận xử lý trung gian</h2>
           <p style={pLead}>Để tham gia chương trình hoạt động của SCLM, vui lòng bấm vào nút dưới đây để mở biểu mẫu đăng ký chính thức. Sau khi hoàn tất, đội ngũ SCLM sẽ liên hệ để xác minh và hướng dẫn chi tiết.</p>
@@ -417,6 +417,14 @@ export default function App() {
           </div>
 
           <div style={{ textAlign: "center", margin: "30px 0" }}>
+            <p style={{
+              margin: "0 0 12px 0",
+              fontSize: 15,
+              color: "#0a2e65",
+              fontWeight: 600,
+            }}>
+              👇 Click vào đây để mở biểu mẫu đăng ký
+            </p>
             <button 
               onClick={() => setShowForm(prev => !prev)} 
               style={{
@@ -446,6 +454,37 @@ export default function App() {
             <img src="/1.jpg" alt="Logo 3" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
           </div>
 
+          {/* Văn bản kêu gọi */}
+          <div style={{
+            maxWidth: 820,
+            margin: "20px auto 30px",
+            textAlign: "center",
+            padding: "24px 32px",
+            background: "linear-gradient(135deg, #0a2e65 0%, #1e40af 100%)",
+            borderRadius: 16,
+            boxShadow: "0 10px 30px rgba(10,46,101,0.25)",
+          }}>
+            <h3 style={{
+              margin: "0 0 8px 0",
+              fontSize: "1.5rem",
+              fontWeight: 800,
+              color: "#facc15",
+              letterSpacing: 0.3,
+              lineHeight: 1.3,
+            }}>
+              HÃY CÙNG SCLM KẾT NỐI GIAO THƯƠNG VƯƠN TẦM QUỐC TẾ
+            </h3>
+            <p style={{
+              margin: 0,
+              fontSize: 15,
+              color: "#ffffff",
+              fontWeight: 500,
+              opacity: 0.95,
+            }}>
+              Cho lĩnh vực thương mại điện tử Việt Nam
+            </p>
+          </div>
+
           {showForm && (
             <div>
               <form ref={formRef} onSubmit={sendEmail} style={{
@@ -459,48 +498,64 @@ export default function App() {
           }}>
             <div style={{ display: "grid", gap: "20px" }}>
               <div>
-                <label style={labelStyle}>Tên</label>
-                <input type="text" name="ten" required style={inputStyle} />
+                <label style={labelStyle}>Họ và tên</label>
+                <input type="text" name="ho_ten" required style={inputStyle} placeholder="Nhập họ và tên đầy đủ" />
               </div>
 
               <div>
-                <label style={labelStyle}>Tuổi</label>
-                <input type="number" name="tuoi" required style={inputStyle} />
+                <label style={labelStyle}>Tuổi tác</label>
+                <input type="number" name="tuoi_tac" required style={inputStyle} placeholder="Nhập tuổi" min="18" max="100" />
+              </div>
+
+              <div>
+                <label style={labelStyle}>Email người dùng</label>
+                <input type="email" name="email_nguoi_dung" required style={inputStyle} placeholder="example@email.com" />
+              </div>
+
+              <div>
+                <label style={labelStyle}>Số điện thoại người dùng</label>
+                <input type="tel" name="sdt_nguoi_dung" required style={inputStyle} placeholder="0123456789" />
+              </div>
+
+              <div>
+                <label style={labelStyle}>Số căn cước công dân</label>
+                <input 
+                  type="text" 
+                  name="so_cccd" 
+                  required 
+                  style={inputStyle} 
+                  placeholder="Nhập 12 số CCCD" 
+                  maxLength={12}
+                  pattern="[0-9]{12}"
+                />
+                <p style={{ fontSize: 12, color: "#94a3b8", margin: "6px 0 0 0" }}>
+                  Nhập đúng 12 số căn cước công dân
+                </p>
               </div>
 
               <div>
                 <label style={labelStyle}>Kinh nghiệm làm việc online</label>
-                <input type="text" name="kinh_nghiem" style={inputStyle} />
+                <input type="text" name="kinh_nghiem" style={inputStyle} placeholder="Ví dụ: 2 năm bán hàng online" />
               </div>
 
               <div>
                 <label style={labelStyle}>Công việc hiện tại</label>
-                <input type="text" name="cong_viec" style={inputStyle} />
+                <input type="text" name="cong_viec" style={inputStyle} placeholder="Nhập công việc hiện tại" />
               </div>
 
               <div>
                 <label style={labelStyle}>Quốc gia hoạt động</label>
-                <input type="text" name="quoc_gia" style={inputStyle} />
+                <input type="text" name="quoc_gia" style={inputStyle} placeholder="Ví dụ: Việt Nam" />
               </div>
 
               <div>
                 <label style={labelStyle}>Ngưỡng hoạt động mong muốn (USD)</label>
-                <input type="number" name="von" required style={inputStyle} />
+                <input type="number" name="von" required style={inputStyle} placeholder="30" min="30" />
               </div>
 
               <div>
                 <label style={labelStyle}>Thu nhập lý tưởng hàng tháng (USD)</label>
-                <input type="number" name="thu_nhap" style={inputStyle} />
-              </div>
-
-              <div>
-                <label style={labelStyle}>Email</label>
-                <input type="email" name="email" required style={inputStyle} />
-              </div>
-
-              <div>
-                <label style={labelStyle}>Số điện thoại</label>
-                <input type="text" name="sdt" required style={inputStyle} />
+                <input type="number" name="thu_nhap" style={inputStyle} placeholder="500" />
               </div>
 
               <button type="submit" style={{
@@ -644,10 +699,10 @@ export default function App() {
           )}
         </div>
       </section>      {/* ===== SOLUTIONS ===== */}
-      <section id="solutions" style={{ padding: "70px 0" }}>
+      <section id="solutions" style={{ padding: "70px 0", background: "linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%)" }}>
         <div style={sectionWrap}>
-          <h2 style={h2}>Giải pháp & Mô hình nổi bật</h2>
-          <p style={pLead}>Thiết kế để dễ bắt đầu – ít rủi ro – tăng trưởng bền vững.</p>
+          <h2 style={{ ...h2, color: "#0a2e65" }}>Giải pháp & Mô hình nổi bật</h2>
+          <p style={{ ...pLead, color: "#0f172a", fontWeight: 600 }}>Thiết kế để dễ bắt đầu – ít rủi ro – tăng trưởng bền vững.</p>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 16, marginTop: 28 }}>
             {cards.map((c) => (
@@ -662,7 +717,7 @@ export default function App() {
       </section>
 
       {/* ===== PARTNERS / CTA ===== */}
-      <section id="partners" style={{ padding: "60px 0", background: "#f2f7ff" }}>
+      <section id="partners" style={{ padding: "60px 0", background: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)" }}>
         <div style={{ ...sectionWrap, textAlign: "center" }}>
           <h2 style={h2}>Liên hệ & Hợp tác</h2>
           <p style={pLead}>
