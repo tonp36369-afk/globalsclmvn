@@ -332,6 +332,7 @@ export default function App() {
               overflow: "hidden",
               boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
               transition: "transform 0.3s ease",
+              background: "#ffffff",
             }}
             onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-8px)'}
             onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
@@ -341,8 +342,9 @@ export default function App() {
                 alt="SCLM App 2" 
                 style={{ 
                   width: "100%", 
-                  height: 320,
-                  objectFit: "cover",
+                  height: "auto",
+                  minHeight: 320,
+                  objectFit: "contain",
                   display: "block"
                 }} 
               />
@@ -353,6 +355,7 @@ export default function App() {
               overflow: "hidden",
               boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
               transition: "transform 0.3s ease",
+              background: "#ffffff",
             }}
             onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-8px)'}
             onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
@@ -362,8 +365,9 @@ export default function App() {
                 alt="SCLM App 3" 
                 style={{ 
                   width: "100%", 
-                  height: 320,
-                  objectFit: "cover",
+                  height: "auto",
+                  minHeight: 320,
+                  objectFit: "contain",
                   display: "block"
                 }} 
               />
@@ -374,6 +378,7 @@ export default function App() {
               overflow: "hidden",
               boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
               transition: "transform 0.3s ease",
+              background: "#ffffff",
             }}
             onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-8px)'}
             onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
@@ -383,8 +388,9 @@ export default function App() {
                 alt="SCLM App 11" 
                 style={{ 
                   width: "100%", 
-                  height: 320,
-                  objectFit: "cover",
+                  height: "auto",
+                  minHeight: 320,
+                  objectFit: "contain",
                   display: "block"
                 }} 
               />
