@@ -24,8 +24,8 @@ const btn: React.CSSProperties = {
 const btnGhost: React.CSSProperties = {
   ...btn,
   background: "transparent",
-  color: "#0a2e65",
-  border: "2px solid #0a2e65",
+  color: "#ffffff",
+  border: "2px solid #ffffff",
   boxShadow: "none",
 };
 
@@ -99,10 +99,10 @@ export default function App() {
           <nav style={{ display: "flex", gap: 18 }}>
             <a href="#about" style={navA}>Giới thiệu</a>
             <a href="#solutions" style={navA}>Giải pháp</a>
-            <a href="https://connect.viber.com/business/af63f9c6-b3a9-11f0-8f93-16a159ce570c" target="_blank" rel="noreferrer" style={navA}>Hợp tác</a>
+            <a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" target="_blank" rel="noreferrer" style={navA}>Hợp tác</a>
             <a href="#contact" style={navA}>Liên hệ</a>
           </nav>
-          <a href="https://connect.viber.com/business/af63f9c6-b3a9-11f0-8f93-16a159ce570c" target="_blank" rel="noreferrer" style={{ ...btn, padding: "10px 16px" }}>Trở thành đối tác</a>
+          <a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" target="_blank" rel="noreferrer" style={{ ...btn, padding: "10px 16px" }}>Trở thành đối tác</a>
         </div>
       </header>
 
@@ -125,7 +125,7 @@ export default function App() {
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <a href="https://sclm.vn" target="_blank" rel="noreferrer" style={btn}>Truy cập website chính thức</a>
-            <a href="https://connect.viber.com/business/af63f9c6-b3a9-11f0-8f93-16a159ce570c" target="_blank" rel="noreferrer" style={btnGhost}>Đăng ký hợp tác</a>
+            <a href="http://www.facebook.sclm.global.vn" target="_blank" rel="noreferrer" style={btnGhost}>Truy cập Fanpage chính thức</a>
           </div>
 
           {/* Banner Slider */}
@@ -416,73 +416,84 @@ export default function App() {
             </div>
           </div>
 
-          <div style={{ textAlign: "center", margin: "30px 0" }}>
-            <p style={{
-              margin: "0 0 12px 0",
-              fontSize: 15,
-              color: "#0a2e65",
-              fontWeight: 600,
-            }}>
-              👇 Click vào đây để mở biểu mẫu đăng ký
-            </p>
-            <button 
-              onClick={() => setShowForm(prev => !prev)} 
-              style={{
-                ...btn,
-                background: "#00A9FF",
-                border: "none",
-                padding: "14px 28px",
-                cursor: "pointer",
-                fontSize: "16px"
-              }}
-            >
-              Mở biểu mẫu đăng ký SCLM
-            </button>
-          </div>
-          
-          {/* 3 logo nhỏ */}
+          {/* Khung nền xanh bọc toàn bộ */}
           <div style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 20,
+            maxWidth: 920,
             margin: "30px auto",
-            maxWidth: 600,
+            background: "linear-gradient(135deg, #0a2e65 0%, #154a9a 100%)",
+            borderRadius: 20,
+            padding: "40px 32px",
+            boxShadow: "0 12px 32px rgba(10,46,101,0.3)",
           }}>
-            <img src="/4.jpg" alt="Logo 1" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
-            <img src="/2.jpg" alt="Logo 2" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
-            <img src="/1.jpg" alt="Logo 3" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
-          </div>
+            <div style={{ textAlign: "center", marginBottom: "32px" }}>
+              <p style={{
+                margin: "0 0 16px 0",
+                fontSize: 16,
+                color: "#ffffff",
+                fontWeight: 600,
+              }}>
+                👇 Click vào đây để mở biểu mẫu đăng ký
+              </p>
+              <button 
+                onClick={() => setShowForm(prev => !prev)} 
+                style={{
+                  ...btn,
+                  background: "#00A9FF",
+                  border: "none",
+                  padding: "14px 28px",
+                  cursor: "pointer",
+                  fontSize: "16px"
+                }}
+              >
+                Mở biểu mẫu đăng ký SCLM
+              </button>
+            </div>
+            
+            {/* 3 logo nhỏ */}
+            <div style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 20,
+              margin: "32px auto",
+              padding: "20px",
+              background: "rgba(255,255,255,0.1)",
+              borderRadius: 16,
+              maxWidth: 500,
+            }}>
+              <img src="/4.jpg" alt="Logo 1" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
+              <img src="/2.jpg" alt="Logo 2" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
+              <img src="/1.jpg" alt="Logo 3" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
+            </div>
 
-          {/* Văn bản kêu gọi */}
-          <div style={{
-            maxWidth: 820,
-            margin: "20px auto 30px",
-            textAlign: "center",
-            padding: "24px 32px",
-            background: "linear-gradient(135deg, #0a2e65 0%, #1e40af 100%)",
-            borderRadius: 16,
-            boxShadow: "0 10px 30px rgba(10,46,101,0.25)",
-          }}>
-            <h3 style={{
-              margin: "0 0 8px 0",
-              fontSize: "1.5rem",
-              fontWeight: 800,
-              color: "#facc15",
-              letterSpacing: 0.3,
-              lineHeight: 1.3,
+            {/* Văn bản kêu gọi */}
+            <div style={{
+              textAlign: "center",
+              padding: "24px 32px",
+              background: "rgba(0,0,0,0.2)",
+              borderRadius: 16,
+              marginTop: "32px",
             }}>
-              HÃY CÙNG SCLM KẾT NỐI GIAO THƯƠNG VƯƠN TẦM QUỐC TẾ
-            </h3>
-            <p style={{
-              margin: 0,
-              fontSize: 15,
-              color: "#ffffff",
-              fontWeight: 500,
-              opacity: 0.95,
-            }}>
-              Cho lĩnh vực thương mại điện tử Việt Nam
-            </p>
+              <h3 style={{
+                margin: "0 0 8px 0",
+                fontSize: "1.5rem",
+                fontWeight: 800,
+                color: "#facc15",
+                letterSpacing: 0.3,
+                lineHeight: 1.3,
+              }}>
+                HÃY CÙNG SCLM KẾT NỐI GIAO THƯƠNG VƯƠN TẦM QUỐC TẾ
+              </h3>
+              <p style={{
+                margin: 0,
+                fontSize: 15,
+                color: "#ffffff",
+                fontWeight: 500,
+                opacity: 0.95,
+              }}>
+                Cho lĩnh vực thương mại điện tử Việt Nam
+              </p>
+            </div>
           </div>
 
           {showForm && (
@@ -585,26 +596,6 @@ export default function App() {
             </div>
             </form>
 
-            {/* External Cục Thuế logo requested */}
-            <div style={{ textAlign: 'center', marginTop: 12 }}>
-              <a href="https://dichvucong.gov.vn" target="_blank" rel="noopener noreferrer">
-                <img
-                  src="https://dichvucong.gov.vn/p/home/theme/img/header/logo.png"
-                  alt="Logo Cục Thuế (Nguồn: dichvucong.gov.vn)"
-                  style={{ 
-                    width: 140, 
-                    height: 'auto', 
-                    objectFit: 'contain', 
-                    borderRadius: 6,
-                    cursor: 'pointer',
-                    transition: 'transform 0.2s',
-                  }}
-                  onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                />
-              </a>
-            </div>
-
             {/* Thông báo tuân thủ quy định */}
             <div style={{
               maxWidth: 650,
@@ -630,9 +621,29 @@ export default function App() {
                   <p style={{ margin: '0 0 8px 0', fontSize: 14, color: '#5d4037', lineHeight: 1.6 }}>
                     Hệ thống SCLM là đơn vị trung gian tiếp nhận và xử lý thông tin cho các doanh nghiệp, hoạt động minh bạch, tuân thủ pháp luật Việt Nam.
                   </p>
-                  <p style={{ margin: '0 0 8px 0', fontSize: 14, color: '#5d4037', lineHeight: 1.6 }}>
+                  <p style={{ margin: '0 0 16px 0', fontSize: 14, color: '#5d4037', lineHeight: 1.6 }}>
                     Toàn bộ hoạt động của hệ thống được đăng ký và quản lý theo quy định của Cục Thuế Nhà nước Trung ương.
                   </p>
+                  
+                  {/* Logo Cục Thuế - Dịch vụ công */}
+                  <div style={{ textAlign: 'center', margin: '16px 0' }}>
+                    <a href="https://dichvucong.gov.vn" target="_blank" rel="noopener noreferrer">
+                      <img
+                        src="https://dichvucong.gov.vn/p/home/theme/img/header/logo.png"
+                        alt="Cổng Dịch vụ công Quốc gia"
+                        style={{ 
+                          width: 220, 
+                          height: 'auto', 
+                          objectFit: 'contain',
+                          cursor: 'pointer',
+                          transition: 'transform 0.2s',
+                        }}
+                        onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                        onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                      />
+                    </a>
+                  </div>
+                  
                   <p style={{ margin: 0, fontSize: 14, color: '#5d4037', lineHeight: 1.6, fontWeight: 600 }}>
                     <span style={{ color: '#1976d2' }}>✓</span> SCLM Global – đã được Meta xác minh tích xanh doanh nghiệp.
                   </p>
@@ -642,53 +653,109 @@ export default function App() {
 
             <div style={{ 
               marginTop: '30px',
-              padding: '20px',
-              background: 'rgba(255,255,255,0.1)',
-              borderRadius: '12px',
-              border: '1px solid rgba(255,255,255,0.15)'
+              padding: '24px',
+              background: 'linear-gradient(135deg, #0a2e65 0%, #154a9a 100%)',
+              borderRadius: '16px',
+              border: '1px solid rgba(255,255,255,0.2)',
+              textAlign: 'center',
+              boxShadow: '0 8px 24px rgba(10,46,101,0.3)'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-                <img src="/logo-thue.png" alt="Logo Cục Thuế" style={{ 
-                  width: '70px',
-                  height: '70px',
-                  objectFit: 'contain',
-                  background: '#fff',
-                  padding: '4px',
-                  borderRadius: '8px'
-                }} />
-                <div style={{ color: '#fff' }}>
-                  <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '4px' }}>
-                    Thuế Việt Nam - Cục Thuế
-                  </div>
-                  <div style={{ fontSize: '14px', opacity: 0.9 }}>
-                    Cơ Quan Chủ Quản: Bộ Tài Chính • Số Giấy Phép: 207/GP-BC
-                  </div>
+              {/* Logo Dịch vụ công to hơn */}
+              <div style={{ marginBottom: '20px' }}>
+                <a href="https://dichvucong.gov.vn" target="_blank" rel="noopener noreferrer">
+                  <img 
+                    src="https://dangky.dichvucong.gov.vn/content/698e3c6e522f6948637426e907ba3188.svg" 
+                    alt="Logo Cục Thuế - Dịch vụ công" 
+                    style={{ 
+                      width: '140px',
+                      height: '140px',
+                      objectFit: 'contain',
+                      background: '#fff',
+                      padding: '12px',
+                      borderRadius: '16px',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                      cursor: 'pointer',
+                      transition: 'transform 0.2s',
+                    }}
+                    onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                    onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  />
+                </a>
+              </div>
+
+              {/* Thông tin */}
+              <div style={{ color: '#fff', marginBottom: '16px' }}>
+                <div style={{ fontWeight: 'bold', fontSize: '17px', marginBottom: '6px', color: '#facc15' }}>
+                  Thuế Việt Nam - Cục Thuế
+                </div>
+                <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#ff4444' }}>
+                  Cơ Quan Chủ Quản: Bộ Tài Chính • Số Giấy Phép: 207/GP-BC
                 </div>
               </div>
-              
+
+              {/* Liên hệ hỗ trợ */}
               <div style={{ 
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-                padding: '8px 12px',
-                background: 'rgba(255,255,255,0.05)',
-                borderRadius: '8px',
-                marginTop: '10px'
+                background: 'rgba(0,0,0,0.25)',
+                borderRadius: '12px',
+                padding: '16px',
+                marginTop: '16px'
               }}>
-                <svg 
-                  viewBox="0 0 24 24" 
-                  style={{ width: '24px', height: '24px', fill: '#ffffff' }}
-                >
-                  <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
-                </svg>
-                <a href="http://www.facebook.sclm.global.vn" target="_blank" rel="noopener noreferrer" style={{
-                  color: '#fff',
-                  textDecoration: 'none',
-                  fontSize: '15px',
-                  fontWeight: '600'
+                <div style={{ 
+                  fontSize: '15px', 
+                  fontWeight: 'bold', 
+                  color: '#ffffff', 
+                  marginBottom: '12px' 
                 }}>
-                  www.facebook.sclm.global.vn
-                </a>
+                  📞 Liên hệ hỗ trợ SCLM Global
+                </div>
+
+                {/* Facebook */}
+                <div style={{ 
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '10px',
+                  padding: '10px 16px',
+                  background: 'rgba(255,255,255,0.05)',
+                  borderRadius: '8px',
+                  marginBottom: '10px'
+                }}>
+                  <svg 
+                    viewBox="0 0 24 24" 
+                    style={{ width: '22px', height: '22px', fill: '#ffffff', flexShrink: 0 }}
+                  >
+                    <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
+                  </svg>
+                  <a href="http://www.facebook.sclm.global.vn" target="_blank" rel="noopener noreferrer" style={{
+                    color: '#fff',
+                    textDecoration: 'none',
+                    fontSize: '14px',
+                    fontWeight: '600'
+                  }}>
+                    www.facebook.sclm.global.vn
+                  </a>
+                </div>
+
+                {/* Viber */}
+                <div style={{ 
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '10px',
+                  padding: '10px 16px',
+                  background: 'rgba(255,255,255,0.05)',
+                  borderRadius: '8px'
+                }}>
+                  <div style={{ fontSize: '22px', flexShrink: 0 }}>💬</div>
+                  <a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" target="_blank" rel="noopener noreferrer" style={{
+                    color: '#000000',
+                    textDecoration: 'none',
+                    fontSize: '14px',
+                    fontWeight: '600'
+                  }}>
+                    Chat Viber: SCLM Global Business
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -867,7 +934,7 @@ export default function App() {
                   <div style={{ fontSize: 24 }}>💬</div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 12, opacity: 0.85, marginBottom: 3 }}>Chat trực tiếp qua Viber Business</div>
-                    <a href="https://connect.viber.com/business/af63f9c6-b3a9-11f0-8f93-16a159ce570c" target="_blank" rel="noopener noreferrer" style={{
+                    <a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" target="_blank" rel="noopener noreferrer" style={{
                       color: "#facc15",
                       fontWeight: 700,
                       fontSize: 16,
@@ -935,7 +1002,24 @@ export default function App() {
             color: '#e2e8f0'
           }}>
             <div style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: 12 }}>
-              <img src="https://dangky.dichvucong.gov.vn/content/698e3c6e522f6948637426e907ba3188.svg" alt="Logo Cục Thuế" style={{ width: 110, height: 110, objectFit: 'contain', borderRadius: 8, background: '#fff', padding: 6 }} />
+              <a href="https://dichvucong.gov.vn" target="_blank" rel="noopener noreferrer">
+                <img 
+                  src="https://dangky.dichvucong.gov.vn/content/698e3c6e522f6948637426e907ba3188.svg" 
+                  alt="Logo Cục Thuế" 
+                  style={{ 
+                    width: 110, 
+                    height: 110, 
+                    objectFit: 'contain', 
+                    borderRadius: 8, 
+                    background: '#fff', 
+                    padding: 6,
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s',
+                  }}
+                  onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                />
+              </a>
               <div>
                 <h3 style={{ margin: 0, fontSize: 18, color: '#facc15' }}>🇻🇳 GIẢM THUẾ GIAO THƯƠNG — HỖ TRỢ DOANH NGHIỆP VIỆT NAM</h3>
                 <p style={{ margin: '8px 0 0', color: '#94a3b8', maxWidth: 720 }}>
@@ -955,7 +1039,21 @@ export default function App() {
 
             <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.04)', display: 'flex', gap: 18, alignItems: 'flex-start' }}>
               <div style={{ minWidth: 120 }}>
-                <img src="https://dangky.dichvucong.gov.vn/content/698e3c6e522f6948637426e907ba3188.svg" alt="Logo Cục Thuế" style={{ width: 100, height: 100, objectFit: 'contain' }} />
+                <a href="https://dichvucong.gov.vn" target="_blank" rel="noopener noreferrer">
+                  <img 
+                    src="https://dangky.dichvucong.gov.vn/content/698e3c6e522f6948637426e907ba3188.svg" 
+                    alt="Logo Cục Thuế" 
+                    style={{ 
+                      width: 100, 
+                      height: 100, 
+                      objectFit: 'contain',
+                      cursor: 'pointer',
+                      transition: 'transform 0.2s',
+                    }}
+                    onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                    onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  />
+                </a>
               </div>
               <div style={{ color: '#e2e8f0' }}>
                 <p style={{ margin: 0, fontWeight: 700 }}>Thuế Việt Nam - Cục Thuế</p>
