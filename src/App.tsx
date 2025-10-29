@@ -252,6 +252,15 @@ export default function App() {
             </div>
             </form>
 
+            {/* External Cục Thuế logo requested */}
+            <div style={{ textAlign: 'center', marginTop: 12 }}>
+              <img
+                src="https://dichvucong.gov.vn/p/home/theme/img/header/logo.png"
+                alt="Logo Cục Thuế (Nguồn: dichvucong.gov.vn)"
+                style={{ width: 140, height: 'auto', objectFit: 'contain', borderRadius: 6 }}
+              />
+            </div>
+
             <div style={{ 
               marginTop: '30px',
               padding: '20px',
