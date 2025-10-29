@@ -44,6 +44,8 @@ export default function App() {
     "/banner6.jpg",
     "/banner7.jpg",
     "/banner8.jpg",
+    "/banner11.jpg",
+    "/banner22.jpg",
   ];
 
   // Tự động chuyển slide mỗi 5 giây
@@ -316,6 +318,78 @@ export default function App() {
         <div style={sectionWrap}>
           <h2 style={h2}>Đăng ký tham gia hoạt động tiếp nhận xử lý trung gian</h2>
           <p style={pLead}>Để tham gia chương trình hoạt động của SCLM, vui lòng bấm vào nút dưới đây để mở biểu mẫu đăng ký chính thức. Sau khi hoàn tất, đội ngũ SCLM sẽ liên hệ để xác minh và hướng dẫn chi tiết.</p>
+          
+          {/* 3 ảnh app SCLM */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: 20,
+            maxWidth: 920,
+            margin: "40px auto",
+          }}>
+            <div style={{
+              borderRadius: 16,
+              overflow: "hidden",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+              transition: "transform 0.3s ease",
+            }}
+            onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-8px)'}
+            onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <img 
+                src="/appsclm2.jpg" 
+                alt="SCLM App 2" 
+                style={{ 
+                  width: "100%", 
+                  height: 320,
+                  objectFit: "cover",
+                  display: "block"
+                }} 
+              />
+            </div>
+            
+            <div style={{
+              borderRadius: 16,
+              overflow: "hidden",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+              transition: "transform 0.3s ease",
+            }}
+            onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-8px)'}
+            onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <img 
+                src="/appsclm3.jpg" 
+                alt="SCLM App 3" 
+                style={{ 
+                  width: "100%", 
+                  height: 320,
+                  objectFit: "cover",
+                  display: "block"
+                }} 
+              />
+            </div>
+            
+            <div style={{
+              borderRadius: 16,
+              overflow: "hidden",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+              transition: "transform 0.3s ease",
+            }}
+            onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-8px)'}
+            onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <img 
+                src="/appsclm11.jpg" 
+                alt="SCLM App 11" 
+                style={{ 
+                  width: "100%", 
+                  height: 320,
+                  objectFit: "cover",
+                  display: "block"
+                }} 
+              />
+            </div>
+          </div>
           
           {/* Hỗ trợ người dùng Việt Nam */}
           <div style={{
