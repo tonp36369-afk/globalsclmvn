@@ -247,6 +247,18 @@ export default function App() {
             </p>
           </div>
 
+          {/* Tagline moved up from tax section */}
+          <p style={{
+            textAlign: "center",
+            color: "#ffffff",
+            fontSize: 18,
+            fontWeight: 800,
+            marginTop: 16,
+            letterSpacing: 0.2,
+          }}>
+            “SCLM GLOBAL – Nơi phụ nữ bắt đầu hành trình kinh doanh tự chủ”
+          </p>
+
           {/* Stats */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 16, marginTop: 40 }}>
             {[
@@ -508,9 +520,12 @@ export default function App() {
       {/* ===== PARTNERS / CTA ===== */}
       <section id="partners" style={{ padding: "60px 0", background: "#f2f7ff" }}>
         <div style={{ ...sectionWrap, textAlign: "center" }}>
-          <h2 style={h2}>Sẵn sàng mở rộng thương hiệu cùng SCLM?</h2>
+          <h2 style={h2}>💥 Sẵn sàng mở rộng thương hiệu cùng SCLM?</h2>
           <p style={pLead}>
-            Tham gia mạng lưới đối tác – hệ thống vận hành minh bạch – công cụ quản lý trên điện thoại & laptop.
+            Tham gia mạng lưới đối tác SCLM – nơi hội tụ doanh nghiệp năng động, hệ thống vận hành minh bạch, cùng công cụ quản lý toàn diện trên điện thoại & laptop, giúp bạn kiểm soát hiệu quả mọi hoạt động kinh doanh mọi lúc – mọi nơi.
+          </p>
+          <p style={{ ...pLead, marginTop: 16, fontWeight: 600, color: "#0a2e65" }}>
+            🚀 SCLM không chỉ mang đến nền tảng công nghệ mà còn là người đồng hành chiến lược, hỗ trợ xây dựng thương hiệu, tối ưu vận hành và mở rộng quy mô bền vững.
           </p>
           <div style={{ marginTop: 18 }}>
             <a href="#contact" style={btn}>Đăng ký hợp tác ngay</a>
@@ -573,9 +588,7 @@ export default function App() {
               <p style={{ margin: '8px 0' }}>
                 Kể từ lần sau, doanh nghiệp chỉ cần nhận sao kê ngân hàng và đóng thuế online — không cần đến Kho Bạc Nhà Nước. Chính sách này góp phần hiện đại hoá quy trình quản lý, giảm thủ tục hành chính theo <strong>Nghị quyết 136/NQ-CP (27/12/2017)</strong> và <strong>Nghị quyết 66/NQ-CP (26/3/2025)</strong>.
               </p>
-              <p style={{ margin: '8px 0', fontWeight: 700, color: '#e6f2ff' }}>
-                “SCLM GLOBAL – Nơi phụ nữ bắt đầu hành trình kinh doanh tự chủ”
-              </p>
+              
               <p style={{ margin: '8px 0' }}>
                 <strong>SCLM GLOBAL</strong> đồng hành cùng phụ nữ Việt trong hành trình khởi nghiệp, cung cấp kiến thức, công cụ và giải pháp toàn diện để tự chủ tài chính, phát triển thương hiệu và mở rộng thị trường.
               </p>
