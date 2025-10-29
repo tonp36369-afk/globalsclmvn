@@ -33,6 +33,31 @@ export default function App() {
   const formRef = useRef<HTMLFormElement | null>(null);
   const [status, setStatus] = useState<null | "sending" | "ok" | "err">(null);
   const [showForm, setShowForm] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Danh sách ảnh banner
+  const bannerImages = [
+    "/banner-sclm.jpg",
+    "/banner3.jpg",
+    "/banner4.jpg",
+    "/banner5.jpg",
+  ];
+
+  // Tự động chuyển slide mỗi 5 giây
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [bannerImages.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + bannerImages.length) % bannerImages.length);
+  };
 
   const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,13 +123,95 @@ export default function App() {
             <a href="#contact" style={btnGhost}>Đăng ký hợp tác</a>
           </div>
 
-          {/* Banner */}
-          <div style={{ marginTop: 18 }}>
-            <img
-              src="/banner-sclm.jpg"
-              alt="SCLM Banner"
-              style={{ width: "100%", maxWidth: 1100, borderRadius: 16, boxShadow: "0 12px 28px rgba(0,0,0,.25)" }}
-            />
+          {/* Banner Slider */}
+          <div style={{ marginTop: 18, position: 'relative', maxWidth: 1100, margin: '18px auto 0' }}>
+            {/* Ảnh banner */}
+            <div style={{ position: 'relative', overflow: 'hidden', borderRadius: 16, boxShadow: "0 12px 28px rgba(0,0,0,.25)" }}>
+              <img
+                src={bannerImages[currentSlide]}
+                alt={`SCLM Banner ${currentSlide + 1}`}
+                style={{ 
+                  width: "100%", 
+                  height: 400,
+                  objectFit: 'cover',
+                  transition: 'opacity 0.5s ease-in-out',
+                }}
+              />
+              
+              {/* Nút Previous */}
+              <button
+                onClick={prevSlide}
+                style={{
+                  position: 'absolute',
+                  left: 20,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'rgba(255,255,255,0.9)',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: 50,
+                  height: 50,
+                  fontSize: 24,
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                  transition: 'all 0.3s',
+                }}
+                onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,1)'}
+                onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.9)'}
+              >
+                ‹
+              </button>
+
+              {/* Nút Next */}
+              <button
+                onClick={nextSlide}
+                style={{
+                  position: 'absolute',
+                  right: 20,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'rgba(255,255,255,0.9)',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: 50,
+                  height: 50,
+                  fontSize: 24,
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                  transition: 'all 0.3s',
+                }}
+                onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,1)'}
+                onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.9)'}
+              >
+                ›
+              </button>
+
+              {/* Dots indicator */}
+              <div style={{ 
+                position: 'absolute', 
+                bottom: 20, 
+                left: '50%', 
+                transform: 'translateX(-50%)',
+                display: 'flex',
+                gap: 8,
+              }}>
+                {bannerImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    style={{
+                      width: currentSlide === index ? 24 : 12,
+                      height: 12,
+                      borderRadius: 6,
+                      border: 'none',
+                      background: currentSlide === index ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.5)',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s',
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
