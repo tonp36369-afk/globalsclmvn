@@ -314,6 +314,46 @@ export default function App() {
           <h2 style={h2}>Đăng ký tham gia hoạt động tiếp nhận xử lý trung gian</h2>
           <p style={pLead}>Để tham gia chương trình hoạt động của SCLM, vui lòng bấm vào nút dưới đây để mở biểu mẫu đăng ký chính thức. Sau khi hoàn tất, đội ngũ SCLM sẽ liên hệ để xác minh và hướng dẫn chi tiết.</p>
           
+          {/* Hỗ trợ người dùng Việt Nam */}
+          <div style={{
+            maxWidth: 820,
+            margin: "40px auto",
+            background: "linear-gradient(135deg, #0a2e65 0%, #154a9a 100%)",
+            borderRadius: 16,
+            padding: "32px 40px",
+            boxShadow: "0 10px 30px rgba(10,46,101,0.2)",
+            border: "2px solid rgba(255,255,255,0.1)",
+          }}>
+            <h3 style={{
+              margin: "0 0 20px 0",
+              fontSize: "1.6rem",
+              fontWeight: 800,
+              color: "#ffffff",
+              textAlign: "center",
+              letterSpacing: 0.3,
+            }}>
+              🇻🇳 Hiện tại Global SCLM Hỗ trợ người dùng Việt Nam – Bắt đầu dễ dàng cùng SCLM
+            </h3>
+            
+            <div style={{ color: "#ffffff", fontSize: 15.5, lineHeight: 1.8 }}>
+              <p style={{ margin: "0 0 16px 0" }}>
+                Hiện tại, <strong>SCLM Global</strong> đang triển khai chương trình hỗ trợ người dùng tại Việt Nam trong việc mở tài khoản và kích hoạt cơ sở tiếp nhận & xử lý thông tin trung gian ngay trên hệ thống.
+              </p>
+              
+              <p style={{ margin: "0 0 16px 0", background: "rgba(255,255,255,0.1)", padding: "12px 16px", borderRadius: 8, borderLeft: "3px solid #facc15" }}>
+                Người dùng có thể bắt đầu tham gia chỉ với ngưỡng hoạt động từ <strong style={{ color: "#facc15" }}>30 USD</strong>, để sở hữu cơ sở tiếp nhận – xử lý thông tin và tạo lợi nhuận mỗi ngày ngay tại nhà thông qua hệ thống vận hành tự động của SCLM.
+              </p>
+              
+              <p style={{ margin: "0 0 12px 0" }}>
+                Nhằm đảm bảo an toàn và tính minh bạch tuyệt đối, SCLM đã tích hợp cơ chế tự động hóa kích hoạt và xử lý giao dịch ngay lập tức trên nền tảng.
+              </p>
+              
+              <p style={{ margin: 0, opacity: 0.95 }}>
+                Điều này giúp người dùng giao dịch nhanh hơn, xử lý linh hoạt hơn và trải nghiệm một hệ thống vận hành ổn định, thông minh, an toàn tuyệt đối.
+              </p>
+            </div>
+          </div>
+
           <div style={{ textAlign: "center", margin: "30px 0" }}>
             <button 
               onClick={() => setShowForm(prev => !prev)} 
