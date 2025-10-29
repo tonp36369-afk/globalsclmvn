@@ -598,8 +598,165 @@ export default function App() {
           <p style={{ ...pLead, marginTop: 16, fontWeight: 600, color: "#0a2e65" }}>
             🚀 SCLM không chỉ mang đến nền tảng công nghệ mà còn là người đồng hành chiến lược, hỗ trợ xây dựng thương hiệu, tối ưu vận hành và mở rộng quy mô bền vững.
           </p>
-          <div style={{ marginTop: 18 }}>
-            <a href="#contact" style={btn}>Đăng ký hợp tác ngay</a>
+
+          {/* Thông tin liên hệ chính thức */}
+          <div style={{
+            maxWidth: 700,
+            margin: "40px auto 0",
+            background: "linear-gradient(135deg, #0a2e65 0%, #154a9a 100%)",
+            borderRadius: 20,
+            padding: "36px 40px",
+            boxShadow: "0 12px 32px rgba(10,46,101,0.25)",
+            color: "#ffffff",
+          }}>
+            <h3 style={{
+              margin: "0 0 24px 0",
+              fontSize: "1.5rem",
+              fontWeight: 800,
+              color: "#ffffff",
+              letterSpacing: 0.3,
+            }}>
+              📞 Liên hệ & Kết nối với SCLM Global
+            </h3>
+
+            <div style={{ display: "grid", gap: 18, textAlign: "left" }}>
+              {/* Website */}
+              <div style={{
+                background: "rgba(255,255,255,0.1)",
+                borderRadius: 12,
+                padding: "16px 20px",
+                display: "flex",
+                alignItems: "center",
+                gap: 14,
+                transition: "all 0.3s",
+                border: "1px solid rgba(255,255,255,0.15)",
+              }}>
+                <div style={{ fontSize: 28 }}>🌐</div>
+                <div>
+                  <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 4 }}>Website chính thức</div>
+                  <a href="https://sclm.vn" target="_blank" rel="noopener noreferrer" style={{
+                    color: "#facc15",
+                    fontWeight: 700,
+                    fontSize: 17,
+                    textDecoration: "none",
+                  }}>
+                    www.sclm.vn
+                  </a>
+                </div>
+              </div>
+
+              {/* Hotline */}
+              <div style={{
+                background: "rgba(255,255,255,0.1)",
+                borderRadius: 12,
+                padding: "16px 20px",
+                display: "flex",
+                alignItems: "center",
+                gap: 14,
+                border: "1px solid rgba(255,255,255,0.15)",
+              }}>
+                <div style={{ fontSize: 28 }}>📱</div>
+                <div>
+                  <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 4 }}>Hotline hỗ trợ 24/7</div>
+                  <div style={{ fontWeight: 700, fontSize: 17 }}>
+                    <a href="tel:0582779977" style={{ color: "#ffffff", textDecoration: "none", marginRight: 12 }}>0582 779 977</a>
+                    <span style={{ opacity: 0.6 }}>|</span>
+                    <a href="tel:0947886611" style={{ color: "#ffffff", textDecoration: "none", marginLeft: 12 }}>0947 886 611</a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Facebook */}
+              <div style={{
+                background: "rgba(255,255,255,0.1)",
+                borderRadius: 12,
+                padding: "16px 20px",
+                display: "flex",
+                alignItems: "center",
+                gap: 14,
+                border: "1px solid rgba(255,255,255,0.15)",
+              }}>
+                <div style={{ fontSize: 28 }}>📘</div>
+                <div>
+                  <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 4 }}>Facebook (Tích xanh doanh nghiệp)</div>
+                  <a href="http://www.facebook.sclm.global.vn" target="_blank" rel="noopener noreferrer" style={{
+                    color: "#facc15",
+                    fontWeight: 700,
+                    fontSize: 17,
+                    textDecoration: "none",
+                  }}>
+                    www.facebook.sclm.global.vn
+                  </a>
+                </div>
+              </div>
+
+              {/* Viber */}
+              <div style={{
+                background: "rgba(255,255,255,0.1)",
+                borderRadius: 12,
+                padding: "16px 20px",
+                display: "flex",
+                alignItems: "center",
+                gap: 14,
+                border: "1px solid rgba(255,255,255,0.15)",
+              }}>
+                <div style={{ fontSize: 28 }}>💬</div>
+                <div>
+                  <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 4 }}>Chat trực tiếp qua Viber</div>
+                  <a href="viber://chat?number=0582779977" style={{
+                    color: "#ffffff",
+                    fontWeight: 700,
+                    fontSize: 17,
+                    textDecoration: "none",
+                  }}>
+                    0582 779 977
+                  </a>
+                  <span style={{ opacity: 0.6, margin: "0 8px" }}>|</span>
+                  <a href="viber://chat?number=0947886611" style={{
+                    color: "#ffffff",
+                    fontWeight: 700,
+                    fontSize: 17,
+                    textDecoration: "none",
+                  }}>
+                    0947 886 611
+                  </a>
+                </div>
+              </div>
+
+              {/* Email */}
+              <div style={{
+                background: "rgba(255,255,255,0.1)",
+                borderRadius: 12,
+                padding: "16px 20px",
+                display: "flex",
+                alignItems: "center",
+                gap: 14,
+                border: "1px solid rgba(255,255,255,0.15)",
+              }}>
+                <div style={{ fontSize: 28 }}>✉️</div>
+                <div>
+                  <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 4 }}>Email hỗ trợ khách hàng</div>
+                  <a href="mailto:sclm.customer@gmail.com" style={{
+                    color: "#facc15",
+                    fontWeight: 700,
+                    fontSize: 17,
+                    textDecoration: "none",
+                  }}>
+                    sclm.customer@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <p style={{
+              marginTop: 24,
+              fontSize: 14,
+              opacity: 0.9,
+              lineHeight: 1.6,
+              textAlign: "center",
+            }}>
+              Đội ngũ SCLM luôn sẵn sàng tư vấn và hỗ trợ bạn 24/7 qua mọi kênh liên hệ trên
+            </p>
           </div>
         </div>
       </section>
