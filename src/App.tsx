@@ -650,7 +650,12 @@ export default function App() {
       {/* ===== PARTNERS / CTA ===== */}
       <section id="partners" style={{ padding: "60px 0", background: "#f2f7ff" }}>
         <div style={{ ...sectionWrap, textAlign: "center" }}>
-          <h2 style={h2}>💥 Sẵn sàng mở rộng thương hiệu cùng SCLM?</h2>
+          <h2 style={h2}>Liên hệ & Hợp tác</h2>
+          <p style={pLead}>
+            Liên hệ trực tiếp với SCLM qua các kênh chính thức dưới đây. Đội ngũ luôn sẵn sàng hỗ trợ bạn 24/7.
+          </p>
+          
+          <h2 style={{ ...h2, marginTop: 50 }}>💥 Sẵn sàng mở rộng thương hiệu cùng SCLM?</h2>
           <p style={pLead}>
             Tham gia mạng lưới đối tác SCLM – nơi hội tụ doanh nghiệp năng động, hệ thống vận hành minh bạch, cùng công cụ quản lý toàn diện trên điện thoại & laptop, giúp bạn kiểm soát hiệu quả mọi hoạt động kinh doanh mọi lúc – mọi nơi.
           </p>
@@ -665,13 +670,8 @@ export default function App() {
         <div style={{ ...sectionWrap, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "flex-start" }}>
           {/* left - Contact Info */}
           <div>
-            <h2 style={{ ...h2, textAlign: "left", margin: "0 0 8px 0" }}>Liên hệ & Hợp tác</h2>
-            <p style={{ color: "#475569", marginTop: 0, marginBottom: 24 }}>
-              Liên hệ trực tiếp với SCLM qua các kênh chính thức dưới đây. Đội ngũ luôn sẵn sàng hỗ trợ bạn 24/7.
-            </p>
-            
             {/* Ảnh anhapp20.jpg */}
-            <div style={{ marginTop: 20 }}>
+            <div style={{ marginBottom: 24 }}>
               <img 
                 src="/sclmapp20.jpg" 
                 alt="SCLM App" 
@@ -683,6 +683,10 @@ export default function App() {
                 }} 
               />
             </div>
+            
+            <p style={{ color: "#475569", textAlign: "center", fontSize: 16, lineHeight: 1.6 }}>
+              Liên hệ trực tiếp với SCLM qua các kênh chính thức. Đội ngũ luôn sẵn sàng hỗ trợ bạn 24/7.
+            </p>
           </div>
 
           {/* right - Contact channels */}
