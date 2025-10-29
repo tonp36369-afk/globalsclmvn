@@ -702,23 +702,14 @@ export default function App() {
               }}>
                 <div style={{ fontSize: 28 }}>💬</div>
                 <div>
-                  <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 4 }}>Chat trực tiếp qua Viber</div>
-                  <a href="viber://chat?number=0582779977" style={{
-                    color: "#ffffff",
+                  <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 4 }}>Chat trực tiếp qua Viber Business</div>
+                  <a href="https://connect.viber.com/business/af63f9c6-b3a9-11f0-8f93-16a159ce570c" target="_blank" rel="noopener noreferrer" style={{
+                    color: "#facc15",
                     fontWeight: 700,
                     fontSize: 17,
                     textDecoration: "none",
                   }}>
-                    0582 779 977
-                  </a>
-                  <span style={{ opacity: 0.6, margin: "0 8px" }}>|</span>
-                  <a href="viber://chat?number=0947886611" style={{
-                    color: "#ffffff",
-                    fontWeight: 700,
-                    fontSize: 17,
-                    textDecoration: "none",
-                  }}>
-                    0947 886 611
+                    SCLM Global Business
                   </a>
                 </div>
               </div>
