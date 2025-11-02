@@ -104,7 +104,7 @@ const FloatingLuckyWheel: React.FC<FloatingLuckyWheelProps> = ({
     }
   };
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = () => {
     // Only open modal if not dragging
     if (!isDragging) {
       setIsModalOpen(true);
