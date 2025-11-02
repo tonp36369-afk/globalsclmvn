@@ -37,17 +37,23 @@ export default function App() {
   const [showForm, setShowForm] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Danh sách ảnh banner
+  // State cho widget hỗ trợ 24/7
+  const [supportPosition, setSupportPosition] = useState({ x: window.innerWidth - 120, y: window.innerHeight - 180 });
+  const [isSupportDragging, setIsSupportDragging] = useState(false);
+  const [supportOffset, setSupportOffset] = useState({ x: 0, y: 0 });
+  const [supportDragStartPos, setSupportDragStartPos] = useState({ x: 0, y: 0 });
+
+  // Danh sách ảnh banner - Sử dụng đường dẫn từ public folder
   const bannerImages = [
-    "/banner-sclm.jpg",
-    "/banner3.jpg",
-    "/banner4.jpg",
-    "/banner5.jpg",
-    "/banner6.jpg",
-    "/banner7.jpg",
-    "/banner8.jpg",
-    "/banner11.jpg",
-    "/banner22.jpg",
+    "/globalsclmvn/banner-sclm.jpg",
+    "/globalsclmvn/banner3.jpg",
+    "/globalsclmvn/banner4.jpg",
+    "/globalsclmvn/banner5.jpg",
+    "/globalsclmvn/banner6.jpg",
+    "/globalsclmvn/banner7.jpg",
+    "/globalsclmvn/banner8.jpg",
+    "/globalsclmvn/banner11.jpg",
+    "/globalsclmvn/banner12.jpg",
   ];
 
   // Tự động chuyển slide mỗi 5 giây
@@ -57,6 +63,43 @@ export default function App() {
     }, 5000);
     return () => clearInterval(timer);
   }, [bannerImages.length]);
+
+  // Xử lý kéo widget hỗ trợ
+  React.useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isSupportDragging) {
+        setSupportPosition({
+          x: e.clientX - supportOffset.x,
+          y: e.clientY - supportOffset.y,
+        });
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsSupportDragging(false);
+    };
+
+    if (isSupportDragging) {
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isSupportDragging, supportOffset]);
+
+  const handleSupportMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const rect = (e.target as HTMLElement).getBoundingClientRect();
+    setSupportOffset({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+    setSupportDragStartPos({ x: e.clientX, y: e.clientY });
+    setIsSupportDragging(true);
+  };
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
@@ -95,7 +138,7 @@ export default function App() {
       >
         <div style={{ ...sectionWrap, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 16px", flexWrap: "wrap", gap: 8 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <img src="/logo-sclm.png" alt="SCLM" style={{ width: "clamp(36px, 8vw, 44px)", height: "clamp(36px, 8vw, 44px)", borderRadius: "50%" }} />
+            <img src="/globalsclmvn/logo-sclm.png" alt="SCLM" style={{ width: "clamp(36px, 8vw, 44px)", height: "clamp(36px, 8vw, 44px)", borderRadius: "50%" }} />
             <div style={{ color: "white", fontWeight: 800, letterSpacing: 0.5, fontSize: "clamp(14px, 3vw, 17px)" }}>GLOBAL SCLM</div>
           </div>
           <nav style={{ display: "flex", gap: "clamp(10px, 2vw, 18px)", fontSize: "clamp(12px, 2.5vw, 15px)", flexWrap: "wrap" }}>
@@ -118,7 +161,7 @@ export default function App() {
         }}
       >
         <div style={sectionWrap}>
-          <img src="/logo-sclm.png" alt="SCLM" style={{ width: "clamp(56px, 12vw, 72px)", height: "clamp(56px, 12vw, 72px)", borderRadius: "50%", margin: "0 auto 12px" }} />
+          <img src="/globalsclmvn/logo-sclm.png" alt="SCLM" style={{ width: "clamp(56px, 12vw, 72px)", height: "clamp(56px, 12vw, 72px)", borderRadius: "50%", margin: "0 auto 12px" }} />
           <h1 style={{ fontSize: "clamp(1.4rem, 5vw, 2.8rem)", fontWeight: 900, lineHeight: 1.2, marginBottom: 10, padding: "0 10px" }}>
             Global Supply Chain & Logistics Management
           </h1>
@@ -343,7 +386,7 @@ export default function App() {
             onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
               <img 
-                src="/3.jpg" 
+                src="/globalsclmvn/3.jpg" 
                 alt="SCLM App" 
                 style={{ 
                   width: "100%", 
@@ -367,7 +410,7 @@ export default function App() {
             onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
               <img 
-                src="/appsclm3.jpg" 
+                src="/globalsclmvn/appsclm3.jpg" 
                 alt="SCLM App 3" 
                 style={{ 
                   width: "100%", 
@@ -380,6 +423,42 @@ export default function App() {
             </div>
           </div>
           
+          {/* Banner Chữ Vàng */}
+          <div style={{
+            maxWidth: 1000,
+            margin: "40px auto 30px",
+            background: "linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)",
+            borderRadius: 20,
+            padding: "clamp(30px, 5vw, 50px) clamp(20px, 4vw, 40px)",
+            boxShadow: "0 15px 40px rgba(30,58,138,0.4)",
+            border: "3px solid rgba(255,215,0,0.3)",
+            textAlign: "center",
+          }}>
+            <h2 style={{
+              margin: 0,
+              fontSize: "clamp(1.8rem, 5vw, 3.2rem)",
+              fontWeight: 900,
+              color: "#FFD700",
+              textTransform: "uppercase",
+              letterSpacing: "clamp(1px, 0.3vw, 3px)",
+              lineHeight: 1.3,
+              textShadow: "0 4px 12px rgba(0,0,0,0.3), 0 0 30px rgba(255,215,0,0.4)",
+              marginBottom: "clamp(12px, 2.5vw, 20px)",
+            }}>
+              HÃY CÙNG SCLM KẾT NỐI GIAO<br/>THƯƠNG VƯƠN TẦM QUỐC TẾ
+            </h2>
+            <p style={{
+              margin: 0,
+              fontSize: "clamp(1rem, 3vw, 1.4rem)",
+              fontWeight: 600,
+              color: "#ffffff",
+              opacity: 0.95,
+              letterSpacing: "0.5px",
+            }}>
+              Cho lĩnh vực thương mại điện tử Việt Nam
+            </p>
+          </div>
+
           {/* Hỗ trợ người dùng Việt Nam */}
           <div style={{
             maxWidth: 820,
@@ -420,38 +499,178 @@ export default function App() {
             </div>
           </div>
 
-          {/* Khung nền xanh bọc toàn bộ */}
+          {/* Layout 2 cột: Nút bên trái + Nội dung bên phải */}
           <div style={{
-            maxWidth: 920,
+            maxWidth: 1100,
             margin: "30px auto",
-            background: "linear-gradient(135deg, #0a2e65 0%, #154a9a 100%)",
-            borderRadius: 20,
-            padding: "40px 32px",
-            boxShadow: "0 12px 32px rgba(10,46,101,0.3)",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: 30,
+            alignItems: "start",
           }}>
-            <div style={{ textAlign: "center", marginBottom: "32px" }}>
-              <p style={{
-                margin: "0 0 16px 0",
-                fontSize: 16,
-                color: "#ffffff",
-                fontWeight: 600,
+            {/* Cột TRÁI: Nút Mở Trung tâm */}
+            <div style={{
+              background: "linear-gradient(135deg, rgba(168, 85, 247, 0.95) 0%, rgba(139, 92, 246, 0.95) 100%)",
+              borderRadius: 20,
+              padding: "40px 30px",
+              boxShadow: "0 12px 32px rgba(168,85,247,0.4)",
+              textAlign: "center",
+              border: "3px solid #FFD700",
+              minHeight: 300,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 20,
+            }}>
+              {/* Khung nền xám cho form */}
+              <div style={{ 
+                background: "rgba(255,255,255,0.15)",
+                backdropFilter: "blur(10px)",
+                borderRadius: 15,
+                padding: "30px 25px",
+                width: "100%",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                border: "1px solid rgba(255,255,255,0.2)",
               }}>
-                👇 Click vào đây để mở biểu mẫu đăng ký
-              </p>
-              <button 
-                onClick={() => setShowForm(prev => !prev)} 
-                style={{
-                  ...btn,
-                  background: "#00A9FF",
-                  border: "none",
-                  padding: "14px 28px",
-                  cursor: "pointer",
-                  fontSize: "16px"
-                }}
-              >
-                Mở biểu mẫu đăng ký SCLM
-              </button>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 15 }}>
+                  <p style={{
+                    margin: "0 0 15px 0",
+                    fontSize: "clamp(0.85rem, 1.8vw, 1rem)",
+                    fontWeight: 700,
+                    color: "#FFD700",
+                    textAlign: "center",
+                    textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+                    letterSpacing: 0.5,
+                  }}>
+                    Đơn vị tiếp nhận và xử lý thông tin trung gian
+                  </p>
+                  
+                  <h3 style={{
+                    margin: "0 0 10px 0",
+                    fontSize: "clamp(1.3rem, 3.5vw, 1.8rem)",
+                    fontWeight: 900,
+                    color: "#ffffff",
+                    textTransform: "uppercase",
+                    letterSpacing: 1,
+                    textShadow: "0 2px 6px rgba(0,0,0,0.3)",
+                  }}>
+                    MỞ TRUNG TÂM<br/>TRUNG GIAN SCLM
+                  </h3>
+                  
+                  {/* 2 Logo cạnh nhau */}
+                  <div style={{ display: "flex", gap: 15, alignItems: "center", justifyContent: "center" }}>
+                    <img 
+                      src="/globalsclmvn/logotrunggiansclm.jpg" 
+                      alt="Logo Trung Gian SCLM 1" 
+                      style={{
+                        width: "clamp(90px, 20vw, 140px)",
+                        height: "clamp(90px, 20vw, 140px)",
+                        objectFit: "contain",
+                        borderRadius: 12,
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+                      }}
+                    />
+                    <img 
+                      src="/globalsclmvn/logotrunggiansclm2.jpg" 
+                      alt="Logo Trung Gian SCLM 2" 
+                      style={{
+                        width: "clamp(90px, 20vw, 140px)",
+                        height: "clamp(90px, 20vw, 140px)",
+                        objectFit: "contain",
+                        borderRadius: 12,
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+                      }}
+                    />
+                  </div>
+                  
+                  <p style={{
+                    margin: "10px 0 0 0",
+                    fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
+                    fontWeight: 600,
+                    color: "#FFD700",
+                    textAlign: "center",
+                    lineHeight: 1.5,
+                  }}>
+                    Trở thành đối tác trung tâm xử lý thông tin của SCLM Global
+                  </p>
+                  
+                  <a
+                    href="https://sclm-global.com/#/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "inline-block",
+                      background: "#ffffff",
+                      color: "#059669",
+                      padding: "16px 40px",
+                      borderRadius: 12,
+                      fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
+                      fontWeight: 900,
+                      textDecoration: "none",
+                      boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
+                      transition: "all 0.3s ease",
+                      textTransform: "uppercase",
+                      letterSpacing: 1,
+                      marginTop: 15,
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-3px)';
+                      e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.3)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.2)';
+                    }}
+                  >
+                    Mở Ngay
+                  </a>
+                  
+                  <p style={{
+                    margin: "15px 0 0 0",
+                    fontSize: "clamp(0.75rem, 1.5vw, 0.9rem)",
+                    fontWeight: 600,
+                    color: "rgba(255,255,255,0.7)",
+                    textAlign: "center",
+                    letterSpacing: 0.3,
+                  }}>
+                    © 2025 SCLM Global. All rights reserved.
+                  </p>
+                </div>
+              </div>
             </div>
+
+            {/* Cột PHẢI: Nút đăng ký + Nội dung */}
+            <div style={{
+              background: "linear-gradient(135deg, #0a2e65 0%, #154a9a 100%)",
+              borderRadius: 20,
+              padding: "40px 32px",
+              boxShadow: "0 12px 32px rgba(10,46,101,0.3)",
+              minHeight: 300,
+            }}>
+              <div style={{ textAlign: "center", marginBottom: "32px" }}>
+                <p style={{
+                  margin: "0 0 16px 0",
+                  fontSize: 16,
+                  color: "#ffffff",
+                  fontWeight: 600,
+                }}>
+                  👇 Click vào đây để mở biểu mẫu đăng ký
+                </p>
+                <button 
+                  onClick={() => setShowForm(prev => !prev)} 
+                  style={{
+                    ...btn,
+                    background: "#00A9FF",
+                    border: "none",
+                    padding: "14px 28px",
+                    cursor: "pointer",
+                    fontSize: "16px"
+                  }}
+                >
+                  Mở biểu mẫu đăng ký SCLM
+                </button>
+              </div>
             
             {/* 3 logo nhỏ */}
             <div style={{
@@ -465,9 +684,9 @@ export default function App() {
               borderRadius: 16,
               maxWidth: 500,
             }}>
-              <img src="/4.jpg" alt="Logo 1" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
-              <img src="/2.jpg" alt="Logo 2" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
-              <img src="/1.jpg" alt="Logo 3" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
+              <img src="/globalsclmvn/4.jpg" alt="Logo 1" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
+              <img src="/globalsclmvn/2.jpg" alt="Logo 2" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
+              <img src="/globalsclmvn/1.jpg" alt="Logo 3" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
             </div>
 
             {/* Văn bản kêu gọi */}
@@ -497,6 +716,7 @@ export default function App() {
               }}>
                 Cho lĩnh vực thương mại điện tử Việt Nam
               </p>
+            </div>
             </div>
           </div>
 
@@ -813,7 +1033,7 @@ export default function App() {
             {/* Ảnh anhapp20.jpg */}
             <div>
               <img 
-                src="/sclmapp20.jpg" 
+                src="/globalsclmvn/sclmapp20.jpg" 
                 alt="SCLM App" 
                 style={{ 
                   width: "100%", 
@@ -1078,7 +1298,7 @@ export default function App() {
       <footer style={{ background: "#0a2e65", color: "white", padding: "22px 0" }}>
         <div style={{ ...sectionWrap, display: "flex", gap: 12, justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <img src="/logo-sclm.png" alt="SCLM" style={{ width: 36, height: 36, borderRadius: "50%" }} />
+            <img src="/globalsclmvn/logo-sclm.png" alt="SCLM" style={{ width: 36, height: 36, borderRadius: "50%" }} />
             <div style={{ fontWeight: 800, letterSpacing: .3 }}>GLOBAL SCLM</div>
           </div>
           <div style={{ opacity: .9, fontSize: 14 }}>© 2025 SCLM Global. All rights reserved.</div>
@@ -1087,7 +1307,7 @@ export default function App() {
 
       {/* Vòng quay may mắn - Responsive */}
       <SCLMWheelWidget 
-        gameUrl="/vong-quay-may-man.html"
+        gameUrl="/globalsclmvn/vong-quay-may-man.html"
         position={{ bottom: 'clamp(12px, 2vw, 20px)', right: 'clamp(12px, 2vw, 20px)' }}
         size="clamp(80px, 18vw, 120px)"
         autoShow={true}
@@ -1095,6 +1315,72 @@ export default function App() {
         onGameOpen={() => console.log('🎯 SCLM Game opened!')}
         onGameClose={() => console.log('🎯 SCLM Game closed!')}
       />
+
+      {/* Widget hỗ trợ 24/7 - Có thể kéo */}
+      <a
+        href="https://zalo.me/0813789127"
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseDown={handleSupportMouseDown}
+        onClick={(e) => {
+          // Ngăn mở link nếu đã kéo
+          const distance = Math.sqrt(
+            Math.pow(e.clientX - supportDragStartPos.x, 2) +
+            Math.pow(e.clientY - supportDragStartPos.y, 2)
+          );
+          if (distance > 5) {
+            e.preventDefault();
+          }
+        }}
+        style={{
+          position: "fixed",
+          left: supportPosition.x,
+          top: supportPosition.y,
+          width: "clamp(70px, 12vw, 85px)",
+          height: "clamp(70px, 12vw, 85px)",
+          borderRadius: "50%",
+          background: "linear-gradient(135deg, #0068ff 0%, #0099ff 100%)",
+          border: "3px solid #FFD700",
+          boxShadow: isSupportDragging 
+            ? "0 12px 40px rgba(0, 104, 255, 0.5)" 
+            : "0 8px 30px rgba(0, 104, 255, 0.4)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: isSupportDragging ? "grabbing" : "grab",
+          textDecoration: "none",
+          zIndex: 9998,
+          transition: isSupportDragging ? "none" : "transform 0.2s, box-shadow 0.2s",
+          userSelect: "none",
+        }}
+        onMouseEnter={(e) => {
+          if (!isSupportDragging) {
+            e.currentTarget.style.transform = "scale(1.08)";
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (!isSupportDragging) {
+            e.currentTarget.style.transform = "scale(1)";
+          }
+        }}
+      >
+        <div style={{
+          fontSize: "clamp(24px, 5vw, 32px)",
+          marginBottom: "-2px",
+        }}>
+          💬
+        </div>
+        <div style={{
+          color: "white",
+          fontSize: "clamp(9px, 1.8vw, 11px)",
+          fontWeight: 700,
+          textAlign: "center",
+          lineHeight: 1.1,
+        }}>
+          HỖ TRỢ<br/>24/7
+        </div>
+      </a>
     </div>
   );
 }

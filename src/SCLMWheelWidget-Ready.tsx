@@ -126,7 +126,8 @@ const SCLMWheelWidget: React.FC<SCLMWheelWidgetProps> = ({
 
   // ===== Game Controls =====
   const openGame = React.useCallback((): void => {
-    setIsModalOpen(true);
+    // Mở trực tiếp trong tab hiện tại
+    window.location.href = gameUrl;
     onGameOpen?.();
     
     // Analytics tracking
@@ -139,7 +140,7 @@ const SCLMWheelWidget: React.FC<SCLMWheelWidgetProps> = ({
     
     console.log('🎯 SCLM Global - Vòng quay may mắn được mở!');
     createSparkles();
-  }, [onGameOpen, createSparkles]);
+  }, [gameUrl, onGameOpen, createSparkles]);
 
   const closeGame = React.useCallback((): void => {
     setIsModalOpen(false);
