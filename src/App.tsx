@@ -9,19 +9,18 @@ const TEMPLATE_ID = "template_kkjhug9"; // Template ID: Contact Us
 const PUBLIC_KEY = "OfCOrhRJrYm5SmrnF"; // Public Key đã được cấu hình
 
 /** ====== STYLE TIỆN DỤNG ====== */
-const sectionWrap: React.CSSProperties = { maxWidth: 1100, margin: "0 auto", padding: "0 16px" };
-const h2: React.CSSProperties = { fontSize: "clamp(1.4rem, 5vw, 2rem)", fontWeight: 800, color: "#0a2e65", textAlign: "center" };
-const pLead: React.CSSProperties = { textAlign: "center", color: "#475569", maxWidth: 820, margin: "12px auto 0", fontSize: "clamp(14px, 3vw, 17px)", lineHeight: 1.6 };
+const sectionWrap: React.CSSProperties = { maxWidth: 1100, margin: "0 auto", padding: "0 20px" };
+const h2: React.CSSProperties = { fontSize: "2rem", fontWeight: 800, color: "#0a2e65", textAlign: "center" };
+const pLead: React.CSSProperties = { textAlign: "center", color: "#475569", maxWidth: 820, margin: "12px auto 0" };
 const btn: React.CSSProperties = {
   display: "inline-block",
   background: "#0a2e65",
   color: "#fff",
-  padding: "clamp(10px, 2vw, 12px) clamp(16px, 3vw, 22px)",
+  padding: "12px 22px",
   borderRadius: 10,
   textDecoration: "none",
   fontWeight: 700,
   boxShadow: "0 6px 14px rgba(10,46,101,.25)",
-  fontSize: "clamp(13px, 2.5vw, 16px)",
 };
 const btnGhost: React.CSSProperties = {
   ...btn,
@@ -37,23 +36,17 @@ export default function App() {
   const [showForm, setShowForm] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // State cho widget hỗ trợ 24/7
-  const [supportPosition, setSupportPosition] = useState({ x: window.innerWidth - 120, y: window.innerHeight - 180 });
-  const [isSupportDragging, setIsSupportDragging] = useState(false);
-  const [supportOffset, setSupportOffset] = useState({ x: 0, y: 0 });
-  const [supportDragStartPos, setSupportDragStartPos] = useState({ x: 0, y: 0 });
-
-  // Danh sách ảnh banner - Sử dụng đường dẫn từ public folder
+  // Danh sách ảnh banner
   const bannerImages = [
-    "/globalsclmvn/banner-sclm.jpg",
-    "/globalsclmvn/banner3.jpg",
-    "/globalsclmvn/banner4.jpg",
-    "/globalsclmvn/banner5.jpg",
-    "/globalsclmvn/banner6.jpg",
-    "/globalsclmvn/banner7.jpg",
-    "/globalsclmvn/banner8.jpg",
-    "/globalsclmvn/banner11.jpg",
-    "/globalsclmvn/banner12.jpg",
+    "/banner-sclm.jpg",
+    "/banner3.jpg",
+    "/banner4.jpg",
+    "/banner5.jpg",
+    "/banner6.jpg",
+    "/banner7.jpg",
+    "/banner8.jpg",
+    "/banner11.jpg",
+    "/banner22.jpg",
   ];
 
   // Tự động chuyển slide mỗi 5 giây
@@ -63,43 +56,6 @@ export default function App() {
     }, 5000);
     return () => clearInterval(timer);
   }, [bannerImages.length]);
-
-  // Xử lý kéo widget hỗ trợ
-  React.useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (isSupportDragging) {
-        setSupportPosition({
-          x: e.clientX - supportOffset.x,
-          y: e.clientY - supportOffset.y,
-        });
-      }
-    };
-
-    const handleMouseUp = () => {
-      setIsSupportDragging(false);
-    };
-
-    if (isSupportDragging) {
-      window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseup", handleMouseUp);
-    }
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [isSupportDragging, supportOffset]);
-
-  const handleSupportMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const rect = (e.target as HTMLElement).getBoundingClientRect();
-    setSupportOffset({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-    setSupportDragStartPos({ x: e.clientX, y: e.clientY });
-    setIsSupportDragging(true);
-  };
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
@@ -131,23 +87,23 @@ export default function App() {
           position: "sticky",
           top: 0,
           zIndex: 40,
-          background: "rgba(10,46,101,0.95)",
+          background: "rgba(10,46,101,0.9)",
           backdropFilter: "saturate(180%) blur(6px)",
           borderBottom: "1px solid rgba(255,255,255,.12)",
         }}
       >
-        <div style={{ ...sectionWrap, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 16px", flexWrap: "wrap", gap: 8 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <img src="/globalsclmvn/logo-sclm.png" alt="SCLM" style={{ width: "clamp(36px, 8vw, 44px)", height: "clamp(36px, 8vw, 44px)", borderRadius: "50%" }} />
-            <div style={{ color: "white", fontWeight: 800, letterSpacing: 0.5, fontSize: "clamp(14px, 3vw, 17px)" }}>GLOBAL SCLM</div>
+        <div style={{ ...sectionWrap, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 20px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <img src="/logo-sclm.png" alt="SCLM" style={{ width: 44, height: 44, borderRadius: "50%" }} />
+            <div style={{ color: "white", fontWeight: 800, letterSpacing: 0.5 }}>GLOBAL SCLM</div>
           </div>
-          <nav style={{ display: "flex", gap: "clamp(10px, 2vw, 18px)", fontSize: "clamp(12px, 2.5vw, 15px)", flexWrap: "wrap" }}>
+          <nav style={{ display: "flex", gap: 18 }}>
             <a href="#about" style={navA}>Giới thiệu</a>
             <a href="#solutions" style={navA}>Giải pháp</a>
             <a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" target="_blank" rel="noreferrer" style={navA}>Hợp tác</a>
             <a href="#contact" style={navA}>Liên hệ</a>
           </nav>
-          <a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" target="_blank" rel="noreferrer" style={{ ...btn, padding: "8px 14px", fontSize: "clamp(12px, 2.2vw, 14px)", whiteSpace: "nowrap" }}>Trở thành đối tác</a>
+          <a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" target="_blank" rel="noreferrer" style={{ ...btn, padding: "10px 16px" }}>Trở thành đối tác</a>
         </div>
       </header>
 
@@ -156,19 +112,19 @@ export default function App() {
         style={{
           background: "linear-gradient(140deg, #0a2e65 0%, #154a9a 50%, #eaf3ff 100%)",
           color: "white",
-          padding: "clamp(24px, 5vw, 40px) 0 clamp(20px, 4vw, 30px)",
+          padding: "40px 0 30px",
           textAlign: "center",
         }}
       >
         <div style={sectionWrap}>
-          <img src="/globalsclmvn/logo-sclm.png" alt="SCLM" style={{ width: "clamp(56px, 12vw, 72px)", height: "clamp(56px, 12vw, 72px)", borderRadius: "50%", margin: "0 auto 12px" }} />
-          <h1 style={{ fontSize: "clamp(1.4rem, 5vw, 2.8rem)", fontWeight: 900, lineHeight: 1.2, marginBottom: 10, padding: "0 10px" }}>
+          <img src="/logo-sclm.png" alt="SCLM" style={{ width: 72, height: 72, borderRadius: "50%", margin: "0 auto 12px" }} />
+          <h1 style={{ fontSize: "2.8rem", fontWeight: 900, lineHeight: 1.15, marginBottom: 10 }}>
             Global Supply Chain & Logistics Management
           </h1>
-          <p style={{ fontSize: "clamp(14px, 3vw, 18px)", opacity: 0.92, maxWidth: 860, margin: "0 auto 20px", lineHeight: 1.6, padding: "0 10px" }}>
+          <p style={{ fontSize: 18, opacity: 0.92, maxWidth: 860, margin: "0 auto 24px" }}>
             Kết nối – Cung ứng – Phát triển toàn cầu. Nền tảng hỗ trợ doanh nghiệp Việt tham gia chuỗi cung ứng quốc tế bằng công nghệ.
           </p>
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", padding: "0 10px" }}>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <a href="https://sclm.vn" target="_blank" rel="noreferrer" style={btn}>Truy cập website chính thức</a>
             <a href="https://www.facebook.com/sclm.global.vn/" target="_blank" rel="noreferrer" style={btnGhost}>Truy cập Fanpage chính thức</a>
           </div>
@@ -176,13 +132,13 @@ export default function App() {
           {/* Banner Slider */}
           <div style={{ marginTop: 18, position: 'relative', maxWidth: 1100, margin: '18px auto 0' }}>
             {/* Ảnh banner */}
-            <div style={{ position: 'relative', overflow: 'hidden', borderRadius: "clamp(8px, 2vw, 16px)", boxShadow: "0 12px 28px rgba(0,0,0,.25)" }}>
+            <div style={{ position: 'relative', overflow: 'hidden', borderRadius: 16, boxShadow: "0 12px 28px rgba(0,0,0,.25)" }}>
               <img
                 src={bannerImages[currentSlide]}
                 alt={`SCLM Banner ${currentSlide + 1}`}
                 style={{ 
                   width: "100%", 
-                  height: "clamp(200px, 40vw, 400px)",
+                  height: 400,
                   objectFit: 'cover',
                   transition: 'opacity 0.5s ease-in-out',
                 }}
@@ -193,15 +149,15 @@ export default function App() {
                 onClick={prevSlide}
                 style={{
                   position: 'absolute',
-                  left: "clamp(8px, 2vw, 20px)",
+                  left: 20,
                   top: '50%',
                   transform: 'translateY(-50%)',
                   background: 'rgba(255,255,255,0.9)',
                   border: 'none',
                   borderRadius: '50%',
-                  width: "clamp(36px, 8vw, 50px)",
-                  height: "clamp(36px, 8vw, 50px)",
-                  fontSize: "clamp(18px, 4vw, 24px)",
+                  width: 50,
+                  height: 50,
+                  fontSize: 24,
                   cursor: 'pointer',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
                   transition: 'all 0.3s',
@@ -217,15 +173,15 @@ export default function App() {
                 onClick={nextSlide}
                 style={{
                   position: 'absolute',
-                  right: "clamp(8px, 2vw, 20px)",
+                  right: 20,
                   top: '50%',
                   transform: 'translateY(-50%)',
                   background: 'rgba(255,255,255,0.9)',
                   border: 'none',
                   borderRadius: '50%',
-                  width: "clamp(36px, 8vw, 50px)",
-                  height: "clamp(36px, 8vw, 50px)",
-                  fontSize: "clamp(18px, 4vw, 24px)",
+                  width: 50,
+                  height: 50,
+                  fontSize: 24,
                   cursor: 'pointer',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
                   transition: 'all 0.3s',
@@ -239,19 +195,19 @@ export default function App() {
               {/* Dots indicator */}
               <div style={{ 
                 position: 'absolute', 
-                bottom: "clamp(10px, 2vw, 20px)", 
+                bottom: 20, 
                 left: '50%', 
                 transform: 'translateX(-50%)',
                 display: 'flex',
-                gap: "clamp(4px, 1vw, 8px)",
+                gap: 8,
               }}>
                 {bannerImages.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
                     style={{
-                      width: currentSlide === index ? "clamp(16px, 3vw, 24px)" : "clamp(8px, 1.5vw, 12px)",
-                      height: "clamp(8px, 1.5vw, 12px)",
+                      width: currentSlide === index ? 24 : 12,
+                      height: 12,
                       borderRadius: 6,
                       border: 'none',
                       background: currentSlide === index ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.5)',
@@ -267,9 +223,9 @@ export default function App() {
       </section>
 
       {/* ===== CONTACT INFO ===== */}
-      <section style={{ padding: "clamp(24px, 5vw, 40px) 0", background: "#f8fbff", textAlign: "center" }}>
+      <section style={{ padding: "40px 0", background: "#f8fbff", textAlign: "center" }}>
         <div style={sectionWrap}>
-          <ul style={{ display: "flex", justifyContent: "center", gap: "clamp(16px, 4vw, 40px)", color: "#0a2e65", lineHeight: 1.8, listStyle: "none", margin: 0, padding: 0, flexWrap: "wrap", fontSize: "clamp(12px, 2.5vw, 15px)" }}>
+          <ul style={{ display: "flex", justifyContent: "center", gap: "40px", color: "#0a2e65", lineHeight: 1.8, listStyle: "none", margin: 0, padding: 0 }}>
             <li>✉️ Email: <b>sclm.customer@gmail.com</b></li>
             <li>📞 Hotline: <b>0582 779 977</b> | <b>0947 886 611</b></li>
             <li>🌐 Website: <b>sclm.vn</b></li>
@@ -278,20 +234,20 @@ export default function App() {
       </section>
 
       {/* ===== ABOUT ===== */}
-      <section id="about" style={{ padding: "clamp(40px, 8vw, 70px) 0", background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" }}>
+      <section id="about" style={{ padding: "70px 0", background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" }}>
         <div style={sectionWrap}>
           <h2 style={{ ...h2, color: "#ffffff" }}>Về SCLM Global</h2>
           
           {/* Khung văn bản nổi bật */}
           <div style={{
             background: "rgba(255,255,255,0.95)",
-            borderRadius: "clamp(12px, 2vw, 16px)",
-            padding: "clamp(20px, 4vw, 30px) clamp(24px, 5vw, 40px)",
+            borderRadius: 16,
+            padding: "30px 40px",
             boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
             maxWidth: 820,
             margin: "20px auto 0",
           }}>
-            <p style={{ textAlign: "center", color: "#1e293b", fontSize: "clamp(14px, 3vw, 17px)", lineHeight: 1.7, margin: 0 }}>
+            <p style={{ textAlign: "center", color: "#1e293b", fontSize: 17, lineHeight: 1.7, margin: 0 }}>
               SCLM là nền tảng kết nối doanh nghiệp với chuỗi cung ứng quốc tế. Chúng tôi tối ưu logistics, kho vận, tích hợp công nghệ,
               và mô hình cửa hàng trung gian để doanh nghiệp tăng tốc không cần ôm hàng hay lo đầu ra.
             </p>
@@ -301,11 +257,10 @@ export default function App() {
           <p style={{
             textAlign: "center",
             color: "#ffffff",
-            fontSize: "clamp(15px, 3.5vw, 18px)",
+            fontSize: 18,
             fontWeight: 800,
             marginTop: 16,
             letterSpacing: 0.2,
-            padding: "0 10px",
           }}>
             "SCLM GLOBAL – Nơi phụ nữ bắt đầu hành trình kinh doanh tự chủ"
           </p>
@@ -313,23 +268,23 @@ export default function App() {
           {/* Nội dung về phụ nữ khởi nghiệp */}
           <div style={{
             background: "rgba(255,255,255,0.15)",
-            borderRadius: "clamp(8px, 2vw, 12px)",
-            padding: "clamp(16px, 3vw, 24px) clamp(20px, 4vw, 32px)",
+            borderRadius: 12,
+            padding: "24px 32px",
             maxWidth: 820,
             margin: "20px auto 0",
             backdropFilter: "blur(10px)",
             border: "1px solid rgba(255,255,255,0.2)",
           }}>
-            <p style={{ textAlign: "center", color: "#ffffff", fontSize: "clamp(14px, 2.8vw, 16px)", lineHeight: 1.7, margin: "0 0 16px 0" }}>
+            <p style={{ textAlign: "center", color: "#ffffff", fontSize: 16, lineHeight: 1.7, margin: "0 0 16px 0" }}>
               <strong>SCLM GLOBAL</strong> đồng hành cùng phụ nữ Việt trong hành trình khởi nghiệp, cung cấp kiến thức, công cụ và giải pháp toàn diện để tự chủ tài chính, phát triển thương hiệu và mở rộng thị trường.
             </p>
             <ul style={{ 
               textAlign: "left", 
               color: "#ffffff", 
-              fontSize: "clamp(13px, 2.6vw, 15px)", 
+              fontSize: 15, 
               lineHeight: 1.8, 
               margin: 0, 
-              paddingLeft: "clamp(16px, 3vw, 20px)",
+              paddingLeft: 20,
               listStyleType: "disc"
             }}>
               <li>Phụ nữ nội trợ – muốn chủ động tài chính, có thời gian linh hoạt.</li>
@@ -339,7 +294,7 @@ export default function App() {
           </div>
 
           {/* Stats */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(clamp(140px, 30vw, 220px),1fr))", gap: "clamp(12px, 2vw, 16px)", marginTop: "clamp(24px, 5vw, 40px)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 16, marginTop: 40 }}>
             {[
               ["2.000+", "Nhà cung ứng kết nối"],
               ["25+", "Quốc gia hợp tác"],
@@ -350,10 +305,9 @@ export default function App() {
                 ...statBox,
                 background: "rgba(255,255,255,0.95)",
                 border: "2px solid rgba(255,255,255,0.3)",
-                padding: "clamp(16px, 3vw, 20px)",
               }}>
-                <div style={{ fontSize: "clamp(24px, 6vw, 34px)", fontWeight: 900, color: "#667eea" }}>{num}</div>
-                <div style={{ color: "#475569", fontSize: "clamp(13px, 2.5vw, 15px)" }}>{label}</div>
+                <div style={{ fontSize: 34, fontWeight: 900, color: "#667eea" }}>{num}</div>
+                <div style={{ color: "#475569" }}>{label}</div>
               </div>
             ))}
           </div>
@@ -361,7 +315,7 @@ export default function App() {
       </section>
 
       {/* ===== REGISTER FORM ===== */}
-      <section id="register" style={{ padding: "clamp(40px, 8vw, 70px) 0", background: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)" }}>
+      <section id="register" style={{ padding: "70px 0", background: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)" }}>
         <div style={sectionWrap}>
           <h2 style={h2}>Đăng ký tham gia hoạt động tiếp nhận xử lý trung gian</h2>
           <p style={pLead}>Để tham gia chương trình hoạt động của SCLM, vui lòng bấm vào nút dưới đây để mở biểu mẫu đăng ký chính thức. Sau khi hoàn tất, đội ngũ SCLM sẽ liên hệ để xác minh và hướng dẫn chi tiết.</p>
@@ -386,7 +340,7 @@ export default function App() {
             onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
               <img 
-                src="/globalsclmvn/3.jpg" 
+                src="/3.jpg" 
                 alt="SCLM App" 
                 style={{ 
                   width: "100%", 
@@ -410,7 +364,7 @@ export default function App() {
             onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
               <img 
-                src="/globalsclmvn/appsclm3.jpg" 
+                src="/appsclm3.jpg" 
                 alt="SCLM App 3" 
                 style={{ 
                   width: "100%", 
@@ -423,42 +377,6 @@ export default function App() {
             </div>
           </div>
           
-          {/* Banner Chữ Vàng */}
-          <div style={{
-            maxWidth: 1000,
-            margin: "40px auto 30px",
-            background: "linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)",
-            borderRadius: 20,
-            padding: "clamp(30px, 5vw, 50px) clamp(20px, 4vw, 40px)",
-            boxShadow: "0 15px 40px rgba(30,58,138,0.4)",
-            border: "3px solid rgba(255,215,0,0.3)",
-            textAlign: "center",
-          }}>
-            <h2 style={{
-              margin: 0,
-              fontSize: "clamp(1.8rem, 5vw, 3.2rem)",
-              fontWeight: 900,
-              color: "#FFD700",
-              textTransform: "uppercase",
-              letterSpacing: "clamp(1px, 0.3vw, 3px)",
-              lineHeight: 1.3,
-              textShadow: "0 4px 12px rgba(0,0,0,0.3), 0 0 30px rgba(255,215,0,0.4)",
-              marginBottom: "clamp(12px, 2.5vw, 20px)",
-            }}>
-              HÃY CÙNG SCLM KẾT NỐI GIAO<br/>THƯƠNG VƯƠN TẦM QUỐC TẾ
-            </h2>
-            <p style={{
-              margin: 0,
-              fontSize: "clamp(1rem, 3vw, 1.4rem)",
-              fontWeight: 600,
-              color: "#ffffff",
-              opacity: 0.95,
-              letterSpacing: "0.5px",
-            }}>
-              Cho lĩnh vực thương mại điện tử Việt Nam
-            </p>
-          </div>
-
           {/* Hỗ trợ người dùng Việt Nam */}
           <div style={{
             maxWidth: 820,
@@ -499,178 +417,38 @@ export default function App() {
             </div>
           </div>
 
-          {/* Layout 2 cột: Nút bên trái + Nội dung bên phải */}
+          {/* Khung nền xanh bọc toàn bộ */}
           <div style={{
-            maxWidth: 1100,
+            maxWidth: 920,
             margin: "30px auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: 30,
-            alignItems: "start",
+            background: "linear-gradient(135deg, #0a2e65 0%, #154a9a 100%)",
+            borderRadius: 20,
+            padding: "40px 32px",
+            boxShadow: "0 12px 32px rgba(10,46,101,0.3)",
           }}>
-            {/* Cột TRÁI: Nút Mở Trung tâm */}
-            <div style={{
-              background: "linear-gradient(135deg, rgba(168, 85, 247, 0.95) 0%, rgba(139, 92, 246, 0.95) 100%)",
-              borderRadius: 20,
-              padding: "40px 30px",
-              boxShadow: "0 12px 32px rgba(168,85,247,0.4)",
-              textAlign: "center",
-              border: "3px solid #FFD700",
-              minHeight: 300,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 20,
-            }}>
-              {/* Khung nền xám cho form */}
-              <div style={{ 
-                background: "rgba(255,255,255,0.15)",
-                backdropFilter: "blur(10px)",
-                borderRadius: 15,
-                padding: "30px 25px",
-                width: "100%",
-                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-                border: "1px solid rgba(255,255,255,0.2)",
+            <div style={{ textAlign: "center", marginBottom: "32px" }}>
+              <p style={{
+                margin: "0 0 16px 0",
+                fontSize: 16,
+                color: "#ffffff",
+                fontWeight: 600,
               }}>
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 15 }}>
-                  <p style={{
-                    margin: "0 0 15px 0",
-                    fontSize: "clamp(0.85rem, 1.8vw, 1rem)",
-                    fontWeight: 700,
-                    color: "#FFD700",
-                    textAlign: "center",
-                    textShadow: "0 2px 4px rgba(0,0,0,0.3)",
-                    letterSpacing: 0.5,
-                  }}>
-                    Đơn vị tiếp nhận và xử lý thông tin trung gian
-                  </p>
-                  
-                  <h3 style={{
-                    margin: "0 0 10px 0",
-                    fontSize: "clamp(1.3rem, 3.5vw, 1.8rem)",
-                    fontWeight: 900,
-                    color: "#ffffff",
-                    textTransform: "uppercase",
-                    letterSpacing: 1,
-                    textShadow: "0 2px 6px rgba(0,0,0,0.3)",
-                  }}>
-                    MỞ TRUNG TÂM<br/>TRUNG GIAN SCLM
-                  </h3>
-                  
-                  {/* 2 Logo cạnh nhau */}
-                  <div style={{ display: "flex", gap: 15, alignItems: "center", justifyContent: "center" }}>
-                    <img 
-                      src="/globalsclmvn/logotrunggiansclm.jpg" 
-                      alt="Logo Trung Gian SCLM 1" 
-                      style={{
-                        width: "clamp(90px, 20vw, 140px)",
-                        height: "clamp(90px, 20vw, 140px)",
-                        objectFit: "contain",
-                        borderRadius: 12,
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-                      }}
-                    />
-                    <img 
-                      src="/globalsclmvn/logotrunggiansclm2.jpg" 
-                      alt="Logo Trung Gian SCLM 2" 
-                      style={{
-                        width: "clamp(90px, 20vw, 140px)",
-                        height: "clamp(90px, 20vw, 140px)",
-                        objectFit: "contain",
-                        borderRadius: 12,
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-                      }}
-                    />
-                  </div>
-                  
-                  <p style={{
-                    margin: "10px 0 0 0",
-                    fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
-                    fontWeight: 600,
-                    color: "#FFD700",
-                    textAlign: "center",
-                    lineHeight: 1.5,
-                  }}>
-                    Trở thành đối tác trung tâm xử lý thông tin của SCLM Global
-                  </p>
-                  
-                  <a
-                    href="https://sclm-global.com/#/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: "inline-block",
-                      background: "#ffffff",
-                      color: "#059669",
-                      padding: "16px 40px",
-                      borderRadius: 12,
-                      fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
-                      fontWeight: 900,
-                      textDecoration: "none",
-                      boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
-                      transition: "all 0.3s ease",
-                      textTransform: "uppercase",
-                      letterSpacing: 1,
-                      marginTop: 15,
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-3px)';
-                      e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.3)';
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.2)';
-                    }}
-                  >
-                    Mở Ngay
-                  </a>
-                  
-                  <p style={{
-                    margin: "15px 0 0 0",
-                    fontSize: "clamp(0.75rem, 1.5vw, 0.9rem)",
-                    fontWeight: 600,
-                    color: "rgba(255,255,255,0.7)",
-                    textAlign: "center",
-                    letterSpacing: 0.3,
-                  }}>
-                    © 2025 SCLM Global. All rights reserved.
-                  </p>
-                </div>
-              </div>
+                👇 Click vào đây để mở biểu mẫu đăng ký
+              </p>
+              <button 
+                onClick={() => setShowForm(prev => !prev)} 
+                style={{
+                  ...btn,
+                  background: "#00A9FF",
+                  border: "none",
+                  padding: "14px 28px",
+                  cursor: "pointer",
+                  fontSize: "16px"
+                }}
+              >
+                Mở biểu mẫu đăng ký SCLM
+              </button>
             </div>
-
-            {/* Cột PHẢI: Nút đăng ký + Nội dung */}
-            <div style={{
-              background: "linear-gradient(135deg, #0a2e65 0%, #154a9a 100%)",
-              borderRadius: 20,
-              padding: "40px 32px",
-              boxShadow: "0 12px 32px rgba(10,46,101,0.3)",
-              minHeight: 300,
-            }}>
-              <div style={{ textAlign: "center", marginBottom: "32px" }}>
-                <p style={{
-                  margin: "0 0 16px 0",
-                  fontSize: 16,
-                  color: "#ffffff",
-                  fontWeight: 600,
-                }}>
-                  👇 Click vào đây để mở biểu mẫu đăng ký
-                </p>
-                <button 
-                  onClick={() => setShowForm(prev => !prev)} 
-                  style={{
-                    ...btn,
-                    background: "#00A9FF",
-                    border: "none",
-                    padding: "14px 28px",
-                    cursor: "pointer",
-                    fontSize: "16px"
-                  }}
-                >
-                  Mở biểu mẫu đăng ký SCLM
-                </button>
-              </div>
             
             {/* 3 logo nhỏ */}
             <div style={{
@@ -684,9 +462,9 @@ export default function App() {
               borderRadius: 16,
               maxWidth: 500,
             }}>
-              <img src="/globalsclmvn/4.jpg" alt="Logo 1" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
-              <img src="/globalsclmvn/2.jpg" alt="Logo 2" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
-              <img src="/globalsclmvn/1.jpg" alt="Logo 3" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
+              <img src="/4.jpg" alt="Logo 1" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
+              <img src="/2.jpg" alt="Logo 2" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
+              <img src="/1.jpg" alt="Logo 3" style={{ width: 80, height: 80, objectFit: "contain", borderRadius: 8 }} />
             </div>
 
             {/* Văn bản kêu gọi */}
@@ -716,7 +494,6 @@ export default function App() {
               }}>
                 Cho lĩnh vực thương mại điện tử Việt Nam
               </p>
-            </div>
             </div>
           </div>
 
@@ -990,17 +767,17 @@ export default function App() {
           )}
         </div>
       </section>      {/* ===== SOLUTIONS ===== */}
-      <section id="solutions" style={{ padding: "clamp(40px, 8vw, 70px) 0", background: "linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%)" }}>
+      <section id="solutions" style={{ padding: "70px 0", background: "linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%)" }}>
         <div style={sectionWrap}>
           <h2 style={{ ...h2, color: "#0a2e65" }}>Giải pháp & Mô hình nổi bật</h2>
           <p style={{ ...pLead, color: "#0f172a", fontWeight: 600 }}>Thiết kế để dễ bắt đầu – ít rủi ro – tăng trưởng bền vững.</p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(clamp(200px, 40vw, 260px),1fr))", gap: "clamp(12px, 2vw, 16px)", marginTop: "clamp(20px, 4vw, 28px)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 16, marginTop: 28 }}>
             {cards.map((c) => (
-              <div key={c.title} style={{...card, padding: "clamp(16px, 3vw, 20px)"}}>
-                <div style={{...cardIcon, width: "clamp(36px, 8vw, 44px)", height: "clamp(36px, 8vw, 44px)", fontSize: "clamp(18px, 4vw, 22px)"}}>{c.icon}</div>
-                <div style={{ fontWeight: 800, fontSize: "clamp(15px, 3vw, 18px)", marginBottom: 6 }}>{c.title}</div>
-                <div style={{ color: "#475569", fontSize: "clamp(13px, 2.5vw, 15px)", lineHeight: 1.6 }}>{c.desc}</div>
+              <div key={c.title} style={card}>
+                <div style={cardIcon}>{c.icon}</div>
+                <div style={{ fontWeight: 800, fontSize: 18, marginBottom: 6 }}>{c.title}</div>
+                <div style={{ color: "#475569", fontSize: 15 }}>{c.desc}</div>
               </div>
             ))}
           </div>
@@ -1008,14 +785,14 @@ export default function App() {
       </section>
 
       {/* ===== PARTNERS / CTA ===== */}
-      <section id="partners" style={{ padding: "clamp(40px, 7vw, 60px) 0", background: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)" }}>
+      <section id="partners" style={{ padding: "60px 0", background: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)" }}>
         <div style={{ ...sectionWrap, textAlign: "center" }}>
           <h2 style={h2}>Liên hệ & Hợp tác</h2>
           <p style={pLead}>
             Liên hệ trực tiếp với SCLM qua các kênh chính thức dưới đây. Đội ngũ luôn sẵn sàng hỗ trợ bạn 24/7.
           </p>
           
-          <h2 style={{ ...h2, marginTop: "clamp(30px, 6vw, 50px)" }}>💥 Sẵn sàng mở rộng thương hiệu cùng SCLM?</h2>
+          <h2 style={{ ...h2, marginTop: 50 }}>💥 Sẵn sàng mở rộng thương hiệu cùng SCLM?</h2>
           <p style={pLead}>
             Tham gia mạng lưới đối tác SCLM – nơi hội tụ doanh nghiệp năng động, hệ thống vận hành minh bạch, cùng công cụ quản lý toàn diện trên điện thoại & laptop, giúp bạn kiểm soát hiệu quả mọi hoạt động kinh doanh mọi lúc – mọi nơi.
           </p>
@@ -1026,19 +803,19 @@ export default function App() {
       </section>
 
       {/* ===== CONTACT (FORM GỬI MAIL THẬT) ===== */}
-      <section id="contact" style={{ padding: "clamp(40px, 8vw, 70px) 0", background: "linear-gradient(180deg, #ffffff, #f4f8ff)" }}>
-        <div style={{ ...sectionWrap, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(clamp(280px, 45vw, 400px), 1fr))", gap: "clamp(20px, 4vw, 32px)", alignItems: "flex-start" }}>
+      <section id="contact" style={{ padding: "70px 0", background: "linear-gradient(180deg, #ffffff, #f4f8ff)" }}>
+        <div style={{ ...sectionWrap, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "flex-start" }}>
           {/* left - Contact Info */}
           <div>
             {/* Ảnh anhapp20.jpg */}
             <div>
               <img 
-                src="/globalsclmvn/sclmapp20.jpg" 
+                src="/sclmapp20.jpg" 
                 alt="SCLM App" 
                 style={{ 
                   width: "100%", 
                   height: "auto",
-                  borderRadius: "clamp(12px, 2vw, 16px)",
+                  borderRadius: 16,
                   boxShadow: "0 10px 30px rgba(0,0,0,0.15)"
                 }} 
               />
@@ -1298,89 +1075,23 @@ export default function App() {
       <footer style={{ background: "#0a2e65", color: "white", padding: "22px 0" }}>
         <div style={{ ...sectionWrap, display: "flex", gap: 12, justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <img src="/globalsclmvn/logo-sclm.png" alt="SCLM" style={{ width: 36, height: 36, borderRadius: "50%" }} />
+            <img src="/logo-sclm.png" alt="SCLM" style={{ width: 36, height: 36, borderRadius: "50%" }} />
             <div style={{ fontWeight: 800, letterSpacing: .3 }}>GLOBAL SCLM</div>
           </div>
           <div style={{ opacity: .9, fontSize: 14 }}>© 2025 SCLM Global. All rights reserved.</div>
         </div>
       </footer>
 
-      {/* Vòng quay may mắn - Responsive */}
+      {/* Vòng quay may mắn */}
       <SCLMWheelWidget 
-        gameUrl="/globalsclmvn/vong-quay-may-man.html"
-        position={{ bottom: 'clamp(12px, 2vw, 20px)', right: 'clamp(12px, 2vw, 20px)' }}
-        size="clamp(80px, 18vw, 120px)"
+        gameUrl="/vong-quay-may-man.html"
+        position={{ bottom: '20px', right: '20px' }}
+        size="120px"
         autoShow={true}
         enableDrag={true}
         onGameOpen={() => console.log('🎯 SCLM Game opened!')}
         onGameClose={() => console.log('🎯 SCLM Game closed!')}
       />
-
-      {/* Widget hỗ trợ 24/7 - Có thể kéo */}
-      <a
-        href="https://zalo.me/0813789127"
-        target="_blank"
-        rel="noopener noreferrer"
-        onMouseDown={handleSupportMouseDown}
-        onClick={(e) => {
-          // Ngăn mở link nếu đã kéo
-          const distance = Math.sqrt(
-            Math.pow(e.clientX - supportDragStartPos.x, 2) +
-            Math.pow(e.clientY - supportDragStartPos.y, 2)
-          );
-          if (distance > 5) {
-            e.preventDefault();
-          }
-        }}
-        style={{
-          position: "fixed",
-          left: supportPosition.x,
-          top: supportPosition.y,
-          width: "clamp(70px, 12vw, 85px)",
-          height: "clamp(70px, 12vw, 85px)",
-          borderRadius: "50%",
-          background: "linear-gradient(135deg, #0068ff 0%, #0099ff 100%)",
-          border: "3px solid #FFD700",
-          boxShadow: isSupportDragging 
-            ? "0 12px 40px rgba(0, 104, 255, 0.5)" 
-            : "0 8px 30px rgba(0, 104, 255, 0.4)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: isSupportDragging ? "grabbing" : "grab",
-          textDecoration: "none",
-          zIndex: 9998,
-          transition: isSupportDragging ? "none" : "transform 0.2s, box-shadow 0.2s",
-          userSelect: "none",
-        }}
-        onMouseEnter={(e) => {
-          if (!isSupportDragging) {
-            e.currentTarget.style.transform = "scale(1.08)";
-          }
-        }}
-        onMouseLeave={(e) => {
-          if (!isSupportDragging) {
-            e.currentTarget.style.transform = "scale(1)";
-          }
-        }}
-      >
-        <div style={{
-          fontSize: "clamp(24px, 5vw, 32px)",
-          marginBottom: "-2px",
-        }}>
-          💬
-        </div>
-        <div style={{
-          color: "white",
-          fontSize: "clamp(9px, 1.8vw, 11px)",
-          fontWeight: 700,
-          textAlign: "center",
-          lineHeight: 1.1,
-        }}>
-          HỖ TRỢ<br/>24/7
-        </div>
-      </a>
     </div>
   );
 }

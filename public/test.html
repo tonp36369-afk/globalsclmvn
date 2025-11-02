@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Vòng Quay</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+    padding: 20px;
+}
+.container { text-align: center; max-width: 600px; }
+h1 { font-size: 2.5rem; margin-bottom: 30px; }
+.wheel {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #ff6b6b 0deg 45deg,
+        #4ecdc4 45deg 90deg,
+        #ffd93d 90deg 135deg,
+        #95e1d3 135deg 180deg,
+        #f38181 180deg 225deg,
+        #aa96da 225deg 270deg,
+        #fcbad3 270deg 315deg,
+        #a8d8ea 315deg 360deg
+    );
+    margin: 0 auto 30px;
+    box-shadow: 0 0 0 10px #fff, 0 10px 40px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+button {
+    background: #ffd700;
+    color: #333;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+button:hover { transform: translateY(-2px); }
+.result {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    min-height: 50px;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>🎯 VÒNG QUAY TEST 🎯</h1>
+    <div class="wheel" id="wheel">🎁</div>
+    <button onclick="spin()">QUAY NGAY!</button>
+    <div class="result" id="result">Nhấn nút để quay!</div>
+</div>
+<script>
+const prizes = ['🎁 iPhone', '💎 Vàng', '🏆 Xe SH', '⭐ Tiền 500K', '🎊 Tủ lạnh', '🎯 Nồi cơm', '🌟 Mũ bảo hiểm', '🎈 May mắn'];
+function spin() {
+    const wheel = document.getElementById('wheel');
+    const result = document.getElementById('result');
+    const spins = 5 + Math.random() * 3;
+    const rotation = spins * 360;
+    wheel.style.transform = 'rotate(' + rotation + 'deg)';
+    result.textContent = '🎰 Đang quay...';
+    setTimeout(() => {
+        const prize = prizes[Math.floor(Math.random() * prizes.length)];
+        result.textContent = '🎉 ' + prize + ' 🎉';
+    }, 3000);
+}
+</script>
+</body>
+</html>
