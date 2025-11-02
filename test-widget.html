@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCLM Global - Test Widget</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #0a2e65;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .content {
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 50px;
+        }
+        .highlight {
+            background: #ffd700;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 SCLM Global - Vòng Quay May Mắn</h1>
+        
+        <div class="content">
+            <p>Chào mừng bạn đến với trang test widget của SCLM Global!</p>
+            
+            <div class="highlight">
+                ✨ Tìm VÒNG QUAY VÀNG ở góc dưới phải màn hình ✨
+            </div>
+            
+            <p>Widget sẽ hiển thị:</p>
+            <ul>
+                <li>🎯 Icon target với text "VÒNG QUAY"</li>
+                <li>💛 Màu vàng nổi bật</li>
+                <li>📍 Vị trí cố định góc dưới phải</li>
+                <li>🎮 Click để mở game trong cửa sổ mới</li>
+            </ul>
+            
+            <p>Nếu không thấy widget, hãy:</p>
+            <ul>
+                <li>Refresh trang (F5 hoặc Cmd+R)</li>
+                <li>Kiểm tra góc dưới phải màn hình</li>
+                <li>Scroll xuống dưới cùng</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Widget vòng quay cố định -->
+    <div 
+        onclick="window.open('public/vong-quay-may-man.html', 'SCLMGame', 'width=1200,height=800,scrollbars=yes,resizable=yes')"
+        style="
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.8);
+            z-index: 9999;
+            border: 4px solid white;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+            transition: all 0.3s ease;
+        "
+        onmouseover="this.style.transform='scale(1.1)'"
+        onmouseout="this.style.transform='scale(1)'"
+        title="Click để mở Vòng Quay May Mắn SCLM Global"
+    >
+        🎯<br/>VÒNG<br/>QUAY
+    </div>
+</body>
+</html>
