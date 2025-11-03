@@ -114,66 +114,116 @@ const SCLMWheelWidget: React.FC<SCLMWheelWidgetProps> = ({
           transition: isDragging ? 'none' : 'transform 0.3s',
         }}
       >
-        {/* Wheel Container */}
+        {/* Wheel Container - Outer Ring with Sparkles */}
         <div style={{
           position: 'relative',
           width: '100%',
           height: '100%',
           borderRadius: '50%',
-          background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
-          boxShadow: '0 8px 24px rgba(255, 215, 0, 0.4), 0 0 0 8px rgba(255, 255, 255, 0.2)',
-          animation: 'pulse 2s infinite',
+          background: 'conic-gradient(from 0deg, #FFD700, #FF6B00, #FFD700, #FF6B00, #FFD700, #FF6B00, #FFD700, #FF6B00, #FFD700)',
+          boxShadow: '0 0 30px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 107, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.3)',
+          animation: 'glow 2s ease-in-out infinite',
         }}>
-          {/* Rotating Wheel */}
+          {/* Inner Decorative Ring */}
           <div style={{
             position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
-            transition: 'transform 2s ease-in-out',
-            width: '90%',
-            height: '90%',
+            top: '8%',
+            left: '8%',
+            width: '84%',
+            height: '84%',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #0a2e65 0%, #154a9a 50%, #0a2e65 100%)',
+            boxShadow: 'inset 0 0 20px rgba(255, 215, 0, 0.3), 0 0 15px rgba(10, 46, 101, 0.5)',
           }}>
-            {texts.map((text, i) => (
-              <div
-                key={i}
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: `rotate(${i * 60}deg) translate(0, -35px)`,
-                  transformOrigin: '0 0',
-                  fontSize: '10px',
-                  fontWeight: 'bold',
-                  color: i % 2 === 0 ? '#FF4500' : '#FFD700',
-                  textAlign: 'center',
-                  whiteSpace: 'pre-line',
-                  textShadow: '1px 1px 2px rgba(0,0,0,0.3)',
-                }}
-              >
-                {text}
-              </div>
-            ))}
+            {/* Rotating Stars Pattern */}
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
+              transition: 'transform 2s ease-in-out',
+              width: '100%',
+              height: '100%',
+            }}>
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: `rotate(${i * 45}deg) translateY(-38px)`,
+                    transformOrigin: '0 0',
+                    fontSize: '16px',
+                    color: '#FFD700',
+                    textShadow: '0 0 10px rgba(255, 215, 0, 0.8)',
+                  }}
+                >
+                  ⭐
+                </div>
+              ))}
+            </div>
+
+            {/* Rotating Text Ring */}
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: `translate(-50%, -50%) rotate(${rotation * 0.5}deg)`,
+              transition: 'transform 2s ease-in-out',
+              width: '85%',
+              height: '85%',
+            }}>
+              {texts.map((text, i) => (
+                <div
+                  key={i}
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: `rotate(${i * 60}deg) translate(0, -28px)`,
+                    transformOrigin: '0 0',
+                    fontSize: '9px',
+                    fontWeight: 'bold',
+                    color: '#FFD700',
+                    textAlign: 'center',
+                    whiteSpace: 'pre-line',
+                    textShadow: '0 0 5px rgba(255, 215, 0, 0.8), 1px 1px 2px rgba(0,0,0,0.5)',
+                  }}
+                >
+                  {text}
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Center Circle */}
+          {/* Center Circle with Logo */}
           <div style={{
             position: 'absolute',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: '40%',
-            height: '40%',
+            width: '48%',
+            height: '48%',
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, #FF4500 0%, #FF6347 100%)',
-            border: '3px solid white',
+            background: 'linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%)',
+            border: '4px solid #FFD700',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '24px',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+            boxShadow: '0 0 20px rgba(255, 215, 0, 0.6), inset 0 2px 10px rgba(0,0,0,0.1)',
+            padding: '8px',
           }}>
-            🎁
+            <img 
+              src="/logo-sclm.png" 
+              alt="SCLM Logo" 
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                objectFit: 'cover',
+              }}
+            />
           </div>
 
           {/* Notification Badge */}
@@ -192,7 +242,6 @@ const SCLMWheelWidget: React.FC<SCLMWheelWidgetProps> = ({
               justifyContent: 'center',
               fontSize: '18px',
               fontWeight: 'bold',
-              animation: 'bounce 1s infinite',
               boxShadow: '0 4px 12px rgba(255, 69, 0, 0.5)',
             }}>
               !
@@ -283,6 +332,14 @@ const SCLMWheelWidget: React.FC<SCLMWheelWidgetProps> = ({
         @keyframes bounce {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-5px); }
+        }
+        @keyframes glow {
+          0%, 100% { 
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 107, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.3);
+          }
+          50% { 
+            box-shadow: 0 0 40px rgba(255, 215, 0, 1), 0 0 70px rgba(255, 107, 0, 0.6), inset 0 0 30px rgba(255, 255, 255, 0.5);
+          }
         }
       `}</style>
     </>

@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import "./App.css";
 import SCLMWheelWidget from "./SCLMWheelWidget-Ready";
+import ZaloSupportWidget from "./ZaloSupportWidget";
 
 /** ====== CẤU HÌNH EMAILJS ====== */
 const SERVICE_ID = "service_tb5zo3i"; // Service ID đã được cấu hình
@@ -94,7 +95,7 @@ export default function App() {
       >
         <div style={{ ...sectionWrap, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 20px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <img src="/logo-sclm.png" alt="SCLM" style={{ width: 44, height: 44, borderRadius: "50%" }} />
+            <img src="/logo-sclm.png" alt="SCLM" style={{ width: 44, height: 44, borderRadius: "50%", animation: "none", transition: "none" }} />
             <div style={{ color: "white", fontWeight: 800, letterSpacing: 0.5 }}>GLOBAL SCLM</div>
           </div>
           <nav style={{ display: "flex", gap: 18 }}>
@@ -117,7 +118,7 @@ export default function App() {
         }}
       >
         <div style={sectionWrap}>
-          <img src="/logo-sclm.png" alt="SCLM" style={{ width: 72, height: 72, borderRadius: "50%", margin: "0 auto 12px" }} />
+          <img src="/logo-sclm.png" alt="SCLM" style={{ width: 72, height: 72, borderRadius: "50%", margin: "0 auto 12px", animation: "none", transition: "none" }} />
           <h1 style={{ fontSize: "2.8rem", fontWeight: 900, lineHeight: 1.15, marginBottom: 10 }}>
             Global Supply Chain & Logistics Management
           </h1>
@@ -426,28 +427,71 @@ export default function App() {
             padding: "40px 32px",
             boxShadow: "0 12px 32px rgba(10,46,101,0.3)",
           }}>
-            <div style={{ textAlign: "center", marginBottom: "32px" }}>
-              <p style={{
-                margin: "0 0 16px 0",
-                fontSize: 16,
-                color: "#ffffff",
-                fontWeight: 600,
-              }}>
-                👇 Click vào đây để mở biểu mẫu đăng ký
-              </p>
-              <button 
-                onClick={() => setShowForm(prev => !prev)} 
-                style={{
-                  ...btn,
-                  background: "#00A9FF",
-                  border: "none",
-                  padding: "14px 28px",
-                  cursor: "pointer",
-                  fontSize: "16px"
-                }}
-              >
-                Mở biểu mẫu đăng ký SCLM
-              </button>
+            <div style={{ 
+              textAlign: "center", 
+              marginBottom: "32px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "24px",
+              alignItems: "center"
+            }}>
+              {/* Biểu mẫu đăng ký - Bên trái */}
+              <div style={{ width: "100%", maxWidth: "500px" }}>
+                <p style={{
+                  margin: "0 0 12px 0",
+                  fontSize: 16,
+                  color: "#ffffff",
+                  fontWeight: 600,
+                  textAlign: "left",
+                  paddingLeft: "15px"
+                }}>
+                  Click vào đây để mở biểu mẫu đăng ký
+                </p>
+                <button 
+                  onClick={() => setShowForm(prev => !prev)} 
+                  style={{
+                    ...btn,
+                    background: "#00A9FF",
+                    border: "none",
+                    padding: "14px 28px",
+                    cursor: "pointer",
+                    fontSize: "16px",
+                    width: "100%"
+                  }}
+                >
+                  Mở biểu mẫu đăng ký SCLM
+                </button>
+              </div>
+
+              {/* Cửa Hàng Trung Gian - Bên phải trong cùng khung */}
+              <div style={{ width: "100%", maxWidth: "500px" }}>
+                <p style={{
+                  margin: "0 0 12px 0",
+                  fontSize: 16,
+                  color: "#ffffff",
+                  fontWeight: 600,
+                  textAlign: "left",
+                  paddingLeft: "15px"
+                }}>
+                  Click vào đây để mở Cửa Hàng Trung Gian
+                </p>
+                <button 
+                  onClick={() => window.open('https://sclm-global.com/#/', '_blank')} 
+                  style={{
+                    ...btn,
+                    background: "#FFD700",
+                    color: "#0a2e65",
+                    border: "none",
+                    padding: "14px 28px",
+                    cursor: "pointer",
+                    fontSize: "16px",
+                    fontWeight: "700",
+                    width: "100%"
+                  }}
+                >
+                  Cửa Hàng Trung Gian
+                </button>
+              </div>
             </div>
             
             {/* 3 logo nhỏ */}
@@ -1075,7 +1119,7 @@ export default function App() {
       <footer style={{ background: "#0a2e65", color: "white", padding: "22px 0" }}>
         <div style={{ ...sectionWrap, display: "flex", gap: 12, justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <img src="/logo-sclm.png" alt="SCLM" style={{ width: 36, height: 36, borderRadius: "50%" }} />
+            <img src="/logo-sclm.png" alt="SCLM" style={{ width: 36, height: 36, borderRadius: "50%", animation: "none", transition: "none" }} />
             <div style={{ fontWeight: 800, letterSpacing: .3 }}>GLOBAL SCLM</div>
           </div>
           <div style={{ opacity: .9, fontSize: 14 }}>© 2025 SCLM Global. All rights reserved.</div>
@@ -1091,6 +1135,14 @@ export default function App() {
         enableDrag={true}
         onGameOpen={() => console.log('🎯 SCLM Game opened!')}
         onGameClose={() => console.log('🎯 SCLM Game closed!')}
+      />
+
+      {/* Hỗ trợ 24/7 Zalo */}
+      <ZaloSupportWidget
+        zaloUrl="https://zalo.me/0813789127"
+        position={{ bottom: '20px', left: '20px' }}
+        size="80px"
+        enableDrag={true}
       />
     </div>
   );

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCLM Global - Vòng Quay May Mắn</title>
+    <title>SCLM Lucky Wheel - Vòng Quay May Mắn</title>
     <style>
         * {
             margin: 0;
@@ -16,18 +16,66 @@
             background: linear-gradient(135deg, #c94b8b 0%, #4568dc 100%);
             min-height: 100vh;
             padding: 15px;
+        }
+        
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .prize-list-container {
+            flex: 0 0 280px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .prize-list-container h3 {
+            color: #0a2e65;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+        
+        .prize-item {
+            display: flex;
             align-items: center;
-            justify-content: flex-start;
+            gap: 10px;
+            padding: 10px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0a2e65;
+        }
+        
+        .prize-item .emoji {
+            font-size: 1.5rem;
         }
         
         .container {
-            width: 100%;
-            max-width: 600px;
+            flex: 1;
             display: flex;
             flex-direction: column;
             gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-wrapper {
+                flex-direction: column-reverse;
+            }
+            
+            .prize-list-container {
+                flex: 1;
+                width: 100%;
+            }
         }
         
         .code-box {
@@ -153,7 +201,7 @@
             height: 0;
             border-left: 20px solid transparent;
             border-right: 20px solid transparent;
-            border-top: 40px solid #FFD700;
+            border-top: 40px solid #FF0000;
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
             z-index: 30;
         }
@@ -166,19 +214,24 @@
             width: clamp(100px, 25vw, 130px);
             height: clamp(100px, 25vw, 130px);
             border-radius: 50%;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            border: 6px solid #fff;
+            background: white;
+            border: 6px solid #FFD700;
             z-index: 25;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: clamp(1rem, 3vw, 1.4rem);
-            font-weight: 900;
-            color: #0a2e65;
-            text-transform: uppercase;
-            box-shadow: 0 0 0 2px #FFD700, 0 8px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 0 0 4px #fff, 0 0 0 6px #FFD700, 0 8px 20px rgba(0,0,0,0.4);
             transition: all 0.3s;
+            padding: 10px;
+            overflow: hidden;
+        }
+        
+        .center-button img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
         }
         
         .center-button:not(.disabled):hover {
@@ -238,9 +291,82 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="code-box">
-            <h2>NHẬP MÃ THAM GIA</h2>
+    <!-- Contact Banner - Liên hệ nhận thưởng -->
+    <div style="width: 100%; background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); padding: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-bottom: 20px;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center; padding: 0 15px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <div style="font-size: 24px;">🎁</div>
+                <div style="font-size: 18px; font-weight: 900; color: #0a2e65; text-transform: uppercase;">
+                    Trúng thưởng? Liên hệ nhận thưởng ngay!
+                </div>
+                <a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" 
+                   target="_blank"
+                   style="background: #7360F2; color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(115, 96, 242, 0.4); transition: all 0.3s;">
+                    <span style="font-size: 20px;">📞</span>
+                    <span>VIBER NGAY</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <!-- Prize List Sidebar -->
+        <div class="prize-list-container">
+            <h3>🏆 SCLM Lucky Wheel 🏆</h3>
+            <div class="prize-item">
+                <span class="emoji">📱</span>
+                <span>iPhone 17 Pro Max</span>
+            </div>
+            <div class="prize-item">
+                <span class="emoji">🛵</span>
+                <span>Xe SH Mode</span>
+            </div>
+            <div class="prize-item">
+                <span class="emoji">🛵</span>
+                <span>Xe Vision</span>
+            </div>
+            <div class="prize-item">
+                <span class="emoji">❄️</span>
+                <span>Tủ Lạnh</span>
+            </div>
+            <div class="prize-item">
+                <span class="emoji">🏆</span>
+                <span>1 Cây Vàng SCJ</span>
+            </div>
+            <div class="prize-item">
+                <span class="emoji">💍</span>
+                <span>3 Chỉ Vàng 999</span>
+            </div>
+            <div class="prize-item">
+                <span class="emoji">🍚</span>
+                <span>Nồi Cơm Sharp</span>
+            </div>
+            <div class="prize-item">
+                <span class="emoji">🍚</span>
+                <span>Nồi Cơm Panasonic</span>
+            </div>
+            <div class="prize-item">
+                <span class="emoji">🪖</span>
+                <span>Cặp Mũ Bảo Hiểm</span>
+            </div>
+            <div class="prize-item">
+                <span class="emoji">💵</span>
+                <span>Tiền 200K</span>
+            </div>
+            <div class="prize-item">
+                <span class="emoji">💵</span>
+                <span>Tiền 100K</span>
+            </div>
+            <div class="prize-item">
+                <span class="emoji">🍀</span>
+                <span>Chúc may mắn lần sau</span>
+            </div>
+        </div>
+        
+        <!-- Main Game Container -->
+        <div class="container">
+            <div class="code-box">
+                <h2>NHẬP MÃ THAM GIA</h2>
             <div class="input-group">
                 <input type="text" id="codeInput" maxlength="9" placeholder="NHẬP MÃ CỦA BẠN..." oninput="this.value = this.value.toUpperCase()">
                 <button class="submit-btn" onclick="validateCode()">XÁC NHẬN</button>
@@ -252,7 +378,9 @@
             <div class="arrow"></div>
             <div class="outer-ring"></div>
             <canvas id="canvas" width="500" height="500"></canvas>
-            <div class="center-button disabled" id="spinButton">START</div>
+            <div class="center-button disabled" id="spinButton">
+                <img src="/logo-sclm.png" alt="SCLM Logo">
+            </div>
         </div>
         
         <div class="prize-display" id="prizeDisplay">
@@ -278,27 +406,30 @@
         let isSpinning = false;
         
         const prizes = [
-            { text: 'iPhone 17\nPro Max', emoji: '📱', title: 'IPHONE 17 PRO MAX', desc: 'iPhone 17 Pro Max mới nhất từ SCLM Global', color: '#FF6B6B' },
-            { text: 'Nồi Cơm\nSharp', emoji: '🍚', title: 'NỒI CƠM ĐIỆN SHARP', desc: 'Nồi cơm điện Sharp cao cấp', color: '#4ECDC4' },
-            { text: 'Tủ Lạnh', emoji: '❄️', title: 'TỦ LẠNH', desc: 'Tủ lạnh hiện đại từ SCLM', color: '#FFD93D' },
-            { text: 'Xe SH\nMode', emoji: '🛵', title: 'XE MÁY SH MODE', desc: 'Xe máy Honda SH Mode mới 100%', color: '#95E1D3' },
-            { text: '1 Cây\nVàng SCJ', emoji: '🏆', title: '1 CÂY VÀNG SCJ', desc: '1 cây vàng SCJ thật', color: '#F38181' },
-            { text: '3 Chỉ\nVàng 999', emoji: '💍', title: '3 CHỈ VÀNG 999', desc: '3 chỉ vàng 999 thật', color: '#AA96DA' },
-            { text: 'Nồi Cơm\nPanasonic', emoji: '🍚', title: 'NỒI CƠM ĐIỆN PANASONIC', desc: 'Nồi cơm điện Panasonic cao cấp', color: '#FCBAD3' },
-            { text: 'Xe\nVision', emoji: '🛵', title: 'XE MÁY VISION', desc: 'Xe máy Honda Vision mới 100%', color: '#A8D8EA' },
-            { text: 'Cặp Mũ\nBảo Hiểm', emoji: '🪖', title: 'CẶP MŨ BẢO HIỂM', desc: 'Cặp mũ bảo hiểm cao cấp', color: '#FFB6C1' },
-            { text: 'Tiền\n200K', emoji: '💵', title: 'TIỀN MẶT 200K', desc: 'Tiền mặt 200.000đ', color: '#98D8C8' },
-            { text: 'Tiền\n100K', emoji: '💵', title: 'TIỀN MẶT 100K', desc: 'Tiền mặt 100.000đ', color: '#F7DC6F' },
-            { text: 'Chúc bạn\nmay mắn', emoji: '🍀', title: 'CHÚC BẠN MAY MẮN LẦN SAU', desc: 'Đừng bỏ cuộc, hãy thử lại!', color: '#BB8FCE' }
+            { text: 'iPhone 17\nPro Max', emoji: '📱', title: 'IPHONE 17 PRO MAX', desc: 'iPhone 17 Pro Max mới nhất từ SCLM Global', color: '#FF6B6B', codes: ['SCLMIP001', 'SCLMIP002', 'SCLMIP003', 'SCLMIP004', 'SCLMIP005', 'SCLMIP006', 'SCLMIP007', 'SCLMIP008', 'SCLMIP009', 'SCLMIP010'] },
+            { text: 'Nồi Cơm\nSharp', emoji: '🍚', title: 'NỒI CƠM ĐIỆN SHARP', desc: 'Nồi cơm điện Sharp cao cấp', color: '#4ECDC4', codes: ['SCLMNC001', 'SCLMNC002', 'SCLMNC003', 'SCLMNC004', 'SCLMNC005', 'SCLMNC006', 'SCLMNC007', 'SCLMNC008', 'SCLMNC009', 'SCLMNC010'] },
+            { text: 'Tủ Lạnh', emoji: '❄️', title: 'TỦ LẠNH', desc: 'Tủ lạnh hiện đại từ SCLM', color: '#FFD93D', codes: ['SCLMTL001', 'SCLMTL002', 'SCLMTL003', 'SCLMTL004', 'SCLMTL005', 'SCLMTL006', 'SCLMTL007', 'SCLMTL008', 'SCLMTL009', 'SCLMTL010'] },
+            { text: 'Xe SH\nMode', emoji: '🛵', title: 'XE MÁY SH MODE', desc: 'Xe máy Honda SH Mode mới 100%', color: '#95E1D3', codes: ['SCLMSH001', 'SCLMSH002', 'SCLMSH003', 'SCLMSH004', 'SCLMSH005', 'SCLMSH006', 'SCLMSH007', 'SCLMSH008', 'SCLMSH009', 'SCLMSH010'] },
+            { text: '1 Cây\nVàng SCJ', emoji: '🏆', title: '1 CÂY VÀNG SCJ', desc: '1 cây vàng SCJ thật', color: '#F38181', codes: ['SCLMGD001', 'SCLMGD002', 'SCLMGD003', 'SCLMGD004', 'SCLMGD005', 'SCLMGD006', 'SCLMGD007', 'SCLMGD008', 'SCLMGD009', 'SCLMGD010'] },
+            { text: '3 Chỉ\nVàng 999', emoji: '💍', title: '3 CHỈ VÀNG 999', desc: '3 chỉ vàng 999 thật', color: '#AA96DA', codes: ['SCLMGD101', 'SCLMGD102', 'SCLMGD103', 'SCLMGD104', 'SCLMGD105', 'SCLMGD106', 'SCLMGD107', 'SCLMGD108', 'SCLMGD109', 'SCLMGD110'] },
+            { text: 'Nồi Cơm\nPanasonic', emoji: '🍚', title: 'NỒI CƠM ĐIỆN PANASONIC', desc: 'Nồi cơm điện Panasonic cao cấp', color: '#FCBAD3', codes: ['SCLMNC201', 'SCLMNC202', 'SCLMNC203', 'SCLMNC204', 'SCLMNC205', 'SCLMNC206', 'SCLMNC207', 'SCLMNC208', 'SCLMNC209', 'SCLMNC210'] },
+            { text: 'Xe\nVision', emoji: '🛵', title: 'XE MÁY VISION', desc: 'Xe máy Honda Vision mới 100%', color: '#A8D8EA', codes: ['SCLMVS001', 'SCLMVS002', 'SCLMVS003', 'SCLMVS004', 'SCLMVS005', 'SCLMVS006', 'SCLMVS007', 'SCLMVS008', 'SCLMVS009', 'SCLMVS010'] },
+            { text: 'Cặp Mũ\nBảo Hiểm', emoji: '🪖', title: 'CẶP MŨ BẢO HIỂM', desc: 'Cặp mũ bảo hiểm cao cấp', color: '#FFB6C1', codes: ['SCLMMB001', 'SCLMMB002', 'SCLMMB003', 'SCLMMB004', 'SCLMMB005', 'SCLMMB006', 'SCLMMB007', 'SCLMMB008', 'SCLMMB009', 'SCLMMB010'] },
+            { text: 'Tiền\n200K', emoji: '💵', title: 'TIỀN MẶT 200K', desc: 'Tiền mặt 200.000đ', color: '#98D8C8', codes: ['SCLMT2001', 'SCLMT2002', 'SCLMT2003', 'SCLMT2004', 'SCLMT2005', 'SCLMT2006', 'SCLMT2007', 'SCLMT2008', 'SCLMT2009', 'SCLMT2010'] },
+            { text: 'Tiền\n100K', emoji: '💵', title: 'TIỀN MẶT 100K', desc: 'Tiền mặt 100.000đ', color: '#F7DC6F', codes: ['SCLMT1001', 'SCLMT1002', 'SCLMT1003', 'SCLMT1004', 'SCLMT1005', 'SCLMT1006', 'SCLMT1007', 'SCLMT1008', 'SCLMT1009', 'SCLMT1010'] },
+            { text: 'Chúc bạn\nmay mắn', emoji: '🍀', title: 'CHÚC BẠN MAY MẮN LẦN SAU', desc: 'Đừng bỏ cuộc, hãy thử lại!', color: '#BB8FCE', codes: ['SCLMLK001', 'SCLMLK002', 'SCLMLK003', 'SCLMLK004', 'SCLMLK005', 'SCLMLK006', 'SCLMLK007', 'SCLMLK008', 'SCLMLK009', 'SCLMLK010'] }
         ];
         
-        function getHashFromCode(code) {
-            let hash = 0;
-            for (let i = 0; i < code.length; i++) {
-                hash = ((hash << 5) - hash) + code.charCodeAt(i);
-                hash = hash & hash;
-            }
-            return Math.abs(hash);
+        // Tạo map code -> prize index để tra cứu nhanh
+        const codeMap = {};
+        prizes.forEach((prize, index) => {
+            prize.codes.forEach(code => {
+                codeMap[code] = index;
+            });
+        });
+        
+        function getPrizeIndexFromCode(code) {
+            return codeMap[code] !== undefined ? codeMap[code] : -1;
         }
         
         function validateCode() {
@@ -316,8 +447,23 @@
                 showMessage('❌ 5 ký tự cuối phải là chữ hoặc số!', 'error');
                 return;
             }
+            
+            // Kiểm tra mã có trong danh sách không
+            const prizeIndex = getPrizeIndexFromCode(code);
+            if (prizeIndex === -1) {
+                showMessage('❌ Mã không hợp lệ!', 'error');
+                return;
+            }
+            
+            // Kiểm tra mã đã được sử dụng chưa (lưu trong localStorage)
+            const usedCodes = JSON.parse(localStorage.getItem('sclm_used_codes') || '[]');
+            if (usedCodes.includes(code)) {
+                showMessage('❌ Mã này đã được sử dụng rồi!', 'error');
+                return;
+            }
+            
             currentCode = code;
-            targetPrizeIndex = getHashFromCode(code) % prizes.length;
+            targetPrizeIndex = prizeIndex;
             isCodeValid = true;
             spinButton.classList.remove('disabled');
             showMessage('✅ Mã hợp lệ! Bấm START để quay!', 'success');
@@ -334,8 +480,12 @@
             const radius = canvas.width / 2;
             const sliceAngle = (2 * Math.PI) / prizes.length;
             
+            // OFFSET để index 0 bắt đầu từ vị trí 12h (mũi tên)
+            // Canvas vẽ từ 0° (3h), cần xoay -90° để về 12h
+            const offsetAngle = -Math.PI / 2;
+            
             prizes.forEach((prize, index) => {
-                const startAngle = index * sliceAngle + currentRotation;
+                const startAngle = index * sliceAngle + currentRotation + offsetAngle;
                 const endAngle = startAngle + sliceAngle;
                 ctx.beginPath();
                 ctx.arc(centerX, centerY, radius, startAngle, endAngle);
@@ -375,8 +525,16 @@
             const spinDuration = 5000;
             const spinRotations = 7 + Math.random() * 3;
             const sliceAngle = (2 * Math.PI) / prizes.length;
+            
+            // MŨI TÊN Ở PHÍA TRÊN (12h), VÒNG QUAY THUẬN CHIỀU KIM ĐỒNG HỒ
+            // Index 0 bắt đầu từ 12h
+            // Để kim chỉ đúng vào ô target, cần quay vòng NGƯỢC lại để ô đó đến vị trí 12h
+            // Vì vòng quay CỘI chiều (currentRotation tăng), nhưng cần ô target về vị trí mũi tên
+            // => Cần quay đến góc: nhiều vòng TRỪ ĐI góc của ô target
             const targetAngle = targetPrizeIndex * sliceAngle + sliceAngle / 2;
-            const finalRotation = (spinRotations * 2 * Math.PI) + (2 * Math.PI - targetAngle - Math.PI / 2);
+            
+            // Quay nhiều vòng TRỪ targetAngle để đưa ô về đúng vị trí mũi tên
+            const finalRotation = (spinRotations * 2 * Math.PI) - targetAngle;
             const startTime = Date.now();
             const startRotation = currentRotation;
             
@@ -390,6 +548,13 @@
                     requestAnimationFrame(animateSpin);
                 } else {
                     setTimeout(() => {
+                        // Lưu mã đã sử dụng vào localStorage
+                        const usedCodes = JSON.parse(localStorage.getItem('sclm_used_codes') || '[]');
+                        if (!usedCodes.includes(currentCode)) {
+                            usedCodes.push(currentCode);
+                            localStorage.setItem('sclm_used_codes', JSON.stringify(usedCodes));
+                        }
+                        
                         showPrize(prizes[targetPrizeIndex]);
                         isSpinning = false;
                     }, 500);
@@ -422,5 +587,35 @@
         });
         animate();
     </script>
+    </div> <!-- End container -->
+    </div> <!-- End main-wrapper -->
+
+    <!-- Images and Copyright Section -->
+    <div style="width: 100%; max-width: 1200px; margin: 30px auto; padding: 0 15px;">
+        <!-- Images -->
+        <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;">
+            <img src="/1.jpg" alt="SCLM Global" style="width: 28%; min-width: 80px; max-width: 100px; height: auto; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.3); object-fit: cover;">
+            <img src="/2.jpg" alt="SCLM Global" style="width: 28%; min-width: 80px; max-width: 100px; height: auto; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.3); object-fit: cover;">
+            <img src="/4.jpg" alt="SCLM Global" style="width: 28%; min-width: 80px; max-width: 100px; height: auto; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.3); object-fit: cover;">
+        </div>
+
+        <!-- Copyright -->
+        <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            <div style="color: #FFD700; font-size: 18px; font-weight: 900; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;">
+                🏆 SCLM GLOBAL 🏆
+            </div>
+            <div style="color: rgba(255, 255, 255, 0.95); font-size: 14px; line-height: 1.6; margin-bottom: 8px;">
+                Hệ thống chuỗi cung ứng toàn cầu
+            </div>
+            <div style="color: rgba(255, 255, 255, 0.8); font-size: 12px; margin-bottom: 15px;">
+                📞 Hotline: 0947 88 66 11 | 0582 779977<br>
+                📧 Email: sclm.customer@gmail.com
+            </div>
+            <div style="border-top: 2px solid rgba(255, 215, 0, 0.3); padding-top: 12px; color: rgba(255, 255, 255, 0.7); font-size: 11px;">
+                © 2025 SCLM Global. All rights reserved.<br>
+                Bản quyền thuộc về SCLM Global Vietnam
+            </div>
+        </div>
+    </div>
 </body>
 </html>
