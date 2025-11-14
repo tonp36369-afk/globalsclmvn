@@ -571,8 +571,10 @@ export default function App() {
                 }}>
                   Click vào đây để mở biểu mẫu đăng ký
                 </p>
-                <button 
-                  onClick={() => setShowForm(prev => !prev)} 
+                <a
+                  href="https://sclm.vn/dang-ky" // Đổi thành link trang đăng ký mong muốn
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
                     ...btn,
                     background: "#00A9FF",
@@ -580,11 +582,13 @@ export default function App() {
                     padding: "14px 28px",
                     cursor: "pointer",
                     fontSize: "16px",
-                    width: "100%"
+                    width: "100%",
+                    display: "inline-block",
+                    textAlign: "center"
                   }}
                 >
                   Mở biểu mẫu đăng ký SCLM
-                </button>
+                </a>
               </div>
 
               {/* Cửa Hàng Trung Gian - Bên phải trong cùng khung */}
