@@ -13,7 +13,7 @@ interface SCLMWheelWidgetProps {
 const SCLMWheelWidget: React.FC<SCLMWheelWidgetProps> = ({
   gameUrl = '/vong-quay-may-man.html',
   position = { bottom: '20px', right: '20px' },
-  size = '120px',
+  size = window.innerWidth <= 768 ? '80px' : '120px',
   autoShow = true,
   enableDrag = true,
   onGameOpen,
@@ -25,10 +25,10 @@ const SCLMWheelWidget: React.FC<SCLMWheelWidgetProps> = ({
   const [isDragging, setIsDragging] = useState(false);
   const [widgetPosition, setWidgetPosition] = useState(position);
 
-  const texts = [
-    'VÒNG QUAY\nMAY MẮN', 'TRÚNG\nTHƯỞNG', 'MAY MẮN\nNGAY',
-    'QUAY\nNGAY', 'GIẢI\nKHỦNG', 'SCLM\nGLOBAL'
-  ];
+  // Hiển thị chữ 'LUCKY SPIN' uốn cong xung quanh logo nút
+  const luckySpin = 'LUCKY SPIN';
+  // Tạo từng ký tự uốn cong đều quanh vòng tròn
+  const texts = Array.from({ length: 12 }, (_, i) => luckySpin[i] ? luckySpin[i] : '');
 
   // Auto rotation effect
   useEffect(() => {
@@ -174,24 +174,25 @@ const SCLMWheelWidget: React.FC<SCLMWheelWidgetProps> = ({
               width: '85%',
               height: '85%',
             }}>
-              {texts.map((text, i) => (
+              {texts.map((char, i) => (
                 <div
                   key={i}
                   style={{
                     position: 'absolute',
                     top: '50%',
                     left: '50%',
-                    transform: `rotate(${i * 60}deg) translate(0, -28px)`,
+                    transform: `rotate(${i * (360 / texts.length)}deg) translate(0, -28px)`,
                     transformOrigin: '0 0',
-                    fontSize: '9px',
+                    fontSize: '13px',
                     fontWeight: 'bold',
                     color: '#FFD700',
                     textAlign: 'center',
                     whiteSpace: 'pre-line',
                     textShadow: '0 0 5px rgba(255, 215, 0, 0.8), 1px 1px 2px rgba(0,0,0,0.5)',
+                    letterSpacing: '2px',
                   }}
                 >
-                  {text}
+                  {char}
                 </div>
               ))}
             </div>

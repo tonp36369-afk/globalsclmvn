@@ -1,7 +1,56 @@
+      {/* Nút shortcut nổi tới vòng quay may mắn */}
+      <button
+        style={{
+          position: 'fixed',
+          right: 24,
+          bottom: 32,
+          zIndex: 9999,
+          background: '#FFD700',
+          color: '#0a2e65',
+          fontWeight: 800,
+          fontSize: 18,
+          border: 'none',
+          borderRadius: '50%',
+          width: 64,
+          height: 64,
+          boxShadow: '0 4px 18px rgba(0,0,0,0.12)',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'background 0.2s',
+        }}
+        title="Vòng Quay May Mắn"
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      >
+        🎡
+      </button>
+      {/* Vòng quay may mắn - ảnh và nút QUAY NGAY duy nhất */}
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '32px 0' }}>
+        <img src="/vong-quay-may-man.png" alt="Vòng quay may mắn" style={{ maxWidth: '400px', width: '100%', height: 'auto', borderRadius: '16px' }} />
+        <button
+          style={{
+            marginTop: 18,
+            background: '#FFD700',
+            color: '#0a2e65',
+            fontWeight: 800,
+            fontSize: 22,
+            border: 'none',
+            borderRadius: 32,
+            padding: '18px 48px',
+            boxShadow: '0 4px 18px rgba(0,0,0,0.10)',
+            cursor: 'pointer',
+            letterSpacing: 1.2,
+            transition: 'background 0.2s',
+          }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          QUAY NGAY
+        </button>
+      </div>
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import "./App.css";
-import SCLMWheelWidget from "./SCLMWheelWidget-Ready";
 import ZaloSupportWidget from "./ZaloSupportWidget";
 
 /** ====== CẤU HÌNH EMAILJS ====== */
@@ -10,9 +59,25 @@ const TEMPLATE_ID = "template_kkjhug9"; // Template ID: Contact Us
 const PUBLIC_KEY = "OfCOrhRJrYm5SmrnF"; // Public Key đã được cấu hình
 
 /** ====== STYLE TIỆN DỤNG ====== */
-const sectionWrap: React.CSSProperties = { maxWidth: 1100, margin: "0 auto", padding: "0 20px" };
-const h2: React.CSSProperties = { fontSize: "2rem", fontWeight: 800, color: "#0a2e65", textAlign: "center" };
-const pLead: React.CSSProperties = { textAlign: "center", color: "#475569", maxWidth: 820, margin: "12px auto 0" };
+const sectionWrap: React.CSSProperties = { 
+  maxWidth: 1100, 
+  margin: "0 auto", 
+  padding: "0 20px",
+  width: "100%"
+};
+const h2: React.CSSProperties = { 
+  fontSize: "clamp(1.5rem, 5vw, 2rem)", 
+  fontWeight: 800, 
+  color: "#0a2e65", 
+  textAlign: "center" 
+};
+const pLead: React.CSSProperties = { 
+  textAlign: "center", 
+  color: "#475569", 
+  maxWidth: 820, 
+  margin: "12px auto 0",
+  fontSize: "clamp(0.95rem, 2.5vw, 1rem)"
+};
 const btn: React.CSSProperties = {
   display: "inline-block",
   background: "#0a2e65",
@@ -41,13 +106,11 @@ export default function App() {
   const bannerImages = [
     "/banner-sclm.jpg",
     "/banner3.jpg",
-    "/banner4.jpg",
     "/banner5.jpg",
     "/banner6.jpg",
     "/banner7.jpg",
     "/banner8.jpg",
     "/banner11.jpg",
-    "/banner22.jpg",
   ];
 
   // Tự động chuyển slide mỗi 5 giây
@@ -88,23 +151,51 @@ export default function App() {
           position: "sticky",
           top: 0,
           zIndex: 40,
-          background: "rgba(10,46,101,0.9)",
+          background: "rgba(10,46,101,0.95)",
           backdropFilter: "saturate(180%) blur(6px)",
           borderBottom: "1px solid rgba(255,255,255,.12)",
         }}
       >
-        <div style={{ ...sectionWrap, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 20px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <img src="/logo-sclm.png" alt="SCLM" style={{ width: 44, height: 44, borderRadius: "50%", animation: "none", transition: "none" }} />
-            <div style={{ color: "white", fontWeight: 800, letterSpacing: 0.5 }}>GLOBAL SCLM</div>
+        <div style={{ ...sectionWrap, display: "flex", flexDirection: "column", alignItems: "stretch", gap: 2, padding: "0 0 0 0" }}>
+          {/* Thông tin liên hệ nhỏ phía trên */}
+          <div style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            fontSize: 13,
+            color: "#e0e7ef",
+            gap: 18,
+            padding: "2px 12px 0 12px",
+            minHeight: 22,
+            letterSpacing: 0.1,
+          }}>
+            <span>✉️ <b style={{ color: "#fff" }}>contact@sclm.vn</b></span>
+            <span>📞 <b style={{ color: "#fff" }}>+84582 77 99 77</b></span>
           </div>
-          <nav style={{ display: "flex", gap: 18 }}>
-            <a href="#about" style={navA}>Giới thiệu</a>
-            <a href="#solutions" style={navA}>Giải pháp</a>
-            <a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" target="_blank" rel="noreferrer" style={navA}>Hợp tác</a>
-            <a href="#contact" style={navA}>Liên hệ</a>
-          </nav>
-          <a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" target="_blank" rel="noreferrer" style={{ ...btn, padding: "10px 16px" }}>Trở thành đối tác</a>
+          {/* Dòng chính header */}
+          <div style={{
+            ...sectionWrap,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "6px 10px 6px 10px",
+            minHeight: 48,
+            flexWrap: "wrap",
+            gap: 8,
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+              <img src="/logo-sclm.png" alt="SCLM" style={{ width: 38, height: 38, borderRadius: "50%", animation: "none", transition: "none" }} />
+              <div style={{ color: "white", fontWeight: 800, letterSpacing: 0.5, fontSize: 18, whiteSpace: "nowrap" }}>GLOBAL SCLM</div>
+            </div>
+            <nav style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <a href="#about" style={navA}>Giới thiệu</a>
+              <a href="#solutions" style={navA}>Giải pháp</a>
+              <a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" target="_blank" rel="noreferrer" style={navA}>Hợp tác</a>
+              <a href="#contact" style={navA}>Liên hệ</a>
+            </nav>
+            <a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" target="_blank" rel="noreferrer" style={{ ...btn, padding: "8px 12px", fontSize: 14 }}>Trở thành đối tác</a>
+          </div>
         </div>
       </header>
 
@@ -118,11 +209,10 @@ export default function App() {
         }}
       >
         <div style={sectionWrap}>
-          <img src="/logo-sclm.png" alt="SCLM" style={{ width: 72, height: 72, borderRadius: "50%", margin: "0 auto 12px", animation: "none", transition: "none" }} />
-          <h1 style={{ fontSize: "2.8rem", fontWeight: 900, lineHeight: 1.15, marginBottom: 10 }}>
+          <h1 style={{ fontSize: "clamp(1.75rem, 6vw, 2.8rem)", fontWeight: 900, lineHeight: 1.15, marginBottom: 10 }}>
             Global Supply Chain & Logistics Management
           </h1>
-          <p style={{ fontSize: 18, opacity: 0.92, maxWidth: 860, margin: "0 auto 24px" }}>
+          <p style={{ fontSize: "clamp(0.95rem, 3vw, 18px)", opacity: 0.92, maxWidth: 860, margin: "0 auto 24px", padding: "0 10px" }}>
             Kết nối – Cung ứng – Phát triển toàn cầu. Nền tảng hỗ trợ doanh nghiệp Việt tham gia chuỗi cung ứng quốc tế bằng công nghệ.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
@@ -131,90 +221,127 @@ export default function App() {
           </div>
 
           {/* Banner Slider */}
-          <div style={{ marginTop: 18, position: 'relative', maxWidth: 1100, margin: '18px auto 0' }}>
+          <div style={{ marginTop: 18, position: 'relative', maxWidth: 1400, margin: '18px auto 0', padding: 0 }}>
             {/* Ảnh banner */}
-            <div style={{ position: 'relative', overflow: 'hidden', borderRadius: 16, boxShadow: "0 12px 28px rgba(0,0,0,.25)" }}>
+            <div
+              className="banner-slider"
+              style={{
+                position: 'relative',
+                overflow: 'hidden',
+                borderRadius: 16,
+                boxShadow: "0 8px 18px rgba(0,0,0,.18)",
+                border: '2px solid #FFD700',
+                minHeight: 0,
+                margin: '0 auto',
+                width: '100%',
+                background: '#f8fafc',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: 0,
+                maxWidth: 1200,
+              }}
+            >
               <img
                 src={bannerImages[currentSlide]}
                 alt={`SCLM Banner ${currentSlide + 1}`}
-                style={{ 
-                  width: "100%", 
-                  height: 400,
-                  objectFit: 'cover',
+                style={{
+                  width: '100%',
+                  maxWidth: 1200,
+                  height: 'clamp(180px, 38vw, 340px)',
+                  objectFit: 'contain',
                   transition: 'opacity 0.5s ease-in-out',
+                  borderBottom: '1px solid #e2e8f0',
+                  background: 'transparent',
+                  display: 'block',
+                  margin: '0 auto',
+                  padding: 0,
                 }}
               />
-              
+              {/* Đường kẻ phân cách */}
+              <div style={{
+                width: '100%',
+                height: 3,
+                background: 'linear-gradient(90deg, #FFD700 0%, #FFA500 100%)',
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                opacity: 0.85,
+              }} />
               {/* Nút Previous */}
               <button
                 onClick={prevSlide}
                 style={{
                   position: 'absolute',
-                  left: 20,
+                  left: 4,
                   top: '50%',
                   transform: 'translateY(-50%)',
-                  background: 'rgba(255,255,255,0.9)',
+                  background: 'rgba(255,255,255,0.92)',
                   border: 'none',
                   borderRadius: '50%',
-                  width: 50,
-                  height: 50,
-                  fontSize: 24,
+                  width: 26,
+                  height: 26,
+                  fontSize: 14,
                   cursor: 'pointer',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.10)',
                   transition: 'all 0.3s',
+                  zIndex: 2,
                 }}
-                onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,1)'}
-                onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.9)'}
+                aria-label="Previous banner"
               >
                 ‹
               </button>
-
               {/* Nút Next */}
               <button
                 onClick={nextSlide}
                 style={{
                   position: 'absolute',
-                  right: 20,
+                  right: 4,
                   top: '50%',
                   transform: 'translateY(-50%)',
-                  background: 'rgba(255,255,255,0.9)',
+                  background: 'rgba(255,255,255,0.92)',
                   border: 'none',
                   borderRadius: '50%',
-                  width: 50,
-                  height: 50,
-                  fontSize: 24,
+                  width: 26,
+                  height: 26,
+                  fontSize: 14,
                   cursor: 'pointer',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.10)',
                   transition: 'all 0.3s',
+                  zIndex: 2,
                 }}
-                onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,1)'}
-                onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.9)'}
+                aria-label="Next banner"
               >
                 ›
               </button>
-
               {/* Dots indicator */}
-              <div style={{ 
-                position: 'absolute', 
-                bottom: 20, 
-                left: '50%', 
-                transform: 'translateX(-50%)',
-                display: 'flex',
-                gap: 8,
-              }}>
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: 4,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  display: 'flex',
+                  gap: 3,
+                  zIndex: 1,
+                }}
+              >
                 {bannerImages.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
                     style={{
-                      width: currentSlide === index ? 24 : 12,
-                      height: 12,
-                      borderRadius: 6,
+                      width: currentSlide === index ? 10 : 6,
+                      height: 6,
+                      borderRadius: 3,
                       border: 'none',
-                      background: currentSlide === index ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.5)',
+                      background: currentSlide === index ? '#FFD700' : 'rgba(255,255,255,0.7)',
                       cursor: 'pointer',
                       transition: 'all 0.3s',
+                      margin: 0,
+                      padding: 0,
                     }}
+                    aria-label={`Chọn banner ${index + 1}`}
                   />
                 ))}
               </div>
@@ -224,11 +351,24 @@ export default function App() {
       </section>
 
       {/* ===== CONTACT INFO ===== */}
-      <section style={{ padding: "40px 0", background: "#f8fbff", textAlign: "center" }}>
-        <div style={sectionWrap}>
-          <ul style={{ display: "flex", justifyContent: "center", gap: "40px", color: "#0a2e65", lineHeight: 1.8, listStyle: "none", margin: 0, padding: 0 }}>
-            <li>✉️ Email: <b>sclm.customer@gmail.com</b></li>
-            <li>📞 Hotline: <b>0582 779 977</b> | <b>0947 886 611</b></li>
+      <section className="contact-info-section" style={{ padding: "40px 0", background: "#f8fbff", textAlign: "center" }}>
+        <div style={{ ...sectionWrap, padding: 0 }}>
+          <ul style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "24px",
+            color: "#0a2e65",
+            lineHeight: 1.7,
+            listStyle: "none",
+            margin: 0,
+            padding: 0,
+            flexWrap: "wrap",
+            fontSize: 15,
+            fontWeight: 500,
+            wordBreak: "break-word"
+          }}>
+            <li>✉️ Email: <b>contact@sclm.vn</b></li>
             <li>🌐 Website: <b>sclm.vn</b></li>
           </ul>
         </div>
@@ -254,44 +394,28 @@ export default function App() {
             </p>
           </div>
 
-          {/* Tagline moved up from tax section */}
-          <p style={{
-            textAlign: "center",
-            color: "#ffffff",
-            fontSize: 18,
-            fontWeight: 800,
-            marginTop: 16,
-            letterSpacing: 0.2,
-          }}>
-            "SCLM GLOBAL – Nơi phụ nữ bắt đầu hành trình kinh doanh tự chủ"
-          </p>
-
-          {/* Nội dung về phụ nữ khởi nghiệp */}
+          {/* Thay thế bằng nội dung về cửa hàng trung gian và chính sách hỗ trợ */}
           <div style={{
             background: "rgba(255,255,255,0.15)",
             borderRadius: 12,
-            padding: "24px 32px",
-            maxWidth: 820,
-            margin: "20px auto 0",
+            padding: "28px 32px",
+            maxWidth: 900,
+            margin: "24px auto 0",
             backdropFilter: "blur(10px)",
             border: "1px solid rgba(255,255,255,0.2)",
           }}>
-            <p style={{ textAlign: "center", color: "#ffffff", fontSize: 16, lineHeight: 1.7, margin: "0 0 16px 0" }}>
-              <strong>SCLM GLOBAL</strong> đồng hành cùng phụ nữ Việt trong hành trình khởi nghiệp, cung cấp kiến thức, công cụ và giải pháp toàn diện để tự chủ tài chính, phát triển thương hiệu và mở rộng thị trường.
+            <p style={{ textAlign: "center", color: "#fff", fontSize: 18, fontWeight: 700, margin: "0 0 18px 0", lineHeight: 1.7 }}>
+              Cửa hàng trung gian là nơi tiếp nhận thông tin đơn hàng, xử lý gửi về kho cung ứng để kho tiến hành phân loại và vận chuyển đến nơi nhận. Tất cả đơn hàng của các nước được đưa về kho cung ứng tập kết, giúp quá trình phân loại, đóng gói và vận chuyển đến nơi nhận diễn ra nhanh chóng, giúp doanh nghiệp giảm từ <b>18 đến 20% chi phí và thời gian</b>.
             </p>
-            <ul style={{ 
-              textAlign: "left", 
-              color: "#ffffff", 
-              fontSize: 15, 
-              lineHeight: 1.8, 
-              margin: 0, 
-              paddingLeft: 20,
-              listStyleType: "disc"
-            }}>
-              <li>Phụ nữ nội trợ – muốn chủ động tài chính, có thời gian linh hoạt.</li>
-              <li>Phụ nữ chưa từng kinh doanh – nhưng có đam mê và mong muốn phát triển.</li>
-              <li>Phụ nữ kinh doanh nhỏ lẻ – muốn mở rộng và phát triển bền vững.</li>
-            </ul>
+            <p style={{ textAlign: "center", color: "#fff", fontSize: 16, margin: "0 0 14px 0", lineHeight: 1.7 }}>
+              Khi cửa hàng của bạn có đơn hàng, giao diện sẽ hiển thị số lượng, giá trị và chiết khấu rõ ràng để bạn dễ dàng theo dõi, kiểm soát. Bạn chỉ cần xử lý đơn hàng bằng một nút xác nhận gửi đơn hàng thành công là đã hoàn thành công việc của mình. Hãy thường xuyên truy cập cửa hàng để kiểm tra đơn hàng mới!
+            </p>
+            <p style={{ textAlign: "center", color: "#fff", fontSize: 16, margin: "0 0 14px 0", lineHeight: 1.7 }}>
+              Nếu lo ngại về vốn vận hành, đừng lo! <b>Ngưỡng hoạt động rất thấp</b>, phù hợp với tất cả những người mới khởi nghiệp và chưa có đủ vốn. Đây là doanh nghiệp được nhà nước hỗ trợ nên ngưỡng hoạt động không quá cao.
+            </p>
+            <p style={{ textAlign: "center", color: "#fff", fontSize: 16, margin: 0, lineHeight: 1.7 }}>
+              <b>Chính sách hiện hành của đất nước</b> là dùng doanh nghiệp để thúc đẩy nhân dân làm giàu. Chỉ khi nhân dân giàu mạnh thì đất nước mới giàu mạnh.
+            </p>
           </div>
 
           {/* Stats */}
@@ -605,12 +729,12 @@ export default function App() {
               </div>
 
               <div>
-                <label style={labelStyle}>Ngưỡng hoạt động mong muốn (USD)</label>
+                <label style={labelStyle}>Ngưỡng hoạt động mong muốn (VỐN USD)</label>
                 <input type="number" name="von" required style={inputStyle} placeholder="30" min="30" />
               </div>
 
               <div>
-                <label style={labelStyle}>Thu nhập lý tưởng hàng tháng (USD)</label>
+                <label style={labelStyle}>Thu nhập lý tưởng hàng tháng (VỐN USD)</label>
                 <input type="number" name="thu_nhap" style={inputStyle} placeholder="500" />
               </div>
 
@@ -921,7 +1045,7 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Hotline */}
+                {/* Hotline & Email */}
                 <div style={{
                   background: "rgba(255,255,255,0.1)",
                   borderRadius: 12,
@@ -931,13 +1055,11 @@ export default function App() {
                   gap: 12,
                   border: "1px solid rgba(255,255,255,0.15)",
                 }}>
-                  <div style={{ fontSize: 24 }}>📱</div>
+                  <div style={{ fontSize: 24 }}>�</div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 12, opacity: 0.85, marginBottom: 3 }}>Hotline hỗ trợ 24/7</div>
-                    <div style={{ fontWeight: 700, fontSize: 16 }}>
-                      <a href="tel:0582779977" style={{ color: "#ffffff", textDecoration: "none", marginRight: 10 }}>0582 779 977</a>
-                      <span style={{ opacity: 0.6 }}>|</span>
-                      <a href="tel:0947886611" style={{ color: "#ffffff", textDecoration: "none", marginLeft: 10 }}>0947 886 611</a>
+                    <div style={{ fontSize: 12, opacity: 0.85, marginBottom: 3 }}>Liên hệ & Kết nối với SCLM Global</div>
+                    <div style={{ fontSize: 15, fontWeight: 700, color: '#0a2e65' }}>
+                      <span style={{ color: '#FFD700' }}>0582 779 977</span> | <span style={{ color: '#FFD700' }}>0947 886 611</span>
                     </div>
                   </div>
                 </div>
@@ -1003,14 +1125,7 @@ export default function App() {
                   <div style={{ fontSize: 24 }}>✉️</div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 12, opacity: 0.85, marginBottom: 3 }}>Email hỗ trợ khách hàng</div>
-                    <a href="mailto:sclm.customer@gmail.com" style={{
-                      color: "#facc15",
-                      fontWeight: 700,
-                      fontSize: 16,
-                      textDecoration: "none",
-                    }}>
-                      sclm.customer@gmail.com
-                    </a>
+                    <div style={{ fontSize: 15, fontWeight: 700, color: '#FFD700' }}>contact@sclm.vn</div>
                   </div>
                 </div>
               </div>
@@ -1126,16 +1241,7 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Vòng quay may mắn */}
-      <SCLMWheelWidget 
-        gameUrl="/vong-quay-may-man.html"
-        position={{ bottom: '20px', right: '20px' }}
-        size="120px"
-        autoShow={true}
-        enableDrag={true}
-        onGameOpen={() => console.log('🎯 SCLM Game opened!')}
-        onGameClose={() => console.log('🎯 SCLM Game closed!')}
-      />
+      {/* Vòng quay may mắn đã có ở đầu trang, chỉ giữ 1 widget */}
 
       {/* Hỗ trợ 24/7 Zalo */}
       <ZaloSupportWidget

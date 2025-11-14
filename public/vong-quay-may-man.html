@@ -16,18 +16,23 @@
             background: linear-gradient(135deg, #c94b8b 0%, #4568dc 100%);
             min-height: 100vh;
             padding: 15px;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
         
         .main-wrapper {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
+            flex-direction: column;
             gap: 20px;
-            align-items: flex-start;
+            align-items: center;
+            width: 100%;
         }
         
         .prize-list-container {
-            flex: 0 0 280px;
+            width: 100%;
+            max-width: 600px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             padding: 20px;
@@ -61,20 +66,59 @@
         }
         
         .container {
-            flex: 1;
+            width: 100%;
+            max-width: 600px;
             display: flex;
             flex-direction: column;
             gap: 20px;
+            align-items: center;
         }
         
         @media (max-width: 768px) {
+            body {
+                padding: 8px;
+            }
+            
             .main-wrapper {
-                flex-direction: column-reverse;
+                gap: 15px;
             }
             
             .prize-list-container {
-                flex: 1;
                 width: 100%;
+                padding: 15px;
+                max-width: 100%;
+            }
+            
+            .prize-list-container h3 {
+                font-size: 1.1rem;
+                margin-bottom: 12px;
+            }
+            
+            .prize-item {
+                font-size: 0.85rem;
+                padding: 8px 10px;
+                margin-bottom: 6px;
+            }
+            
+            .prize-item .emoji {
+                font-size: 1.2rem;
+            }
+            
+            .code-box {
+                padding: 18px 15px;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .wheel-container {
+                max-width: 300px;
+                width: 100%;
+            }
+            
+            .container {
+                gap: 15px;
+                width: 100%;
+                max-width: 100%;
             }
         }
         
@@ -97,11 +141,12 @@
         
         .input-group {
             display: flex;
-            gap: 10px;
+            flex-direction: column;
+            gap: 12px;
         }
         
         .code-box input {
-            flex: 1;
+            width: 100%;
             padding: 14px 20px;
             font-size: clamp(1rem, 3vw, 1.2rem);
             border: 3px solid rgba(255,255,255,0.5);
@@ -120,6 +165,7 @@
         }
         
         .submit-btn {
+            width: 100%;
             background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             color: white;
             border: none;
@@ -130,7 +176,6 @@
             cursor: pointer;
             text-transform: uppercase;
             box-shadow: 0 5px 15px rgba(59,130,246,0.4);
-            white-space: nowrap;
         }
         
         .code-status {
@@ -192,20 +237,6 @@
             box-shadow: 0 0 0 6px #fff, 0 8px 30px rgba(0,0,0,0.5);
         }
         
-        .arrow {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-top: 40px solid #FF0000;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
-            z-index: 30;
-        }
-        
         .center-button {
             position: absolute;
             top: 50%;
@@ -243,38 +274,88 @@
             cursor: not-allowed;
             background: linear-gradient(135deg, #999 0%, #666 100%);
         }
-        
-        .prize-display {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            padding: clamp(25px, 5vw, 40px);
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            display: none;
-            border: 4px solid #FFD700;
-            text-align: center;
+
+        .center-button.active {
+            animation: rainbowGlow 1s linear infinite;
+            position: relative;
         }
+        @keyframes rainbowGlow {
+            0% { box-shadow: 0 0 18px 4px #ff0000; }
+            16% { box-shadow: 0 0 18px 4px #ff9900; }
+            33% { box-shadow: 0 0 18px 4px #ffff00; }
+            50% { box-shadow: 0 0 18px 4px #33ff00; }
+            66% { box-shadow: 0 0 18px 4px #00ccff; }
+            83% { box-shadow: 0 0 18px 4px #6600ff; }
+            100% { box-shadow: 0 0 18px 4px #ff0000; }
+        }
+        .center-button.active .spin-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            color: rgba(0,0,0,0.13);
+            font-weight: 900;
+            letter-spacing: 2px;
+            pointer-events: none;
+            user-select: none;
+            text-transform: uppercase;
+        }
+        
+.prize-display {
+    background: linear-gradient(135deg, #154a9a 0%, #0a2e65 100%);
+    padding: clamp(32px, 8vw, 48px);
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(21,74,154,0.4), 0 2px 12px #FFD70080;
+    display: none;
+    border: 4px solid #FFD700;
+    text-align: center;
+    width: 100%;
+    max-width: 98vw;
+    margin: 0 auto;
+}
         
         .prize-display.show { display: block; }
         
         .prize-emoji {
-            font-size: clamp(4rem, 12vw, 6rem);
-            margin-bottom: 15px;
+            font-size: clamp(5rem, 18vw, 7rem);
+            margin-bottom: 18px;
+            filter: drop-shadow(0 0 18px #FFD700) drop-shadow(0 2px 12px #0a2e65);
         }
         
         .prize-title {
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-            color: #0a2e65;
+            font-size: clamp(2.2rem, 7vw, 3rem);
+            color: #fff;
             font-weight: 900;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             text-transform: uppercase;
+            text-shadow: 0 0 18px #FFD700, 0 2px 12px #0a2e65, 0 1px 2px #333;
+            letter-spacing: 2px;
+            animation: glowText 1.2s infinite alternate;
         }
         
         .prize-desc {
-            color: #475569;
-            font-size: clamp(1rem, 3vw, 1.3rem);
-            margin-bottom: 25px;
-            font-weight: 600;
+            color: #FFD700;
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            margin-bottom: 28px;
+            font-weight: 700;
             white-space: pre-line;
+            text-shadow: 0 0 8px #154a9a, 0 1px 2px #333;
+        }
+        @media (max-width: 600px) {
+            .prize-display {
+                padding: 8vw 2vw 10vw 2vw;
+                border-radius: 18px;
+            }
+            .prize-emoji {
+                font-size: 18vw;
+            }
+            .prize-title {
+                font-size: 7vw;
+            }
+            .prize-desc {
+                font-size: 4vw;
+            }
         }
         
         .prize-button {
@@ -288,111 +369,329 @@
             cursor: pointer;
             text-transform: uppercase;
         }
+        
+        /* Contact Banner Styles */
+        .contact-banner {
+            width: 100%;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            padding: 15px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+        
+        .banner-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .banner-icon {
+            font-size: 24px;
+        }
+        
+        .banner-text {
+            font-size: 18px;
+            font-weight: 900;
+            color: #0a2e65;
+            text-transform: uppercase;
+        }
+        
+        .viber-button {
+            background: #7360F2;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(115, 96, 242, 0.4);
+            transition: all 0.3s;
+        }
+        
+        .viber-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(115, 96, 242, 0.6);
+        }
+        
+        .viber-icon {
+            font-size: 20px;
+        }
+        
+        /* Mobile Banner Styles */
+        @media (max-width: 768px) {
+            .banner-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .banner-icon {
+                font-size: 28px;
+            }
+            
+            .banner-text {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            
+            .viber-button {
+                padding: 10px 24px;
+                font-size: 14px;
+                width: 100%;
+                max-width: 200px;
+                justify-content: center;
+            }
+            
+            .viber-icon {
+                font-size: 18px;
+            }
+        }
+        
+        /* Fix popup scroll issue */
+        html, body {
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body {
+            max-width: 100vw;
+        }.wheel-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+    box-shadow: 0 0 60px 20px #FFD700, 0 0 120px 40px #FFA500;
+    animation: glow-flash 1.2s infinite alternate;
+}
+@keyframes glow-flash {
+    0% { box-shadow: 0 0 60px 20px #FFD700, 0 0 120px 40px #FFA500; opacity: 0.7; }
+    50% { box-shadow: 0 0 90px 40px #FFD700, 0 0 180px 80px #FFA500; opacity: 1; }
+    100% { box-shadow: 0 0 60px 20px #FFD700, 0 0 120px 40px #FFA500; opacity: 0.7; }
+}
+.wheel-flash-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -120%);
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 20px #FFD700, 0 0 40px #FFA500, 0 0 60px #c94b8b;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    z-index: 3;
+    animation: flash-text 1.5s infinite alternate;
+    user-select: none;
+}
+@keyframes flash-text {
+    0% { opacity: 0.1; filter: blur(2px); }
+    50% { opacity: 0.9; filter: blur(0px); }
+    100% { opacity: 0.1; filter: blur(2px); }
+}
     </style>
 </head>
 <body>
     <!-- Contact Banner - Liên hệ nhận thưởng -->
-    <div style="width: 100%; background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); padding: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-bottom: 20px;">
-        <div style="max-width: 1200px; margin: 0 auto; text-align: center; padding: 0 15px;">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
-                <div style="font-size: 24px;">🎁</div>
-                <div style="font-size: 18px; font-weight: 900; color: #0a2e65; text-transform: uppercase;">
-                    Trúng thưởng? Liên hệ nhận thưởng ngay!
-                </div>
-                <a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" 
-                   target="_blank"
-                   style="background: #7360F2; color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(115, 96, 242, 0.4); transition: all 0.3s;">
-                    <span style="font-size: 20px;">📞</span>
-                    <span>VIBER NGAY</span>
+    <div class="contact-banner">
+        <div class="contact-info-bar">
+            <div class="contact-row">
+                <span class="contact-label">Liên hệ nhận thưởng:</span>
+                <span class="contact-email"><i class="fa fa-envelope"></i> contact@sclm.vn</span>
+                <span class="contact-phone"><i class="fa fa-phone"></i> 0582 779 977</span>
+            </div>
+            <div class="contact-row">
+                <span class="contact-label">Hoặc Viber trực tiếp:</span>
+                <a class="viber-contact-btn" href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" target="_blank">
+                    <span class="viber-icon">💬</span> Viber ngay
                 </a>
             </div>
         </div>
+        <style>
+        .contact-info-bar {
+            width: 100%;
+            background: linear-gradient(135deg,#4568dc 0%,#2b3a67 100%);
+            color: #fff;
+            font-family: 'Inter', 'Arial', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+            padding: 14px 0 8px 0;
+            text-align: center;
+        }
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 4px;
+        }
+        .contact-label {
+            font-weight: 700;
+            color: #FFD700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        .contact-email, .contact-phone {
+            font-size: 1rem;
+            color: #fff;
+            background: rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 4px 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .contact-email i, .contact-phone i {
+            color: #FFD700;
+            font-size: 1.1em;
+        }
+        .viber-contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 24px;
+            background: #7360F2;
+            color: #fff;
+            border-radius: 20px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px #7360F280;
+            transition: all 0.2s;
+        }
+        .viber-contact-btn:hover {
+            background: #5a4acb;
+            box-shadow: 0 4px 16px #7360F2;
+        }
+        .viber-icon {
+            font-size: 1.2em;
+        }
+        @media (max-width: 600px) {
+            .contact-info-bar {
+                font-size: 15px;
+                padding: 10px 0 6px 0;
+            }
+            .contact-row {
+                gap: 10px;
+                flex-direction: column;
+                margin-bottom: 2px;
+            }
+            .contact-email, .contact-phone {
+                font-size: 0.98rem;
+                padding: 4px 10px;
+            }
+            .viber-contact-btn {
+                font-size: 0.98rem;
+                padding: 8px 18px;
+            }
+        }
+        </style>
     </div>
 
     <div class="main-wrapper">
-        <!-- Prize List Sidebar -->
-        <div class="prize-list-container">
-            <h3>🏆 SCLM Lucky Wheel 🏆</h3>
-            <div class="prize-item">
-                <span class="emoji">📱</span>
-                <span>iPhone 17 Pro Max</span>
-            </div>
-            <div class="prize-item">
-                <span class="emoji">🛵</span>
-                <span>Xe SH Mode</span>
-            </div>
-            <div class="prize-item">
-                <span class="emoji">🛵</span>
-                <span>Xe Vision</span>
-            </div>
-            <div class="prize-item">
-                <span class="emoji">❄️</span>
-                <span>Tủ Lạnh</span>
-            </div>
-            <div class="prize-item">
-                <span class="emoji">🏆</span>
-                <span>1 Cây Vàng SCJ</span>
-            </div>
-            <div class="prize-item">
-                <span class="emoji">💍</span>
-                <span>3 Chỉ Vàng 999</span>
-            </div>
-            <div class="prize-item">
-                <span class="emoji">🍚</span>
-                <span>Nồi Cơm Sharp</span>
-            </div>
-            <div class="prize-item">
-                <span class="emoji">🍚</span>
-                <span>Nồi Cơm Panasonic</span>
-            </div>
-            <div class="prize-item">
-                <span class="emoji">🪖</span>
-                <span>Cặp Mũ Bảo Hiểm</span>
-            </div>
-            <div class="prize-item">
-                <span class="emoji">💵</span>
-                <span>Tiền 200K</span>
-            </div>
-            <div class="prize-item">
-                <span class="emoji">💵</span>
-                <span>Tiền 100K</span>
-            </div>
-            <div class="prize-item">
-                <span class="emoji">🍀</span>
-                <span>Chúc may mắn lần sau</span>
-            </div>
-        </div>
-        
         <!-- Main Game Container -->
         <div class="container">
             <div class="code-box">
                 <h2>NHẬP MÃ THAM GIA</h2>
-            <div class="input-group">
-                <input type="text" id="codeInput" maxlength="9" placeholder="NHẬP MÃ CỦA BẠN..." oninput="this.value = this.value.toUpperCase()">
-                <button class="submit-btn" onclick="validateCode()">XÁC NHẬN</button>
+                <div class="input-group">
+                    <input type="text" id="codeInput" placeholder="NHẬP MÃ CỦA BẠN..." oninput="this.value = this.value.toUpperCase()">
+                    <button class="submit-btn" onclick="validateCode()">XÁC NHẬN</button>
+                </div>
+                <div class="code-status" id="codeStatus"></div>
             </div>
-            <div class="code-status" id="codeStatus"></div>
-        </div>
         
         <div class="wheel-container">
-            <div class="arrow"></div>
             <div class="outer-ring"></div>
-            <canvas id="canvas" width="500" height="500"></canvas>
-            <div class="center-button disabled" id="spinButton">
-                <img src="/logo-sclm.png" alt="SCLM Logo">
+       <div class="outer-ring"></div>
+<div class="wheel-glow"></div>
+<canvas id="canvas" width="500" height="500"></canvas>
+<div class="wheel-flash-text">SCLM GLOBAL LUCKY</div>
+<div class="center-button disabled" id="spinButton">
+    <img src="/logo-sclm.png" alt="SCLM Logo">
+</div>
+            </div>
+        </div>
+        <!-- Nút Quay hình viên thuốc, có logo và chữ "QUAY", đặt sát dưới vòng quay -->
+        <div id="mainSpinBtnWrap" style="width:100%;display:flex;justify-content:center;margin:18px 0 0 0;">
+            <button id="mainSpinBtn" style="background:linear-gradient(135deg,#FFD700 0%,#FFA500 100%);border:none;border-radius:40px;width:auto;min-width:140px;height:56px;box-shadow:0 4px 18px rgba(0,0,0,0.18);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;outline:none;position:relative;padding:0 32px;gap:12px;">
+                <img src="/logo-sclm.png" alt="SCLM Logo" style="width:38px;height:38px;object-fit:cover;border-radius:50%;background:#fff;box-shadow:0 2px 8px #ffd70080;">
+                <span style="font-size:1.25rem;font-weight:900;color:#0a2e65;letter-spacing:2px;text-transform:uppercase;">QUAY</span>
+            </button>
+        </div>
+    <script>
+    // Nút Quay chính bên dưới vòng quay
+    const mainSpinBtn = document.getElementById('mainSpinBtn');
+    mainSpinBtn.addEventListener('click', function() {
+        if (!isSpinning && isCodeValid) spin();
+    });
+    // Ẩn nút quay khi đang quay, hiện lại khi xong
+    function setSpinButtonActive(active) {
+        if (active) {
+            mainSpinBtn.style.opacity = '1';
+            mainSpinBtn.style.pointerEvents = 'auto';
+        } else {
+            mainSpinBtn.style.opacity = '0.5';
+            mainSpinBtn.style.pointerEvents = 'none';
+        }
+    }
+    setSpinButtonActive(false);
+    </script>
+        </div>
+        <!-- Nút reset logo SCLM, chỉ hiện khi đã quay xong -->
+        <div id="resetLogoBtn" style="display:none; width:100%; text-align:center; margin: 18px 0 0 0;">
+            <button onclick="resetGame()" style="background:linear-gradient(135deg,#FFD700 0%,#FFA500 100%);border:none;border-radius:50%;width:70px;height:70px;box-shadow:0 4px 18px rgba(0,0,0,0.18);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;outline:none;">
+                <img src="/logo-sclm.png" alt="SCLM Logo" style="width:48px;height:48px;object-fit:cover;border-radius:50%;">
+            </button>
+        </div>
+        </div>
+        
+            <div class="prize-display" id="prizeDisplay" style="padding: 40px 0 30px 0; min-height: 220px;">
+                <div class="prize-emoji" id="prizeEmoji" style="margin-bottom:0;"></div>
             </div>
         </div>
         
-        <div class="prize-display" id="prizeDisplay">
-            <div class="prize-emoji" id="prizeEmoji">🎁</div>
-            <div class="prize-title" id="prizeTitle">CHÚC MỪNG!</div>
-            <div class="prize-desc" id="prizeDesc">Bạn đã trúng giải thưởng</div>
-            <button class="prize-button" onclick="resetGame()">🎰 QUAY LẠI 🎰</button>
+        <!-- Prize List -->
+        <div class="prize-list-container">
+            <h3>🏆 DANH SÁCH GIẢI THƯỞNG 🏆</h3>
+            <div style="display: flex; gap: 18px; justify-content: center;">
+                <div style="flex:1; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+                    <div class="prize-item"><img src="iphone.jpg.jpg" alt="iPhone 17 Pro Max" style="width:38px;height:38px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px #ffd70080;margin-right:8px;"><span>iPhone 17 Pro Max</span></div>
+                    <div class="prize-item"><img src="sh-mode.jpg" alt="Xe SH Mode" style="width:38px;height:38px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px #ffd70080;margin-right:8px;"><span>Xe SH Mode</span></div>
+                    <div class="prize-item"><img src="vision.jpg" alt="Xe Vision" style="width:38px;height:38px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px #ffd70080;margin-right:8px;"><span>Xe Vision</span></div>
+                    <div class="prize-item"><img src="tu-lanh.jpg" alt="Tủ Lạnh" style="width:38px;height:38px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px #ffd70080;margin-right:8px;"><span>Tủ Lạnh</span></div>
+                    <div class="prize-item"><img src="vang-scj.jpg" alt="1 Cây Vàng SCJ" style="width:38px;height:38px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px #ffd70080;margin-right:8px;"><span>1 Cây Vàng SCJ</span></div>
+                    <div class="prize-item"><img src="vang-3chi.jpg" alt="3 Chỉ Vàng 999" style="width:38px;height:38px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px #ffd70080;margin-right:8px;"><span>3 Chỉ Vàng 999</span></div>
+                </div>
+                <div style="flex:1; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+                    <div class="prize-item"><img src="noi-com-sharp.jpg" alt="Nồi Cơm Sharp" style="width:38px;height:38px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px #ffd70080;margin-right:8px;"><span>Nồi Cơm Sharp</span></div>
+                    <div class="prize-item"><img src="noi-com-panasonic.jpg" alt="Nồi Cơm Panasonic" style="width:38px;height:38px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px #ffd70080;margin-right:8px;"><span>Nồi Cơm Panasonic</span></div>
+                    <div class="prize-item"><img src="mu-bao-hiem.jpg" alt="Cặp Mũ Bảo Hiểm" style="width:38px;height:38px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px #ffd70080;margin-right:8px;"><span>Cặp Mũ Bảo Hiểm</span></div>
+                    <div class="prize-item"><img src="tien-200k.jpg" alt="Tiền 200K" style="width:38px;height:38px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px #ffd70080;margin-right:8px;"><span>Tiền 200K</span></div>
+                    <div class="prize-item"><img src="tien-100k.jpg" alt="Tiền 100K" style="width:38px;height:38px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px #ffd70080;margin-right:8px;"><span>Tiền 100K</span></div>
+                    <div class="prize-item"><img src="logo-sclm.png" alt="Chúc may mắn lần sau" style="width:38px;height:38px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px #ffd70080;margin-right:8px;"><span>Chúc may mắn lần sau</span></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        const canvas = document.getElementById('canvas');
+    const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         const spinButton = document.getElementById('spinButton');
         const prizeDisplay = document.getElementById('prizeDisplay');
@@ -402,23 +701,37 @@
         let currentCode = '';
         let targetPrizeIndex = -1;
         let isCodeValid = false;
-        let currentRotation = 0;
-        let isSpinning = false;
+    let currentRotation = 0;
+    let isSpinning = false;
+    const baseRotation = -Math.PI / 2; // 12 giờ trên cùng
         
-        const prizes = [
-            { text: 'iPhone 17\nPro Max', emoji: '📱', title: 'IPHONE 17 PRO MAX', desc: 'iPhone 17 Pro Max mới nhất từ SCLM Global', color: '#FF6B6B', codes: ['SCLMIP001', 'SCLMIP002', 'SCLMIP003', 'SCLMIP004', 'SCLMIP005', 'SCLMIP006', 'SCLMIP007', 'SCLMIP008', 'SCLMIP009', 'SCLMIP010'] },
-            { text: 'Nồi Cơm\nSharp', emoji: '🍚', title: 'NỒI CƠM ĐIỆN SHARP', desc: 'Nồi cơm điện Sharp cao cấp', color: '#4ECDC4', codes: ['SCLMNC001', 'SCLMNC002', 'SCLMNC003', 'SCLMNC004', 'SCLMNC005', 'SCLMNC006', 'SCLMNC007', 'SCLMNC008', 'SCLMNC009', 'SCLMNC010'] },
-            { text: 'Tủ Lạnh', emoji: '❄️', title: 'TỦ LẠNH', desc: 'Tủ lạnh hiện đại từ SCLM', color: '#FFD93D', codes: ['SCLMTL001', 'SCLMTL002', 'SCLMTL003', 'SCLMTL004', 'SCLMTL005', 'SCLMTL006', 'SCLMTL007', 'SCLMTL008', 'SCLMTL009', 'SCLMTL010'] },
-            { text: 'Xe SH\nMode', emoji: '🛵', title: 'XE MÁY SH MODE', desc: 'Xe máy Honda SH Mode mới 100%', color: '#95E1D3', codes: ['SCLMSH001', 'SCLMSH002', 'SCLMSH003', 'SCLMSH004', 'SCLMSH005', 'SCLMSH006', 'SCLMSH007', 'SCLMSH008', 'SCLMSH009', 'SCLMSH010'] },
-            { text: '1 Cây\nVàng SCJ', emoji: '🏆', title: '1 CÂY VÀNG SCJ', desc: '1 cây vàng SCJ thật', color: '#F38181', codes: ['SCLMGD001', 'SCLMGD002', 'SCLMGD003', 'SCLMGD004', 'SCLMGD005', 'SCLMGD006', 'SCLMGD007', 'SCLMGD008', 'SCLMGD009', 'SCLMGD010'] },
-            { text: '3 Chỉ\nVàng 999', emoji: '💍', title: '3 CHỈ VÀNG 999', desc: '3 chỉ vàng 999 thật', color: '#AA96DA', codes: ['SCLMGD101', 'SCLMGD102', 'SCLMGD103', 'SCLMGD104', 'SCLMGD105', 'SCLMGD106', 'SCLMGD107', 'SCLMGD108', 'SCLMGD109', 'SCLMGD110'] },
-            { text: 'Nồi Cơm\nPanasonic', emoji: '🍚', title: 'NỒI CƠM ĐIỆN PANASONIC', desc: 'Nồi cơm điện Panasonic cao cấp', color: '#FCBAD3', codes: ['SCLMNC201', 'SCLMNC202', 'SCLMNC203', 'SCLMNC204', 'SCLMNC205', 'SCLMNC206', 'SCLMNC207', 'SCLMNC208', 'SCLMNC209', 'SCLMNC210'] },
-            { text: 'Xe\nVision', emoji: '🛵', title: 'XE MÁY VISION', desc: 'Xe máy Honda Vision mới 100%', color: '#A8D8EA', codes: ['SCLMVS001', 'SCLMVS002', 'SCLMVS003', 'SCLMVS004', 'SCLMVS005', 'SCLMVS006', 'SCLMVS007', 'SCLMVS008', 'SCLMVS009', 'SCLMVS010'] },
-            { text: 'Cặp Mũ\nBảo Hiểm', emoji: '🪖', title: 'CẶP MŨ BẢO HIỂM', desc: 'Cặp mũ bảo hiểm cao cấp', color: '#FFB6C1', codes: ['SCLMMB001', 'SCLMMB002', 'SCLMMB003', 'SCLMMB004', 'SCLMMB005', 'SCLMMB006', 'SCLMMB007', 'SCLMMB008', 'SCLMMB009', 'SCLMMB010'] },
-            { text: 'Tiền\n200K', emoji: '💵', title: 'TIỀN MẶT 200K', desc: 'Tiền mặt 200.000đ', color: '#98D8C8', codes: ['SCLMT2001', 'SCLMT2002', 'SCLMT2003', 'SCLMT2004', 'SCLMT2005', 'SCLMT2006', 'SCLMT2007', 'SCLMT2008', 'SCLMT2009', 'SCLMT2010'] },
-            { text: 'Tiền\n100K', emoji: '💵', title: 'TIỀN MẶT 100K', desc: 'Tiền mặt 100.000đ', color: '#F7DC6F', codes: ['SCLMT1001', 'SCLMT1002', 'SCLMT1003', 'SCLMT1004', 'SCLMT1005', 'SCLMT1006', 'SCLMT1007', 'SCLMT1008', 'SCLMT1009', 'SCLMT1010'] },
-            { text: 'Chúc bạn\nmay mắn', emoji: '🍀', title: 'CHÚC BẠN MAY MẮN LẦN SAU', desc: 'Đừng bỏ cuộc, hãy thử lại!', color: '#BB8FCE', codes: ['SCLMLK001', 'SCLMLK002', 'SCLMLK003', 'SCLMLK004', 'SCLMLK005', 'SCLMLK006', 'SCLMLK007', 'SCLMLK008', 'SCLMLK009', 'SCLMLK010'] }
-        ];
+                // MỖI GIẢI CÓ 20 CODE – MỖI CODE CHỈ DÙNG 1 LẦN
+                        const prizes = [
+                                { text: 'iPhone 17\nPro Max', emoji: '📱', image: 'iphone.jpg.jpg', title: 'IPHONE 17 PRO MAX', desc: 'iPhone 17 Pro Max mới nhất từ SCLM Global', color: '#FF6B6B',
+                                    codes: ['SCLM7A5Q9','SCLM2Z8K4','SCLM9L3T1','SCLM4X6B8','SCLM8P1D6','SCLM5R7V2','SCLM3N9H5','SCLM6C2Y7','SCLM1G4W3','SCLM0F8U9','SCLMY4M2P','SCLMJ8L6N','SCLMR3K0Q','SCLMV9A7C','SCLMW2X5H','SCLME6U1T','SCLMB0Z4D','SCLMF5G8S','SCLMN7Q2L','SCLMK1Y9V'] }, // Index 0
+                                { text: 'Nồi Cơm\nSharp', emoji: '🍚', image: 'noi-com-sharp.jpg', title: 'NỒI CƠM SHARP', desc: 'Nồi cơm điện Sharp cao cấp 1.8L', color: '#4ECDC4',
+                                    codes: ['SCLMZ5R8K','SCLMH2V6N','SCLMQ9L1C','SCLMY3T7D','SCLMK8P2F','SCLME4X9S','SCLMJ7B5G','SCLMW6C3H','SCLMD1N8J','SCLMU0Q4L','SCLMA9M6T','SCLMG3F0R','SCLMS7W2K','SCLMP4L9X','SCLMV1H5B','SCLMN8D2Z','SCLMQ0Y7C','SCLMJ5U3E','SCLMR2A8F','SCLMT6K4G'] }, // Index 1
+                                { text: 'Tủ Lạnh', emoji: '❄️', image: 'tu-lanh.jpg', title: 'TỦ LẠNH', desc: 'Tủ lạnh Inverter tiết kiệm điện', color: '#95E1D3',
+                                    codes: ['SCLM8S2R5','SCLM4K9U1','SCLM7D3Y6','SCLM1P5A8','SCLM9F0L2','SCLM6H4C7','SCLM2V8E3','SCLM5Q1T9','SCLM0W6B4','SCLM3Z7G0','SCLMX4N9M','SCLMB7J2L','SCLMH1Q5P','SCLMF8R0C','SCLME3W6K','SCLMY9T4D','SCLMA2U7S','SCLMG5V1N','SCLML0X8H','SCLMZ6M3J'] }, // Index 2
+                                { text: 'Xe SH\nMode', emoji: '🛵', image: 'sh-mode.jpg', title: 'XE SH MODE', desc: 'Honda SH Mode 2025 phiên bản mới', color: '#F38181',
+                                    codes: ['SCLMN4P7Q','SCLMX1R5V','SCLMK6T2Y','SCLMA8L3Z','SCLMU9C1H','SCLM5D0S8','SCLM2G4W6','SCLM7J9B0','SCLM3F2X5','SCLM8H7N1','SCLMQ5E9R','SCLMW0B3M','SCLMY4K7L','SCLMC8N2T','SCLMP1H6F','SCLMV9A4D','SCLMJ3S0G','SCLMR7U5X','SCLMZ2Q8K','SCLMT6L1P'] }, // Index 3
+                                { text: '1 Cây\nVàng SCJ', emoji: '🥇', image: 'vang-scj.jpg', title: '1 CÂY VÀNG SCJ', desc: 'Vàng SJC 9999 - 1 cây (10 chỉ)', color: '#FFD93D',
+                                    codes: ['SCLM9Q2D7','SCLM6L5A3','SCLM1T8V4','SCLM4C0Y9','SCLM7P6H2','SCLM0R3K8','SCLM5W1N0','SCLM8Z7F1','SCLM2B9S5','SCLM3G4J6','SCLME7X2M','SCLMK0U5Q','SCLMN9A3R','SCLMH4F8L','SCLMJ1T6P','SCLMW5C2D','SCLMV8G0Y','SCLMB3N7S','SCLMQ6M4K','SCLMX2L9H'] }, // Index 4
+                                { text: '3 Chỉ\nVàng', emoji: '🏅', image: 'vang-3chi.jpg', title: '3 CHỈ VÀNG', desc: 'Vàng SJC 9999 - 3 chỉ', color: '#6C5CE7',
+                                    codes: ['SCLM1V7Q4','SCLM8K3R2','SCLM5N0T6','SCLM2H4Y8','SCLM9C1W5','SCLM6B8Z0','SCLM3P5L7','SCLM0D2X9','SCLM7G6A1','SCLM4J9M3','SCLMF5S8E','SCLMU2Q7N','SCLMR9K0T','SCLMY3H6L','SCLMA7D4P','SCLMG1V9C','SCLMX6W2M','SCLMJ0N5F','SCLMZ4B8R','SCLMQ8T3K'] }, // Index 5
+                                { text: 'Nồi Cơm\nPanasonic', emoji: '🍚', image: 'noi-com-panasonic.jpg', title: 'NỒI CƠM PANASONIC', desc: 'Nồi cơm điện Panasonic 1.8L', color: '#A29BFE',
+                                    codes: ['SCLM2Q6C9','SCLM7A1F0','SCLM5L8W3','SCLM9T4H2','SCLM0P7K5','SCLM8V3D1','SCLM6R0Y4','SCLM1X5B7','SCLM4G9N6','SCLM3Z2U8','SCLMN8J4M','SCLME2S6Q','SCLMH5K0L','SCLMC9R3T','SCLMW1F7P','SCLMX6A2D','SCLMV0U8G','SCLMB4Y5N','SCLMQ7M1H','SCLMJ3L9K'] }, // Index 6
+                                { text: 'Xe\nVision', emoji: '🛵', image: 'vision.jpg', title: 'XE VISION', desc: 'Honda Vision 2025 phiên bản mới', color: '#74B9FF',
+                                    codes: ['SCLM9H2E5','SCLM6U7P1','SCLM3C0R8','SCLM8W5L2','SCLM1D9T4','SCLM4S6A0','SCLM7Q3G6','SCLM0F8Y2','SCLM2B4X7','SCLM5N1K3','SCLMT4Z9C','SCLMK8M2V','SCLMA3G5L','SCLMR7N0H','SCLMX1J6Q','SCLMF9P4W','SCLMG2D8E','SCLMU5Y0S','SCLMB6K3T','SCLMV0R7M'] }, // Index 7
+                                { text: 'Cặp Mũ\nBảo Hiểm', emoji: '🪖', image: 'mu-bao-hiem.jpg', title: 'CẶP MŨ BẢO HIỂM', desc: 'Mũ bảo hiểm fullface cao cấp', color: '#FD79A8',
+                                    codes: ['SCLM8P6S1','SCLM4D2V7','SCLM7L9C0','SCLM1H5Q8','SCLM5W3T6','SCLM2K8R4','SCLM9G1Y5','SCLM0N4Z2','SCLM6F7B3','SCLM3X0U9','SCLME5A8N','SCLMQ2M6K','SCLMJ9T3L','SCLMH4R0P','SCLMY7F5C','SCLMU1W8D','SCLMX3G2V','SCLMC6N9S','SCLMB0L4H','SCLMZ8K7Q'] }, // Index 8
+                                { text: 'Tiền\n200K', emoji: '💵', image: 'tien-200k.jpg', title: 'TIỀN MẶT 200K', desc: 'Tiền mặt 200.000đ', color: '#55EFC4',
+                                    codes: ['SCLM5T9E1','SCLM2R6H8','SCLM7C1K5','SCLM0W8P2','SCLM9L4V0','SCLM3D7Y4','SCLM8F2N6','SCLM1Q5Z3','SCLM6B0G7','SCLM4H3X9','SCLMN7S4M','SCLMK2A8L','SCLMG9J5P','SCLMV3U0T','SCLMX6F2C','SCLMW1R9D','SCLME4Y7H','SCLMQ0M5K','SCLMB8N3G','SCLMJ5L6X'] }, // Index 9
+                                { text: 'Tiền\n100K', emoji: '💵', image: 'tien-100k.jpg', title: 'TIỀN MẶT 100K', desc: 'Tiền mặt 100.000đ', color: '#FFEAA7',
+                                    codes: ['SCLM1S4P9','SCLM6N8D2','SCLM3K5W0','SCLM8R1H7','SCLM0C9L4','SCLM5G2T6','SCLM2V7B3','SCLM9M0Y5','SCLM4L6Q1','SCLM7H3X8','SCLMZ9T5N','SCLMA2K8C','SCLMF4R0M','SCLMQ6U3L','SCLMX1P7H','SCLME8W2D','SCLMJ3G9S','SCLMV5Y0K','SCLMB7N4F','SCLMH0M6Q'] }, // Index 10
+                                { text: 'Chúc\nMay Mắn', emoji: '🍀', image: 'logo-sclm.png', title: 'CHÚC MAY MẮN', desc: 'Chúc bạn may mắn lần sau!', color: '#DFE6E9',
+                                    codes: ['SCLM0J5D8','SCLM5P2C7','SCLM8N4V1','SCLM3H7R0','SCLM6Q1W5','SCLM9T6B2','SCLM2Y8G4','SCLM7F3L9','SCLM4C0X6','SCLM1Z9A3','SCLMK8E5M','SCLMR2N0G','SCLMU7S4L','SCLMW3A9P','SCLMX6F1T','SCLMH0Y8C','SCLMG5V2D','SCLMQ9K7N','SCLMB4M3J','SCLMJ1L6H'] } // Index 11
+                        ];
         
         // Tạo map code -> prize index để tra cứu nhanh
         const codeMap = {};
@@ -427,6 +740,15 @@
                 codeMap[code] = index;
             });
         });
+        console.log('📋 Code Map:', codeMap); // Debug
+
+        function normalizeRotation(angle) {
+            const twoPi = 2 * Math.PI;
+            let result = angle % twoPi;
+            if (result > Math.PI) result -= twoPi;
+            if (result < -Math.PI) result += twoPi;
+            return result;
+        }
         
         function getPrizeIndexFromCode(code) {
             return codeMap[code] !== undefined ? codeMap[code] : -1;
@@ -434,30 +756,32 @@
         
         function validateCode() {
             const code = codeInput.value.trim().toUpperCase();
-            if (code.length !== 9) {
-                showMessage('❌ Mã phải có đúng 9 ký tự!', 'error');
-                return;
-            }
-            if (!code.startsWith('SCLM')) {
-                showMessage('❌ Mã phải bắt đầu bằng SCLM!', 'error');
-                return;
-            }
-            const lastFive = code.substring(4);
-            if (!/^[A-Z0-9]{5}$/.test(lastFive)) {
-                showMessage('❌ 5 ký tự cuối phải là chữ hoặc số!', 'error');
-                return;
-            }
+            console.log('🔍 Kiểm tra mã:', code);
             
+            if (!code) {
+                showMessage('❌ Vui lòng nhập mã!', 'error');
+                return;
+            }
+            if (!/^[A-Z0-9]+$/.test(code)) {
+                showMessage('❌ Mã chỉ bao gồm chữ và số!', 'error');
+                return;
+            }
+
             // Kiểm tra mã có trong danh sách không
             const prizeIndex = getPrizeIndexFromCode(code);
+            console.log('📍 Prize Index tìm được:', prizeIndex);
+            console.log('🗺️ Code có trong map?', codeMap[code] !== undefined);
+            
             if (prizeIndex === -1) {
                 showMessage('❌ Mã không hợp lệ!', 'error');
                 return;
             }
             
-            // Kiểm tra mã đã được sử dụng chưa (lưu trong localStorage)
-            const usedCodes = JSON.parse(localStorage.getItem('sclm_used_codes') || '[]');
-            if (usedCodes.includes(code)) {
+            const usedList = JSON.parse(localStorage.getItem('sclm_used_codes') || '[]');
+            const isUsed = usedList.some(item => {
+                return typeof item === 'string' ? item === code : item.code === code;
+            });
+            if (isUsed) {
                 showMessage('❌ Mã này đã được sử dụng rồi!', 'error');
                 return;
             }
@@ -465,7 +789,7 @@
             currentCode = code;
             targetPrizeIndex = prizeIndex;
             isCodeValid = true;
-            spinButton.classList.remove('disabled');
+            setSpinButtonActive(true);
             showMessage('✅ Mã hợp lệ! Bấm START để quay!', 'success');
         }
         
@@ -479,95 +803,228 @@
             const centerY = canvas.height / 2;
             const radius = canvas.width / 2;
             const sliceAngle = (2 * Math.PI) / prizes.length;
-            
-            // OFFSET để index 0 bắt đầu từ vị trí 12h (mũi tên)
-            // Canvas vẽ từ 0° (3h), cần xoay -90° để về 12h
-            const offsetAngle = -Math.PI / 2;
-            
+
             prizes.forEach((prize, index) => {
-                const startAngle = index * sliceAngle + currentRotation + offsetAngle;
+                const startAngle = baseRotation + currentRotation + index * sliceAngle - sliceAngle / 2;
                 const endAngle = startAngle + sliceAngle;
+
                 ctx.beginPath();
-                ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-                ctx.lineTo(centerX, centerY);
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, startAngle, endAngle, false);
+                ctx.closePath();
                 ctx.fillStyle = prize.color;
                 ctx.fill();
                 ctx.strokeStyle = '#fff';
                 ctx.lineWidth = 4;
                 ctx.stroke();
-                
-                ctx.save();
-                ctx.translate(centerX, centerY);
-                ctx.rotate(startAngle + sliceAngle / 2);
-                ctx.fillStyle = '#fff';
-                ctx.font = 'bold 14px Arial';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.shadowColor = 'rgba(0,0,0,0.5)';
-                ctx.shadowBlur = 3;
-                const lines = prize.text.split('\n');
-                lines.forEach((line, i) => {
-                    ctx.fillText(line, radius * 0.7, (i - (lines.length - 1) / 2) * 18);
-                });
-                ctx.restore();
+
+                                ctx.save();
+                                ctx.translate(centerX, centerY);
+                                const textAngle = baseRotation + currentRotation + index * sliceAngle;
+                                ctx.rotate(textAngle);
+                                // Vẽ icon/emoji nếu có
+                                if (prize.emoji) {
+                                    ctx.font = 'bold 22px Arial';
+                                    ctx.textAlign = 'center';
+                                    ctx.textBaseline = 'middle';
+                                    ctx.shadowColor = '#fff';
+                                    ctx.shadowBlur = 0;
+                                    ctx.fillText(prize.emoji, radius * 0.62, 0);
+                                }
+                                // Nếu có hình thực tế, vẽ hình nhỏ bên cạnh
+                                if (prize.image && prize.image !== '/logo-sclm.png') {
+                                    const img = new window.Image();
+                                    img.src = prize.image;
+                                    img.onload = function() {
+                                        ctx.save();
+                                        ctx.beginPath();
+                                        ctx.arc(radius * 0.62, 24, 16, 0, 2 * Math.PI);
+                                        ctx.closePath();
+                                        ctx.clip();
+                                        ctx.drawImage(img, radius * 0.62 - 16, 24 - 16, 32, 32);
+                                        ctx.restore();
+                                    };
+                                }
+                                // Vẽ text rõ nét, có viền đậm
+                                ctx.font = 'bold 16px Arial';
+                                ctx.textAlign = 'center';
+                                ctx.textBaseline = 'middle';
+                                ctx.lineWidth = 5;
+                                ctx.strokeStyle = '#222';
+                                ctx.shadowColor = '#fff';
+                                ctx.shadowBlur = 0;
+                                const lines = prize.text.split('\n');
+                                lines.forEach((line, i) => {
+                                    ctx.strokeText(line, radius * 0.7, (i - (lines.length - 1) / 2) * 22);
+                                    ctx.fillStyle = '#FFD700';
+                                    ctx.fillText(line, radius * 0.7, (i - (lines.length - 1) / 2) * 22);
+                                });
+                                ctx.restore();
             });
+        }
+        
+        function drawArrow() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = canvas.width / 2;
+            
+            // VẼ MŨI TÊN Ở VỊ TRÍ 12 GIỜ - TRỎ TỪ NGOÀI VÀO TRONG
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate(baseRotation);
+            ctx.beginPath();
+            // Mũi tên trỏ từ ngoài vào trong
+            ctx.moveTo(radius - 20, 0); // Đỉnh mũi tên ở trong (gần viền)
+            ctx.lineTo(radius + 30, -25); // Cạnh trái ở ngoài
+            ctx.lineTo(radius + 30, 25); // Cạnh phải ở ngoài
+            ctx.closePath();
+            ctx.fillStyle = '#FF0000';
+            ctx.fill();
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            ctx.restore();
         }
         
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawWheel();
+            drawArrow(); // Vẽ mũi tên SAU để nó nổi lên trên
             requestAnimationFrame(animate);
         }
         
         function spin() {
             if (isSpinning || !isCodeValid) return;
             isSpinning = true;
-            const spinDuration = 5000;
-            const spinRotations = 7 + Math.random() * 3;
+
+            const spinDuration = 6000;
+            const spinRotations = 6 + Math.floor(Math.random() * 3); // quay tròn 6–8 vòng (nguyên)
             const sliceAngle = (2 * Math.PI) / prizes.length;
-            
-            // MŨI TÊN Ở PHÍA TRÊN (12h), VÒNG QUAY THUẬN CHIỀU KIM ĐỒNG HỒ
-            // Index 0 bắt đầu từ 12h
-            // Để kim chỉ đúng vào ô target, cần quay vòng NGƯỢC lại để ô đó đến vị trí 12h
-            // Vì vòng quay CỘI chiều (currentRotation tăng), nhưng cần ô target về vị trí mũi tên
-            // => Cần quay đến góc: nhiều vòng TRỪ ĐI góc của ô target
-            const targetAngle = targetPrizeIndex * sliceAngle + sliceAngle / 2;
-            
-            // Quay nhiều vòng TRỪ targetAngle để đưa ô về đúng vị trí mũi tên
-            const finalRotation = (spinRotations * 2 * Math.PI) - targetAngle;
-            const startTime = Date.now();
+
+            console.log('🎯 BẮT ĐẦU QUAY VỚI MÃ:', currentCode);
+            console.log('Giải thưởng mục tiêu:', prizes[targetPrizeIndex].title);
+            console.log('Target Index:', targetPrizeIndex);
+
+            // TÍNH TOÁN THEO HỆ TỌA ĐỘ CANVAS:
+            // - Vẽ bắt đầu ở 12 giờ (baseRotation)
+            // - currentRotation tăng theo chiều NGƯỢC kim đồng hồ
+            // - Để mũi tên (12 giờ) trỏ vào giải index X, cần currentRotation = -X * sliceAngle
+
+            currentRotation = normalizeRotation(currentRotation);
+            const targetAngle = targetPrizeIndex * sliceAngle;
             const startRotation = currentRotation;
-            
-            function animateSpin() {
-                const elapsed = Date.now() - startTime;
+            const extraRotation = -spinRotations * 2 * Math.PI;
+            const targetBaseRotation = -targetAngle;
+            const finalRotation = targetBaseRotation + extraRotation;
+            const totalRotation = finalRotation - startRotation;
+
+            console.log('Slice Angle (deg):', (sliceAngle * 180 / Math.PI).toFixed(2));
+            console.log('Target Angle (deg):', (targetAngle * 180 / Math.PI).toFixed(2));
+            console.log('Final Rotation (deg):', (finalRotation * 180 / Math.PI).toFixed(2));
+
+            const startTime = performance.now();
+
+            function animateSpin(now) {
+                const elapsed = now - startTime;
                 const progress = Math.min(elapsed / spinDuration, 1);
-                const easeProgress = 1 - Math.pow(1 - progress, 4);
-                currentRotation = startRotation + finalRotation * easeProgress;
-                
+                const easeProgress = 1 - Math.pow(1 - progress, 3); // easing mượt
+                currentRotation = startRotation + totalRotation * easeProgress;
+
                 if (progress < 1) {
                     requestAnimationFrame(animateSpin);
                 } else {
+                    currentRotation = finalRotation;
                     setTimeout(() => {
-                        // Lưu mã đã sử dụng vào localStorage
-                        const usedCodes = JSON.parse(localStorage.getItem('sclm_used_codes') || '[]');
-                        if (!usedCodes.includes(currentCode)) {
-                            usedCodes.push(currentCode);
-                            localStorage.setItem('sclm_used_codes', JSON.stringify(usedCodes));
-                        }
-                        
+                        // Lưu mã đã sử dụng + thông tin trúng thưởng
+                        const usedList = JSON.parse(localStorage.getItem('sclm_used_codes') || '[]');
+                        usedList.push({
+                            code: currentCode,
+                            prize: prizes[targetPrizeIndex].title,
+                            time: new Date().toLocaleString(),
+                        });
+                        localStorage.setItem('sclm_used_codes', JSON.stringify(usedList));
+
+                        console.log('✅ Quay xong! Trúng:', prizes[targetPrizeIndex].title);
                         showPrize(prizes[targetPrizeIndex]);
                         isSpinning = false;
-                    }, 500);
+                    }, 800);
                 }
             }
-            animateSpin();
+
+            requestAnimationFrame(animateSpin);
         }
         
         function showPrize(prize) {
-            document.getElementById('prizeEmoji').textContent = prize.emoji;
-            document.getElementById('prizeTitle').textContent = prize.title;
-            document.getElementById('prizeDesc').textContent = prize.desc + '\n🎫 Mã: ' + currentCode;
+            const prizeEmojiEl = document.getElementById('prizeEmoji');
+            // Hiện ảnh sản phẩm nếu có
+            let html = '';
+            if (prize.image) {
+                html += `<img src="${prize.image}" alt="${prize.title}" style="width: 200px; height: 200px; object-fit: contain; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); margin-bottom: 18px;">`;
+            }
+            // Thông tin sản phẩm và mã quay may mắn
+            html += `<div style="margin-top: 18px; font-size: 2rem; font-weight: bold; color: #0a2e65; text-shadow: 0 2px 12px #FFD700, 0 1px 2px #333; background: linear-gradient(90deg,#FFD700 0%,#fff 100%); border-radius: 12px; padding: 10px 0;">🎉 Chúc mừng! ${prize.title}</div>`;
+        html += `<div style="margin-top: 18px; font-size: 2.4rem; font-weight: 900; color: #fff; text-shadow: 0 0 18px #FFD700, 0 2px 12px #0a2e65, 0 1px 2px #333; background: linear-gradient(135deg,#154a9a 0%,#0a2e65 100%); border-radius: 18px; padding: 18px 0; letter-spacing:1.5px; box-shadow:0 8px 32px #154a9a80,0 2px 8px #FFD70080; animation: glowText 1.2s infinite alternate;\">✨🎉 Chúc mừng! ${prize.title} 🎉✨</div>`;
+        // Hiệu ứng glow cho chữ chúc mừng
+        if (!document.getElementById('glow-text-style')) {
+            const style = document.createElement('style');
+            style.id = 'glow-text-style';
+            style.textContent = `
+                @keyframes glowText {
+                    0% { text-shadow: 0 0 18px #FFD700, 0 2px 12px #0a2e65, 0 1px 2px #333; }
+                    100% { text-shadow: 0 0 32px #FFD700, 0 2px 18px #0a2e65, 0 1px 2px #333; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+            html += `<div style="margin: 12px 0 0 0; font-size: 1.3rem; color: #0a2e65; font-weight: bold; text-shadow: 0 2px 8px #FFD700;">Mã quay may mắn: <span style='color:#fff; background:#FFD700; padding:2px 10px; border-radius:8px; font-weight:900; box-shadow:0 2px 8px #FFD70080;'>${currentCode}</span></div>`;
+            // Dòng liên hệ nhận quà + Viber
+            html += `<div style='margin-top:18px;font-size:1.15rem;color:#fff;background:linear-gradient(90deg,#c94b8b 0%,#4568dc 100%);padding:12px 18px;border-radius:12px;box-shadow:0 2px 8px #0002;'>🎁 <b>Vui lòng liên hệ với chúng tôi để nhận ngay phần quà!</b><br>☎️ <span style='color:#FFD700'>contact@sclm.vn</span> | <span style='color:#FFD700'>0582 779 977</span><br><a href="https://connect.viber.com/business/ea6b050a-b4c1-11f0-b475-16a159ce570c" target="_blank" style="display:inline-block;margin-top:10px;padding:8px 24px;background:#7360F2;color:#fff;border-radius:20px;font-weight:600;text-decoration:none;font-size:16px;box-shadow:0 2px 8px #7360F280;">💬 Liên hệ Viber ngay</a></div>`;
+            prizeEmojiEl.innerHTML = html;
+            // Hiệu ứng confetti (giới hạn 1 lần)
+            if (!prizeDisplay.classList.contains('show')) {
+                createConfetti();
+            }
             prizeDisplay.classList.add('show');
+            // Hiện nút reset logo bên dưới vòng quay
+            document.getElementById('resetLogoBtn').style.display = 'block';
+        }
+        
+        // Hiệu ứng pháo hoa khi trúng thưởng
+        function createConfetti() {
+            const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#95E1D3', '#F38181'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: 10px;
+                    height: 10px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    left: ${Math.random() * 100}%;
+                    top: -10px;
+                    opacity: 1;
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 10000;
+                    animation: confettiFall ${2 + Math.random() * 3}s ease-out forwards;
+                `;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+        
+        // CSS animation cho confetti
+        if (!document.getElementById('confetti-style')) {
+            const style = document.createElement('style');
+            style.id = 'confetti-style';
+            style.textContent = `
+                @keyframes confettiFall {
+                    to {
+                        transform: translateY(100vh) rotate(${Math.random() * 360}deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
         }
         
         function resetGame() {
@@ -576,9 +1033,11 @@
             currentCode = '';
             targetPrizeIndex = -1;
             isCodeValid = false;
-            spinButton.classList.add('disabled');
+            setSpinButtonActive(false);
             codeStatus.textContent = '';
             codeStatus.className = 'code-status';
+            // Ẩn nút reset logo
+            document.getElementById('resetLogoBtn').style.display = 'none';
         }
         
         spinButton.addEventListener('click', spin);
@@ -607,13 +1066,12 @@
             <div style="color: rgba(255, 255, 255, 0.95); font-size: 14px; line-height: 1.6; margin-bottom: 8px;">
                 Hệ thống chuỗi cung ứng toàn cầu
             </div>
-            <div style="color: rgba(255, 255, 255, 0.8); font-size: 12px; margin-bottom: 15px;">
-                📞 Hotline: 0947 88 66 11 | 0582 779977<br>
-                📧 Email: sclm.customer@gmail.com
-            </div>
-            <div style="border-top: 2px solid rgba(255, 215, 0, 0.3); padding-top: 12px; color: rgba(255, 255, 255, 0.7); font-size: 11px;">
+            <div style="border-top: 2px solid rgba(255, 215, 0, 0.3); padding-top: 12px; color: rgba(255, 255, 255, 0.7); font-size: 11px; margin-bottom: 10px;">
                 © 2025 SCLM Global. All rights reserved.<br>
                 Bản quyền thuộc về SCLM Global Vietnam
+            </div>
+            <div style="color: rgba(255, 255, 255, 0.8); font-size: 13px; font-weight: 600;">
+                Hotline: 0582 779 977, 0947 886 611 | Email: contact@sclm.vn
             </div>
         </div>
     </div>

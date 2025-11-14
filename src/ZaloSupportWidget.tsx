@@ -10,7 +10,7 @@ interface ZaloSupportWidgetProps {
 const ZaloSupportWidget: React.FC<ZaloSupportWidgetProps> = ({
   zaloUrl = 'https://zalo.me/0813789127',
   position = { bottom: '20px', left: '20px' },
-  size = '80px',
+  size = window.innerWidth <= 768 ? '60px' : '80px',
   enableDrag = true,
 }) => {
   const [isDragging, setIsDragging] = useState(false);

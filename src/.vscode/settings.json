@@ -1,3 +1,5 @@
 {
-    "editor.aiStats.enabled": true
+    "editor.aiStats.enabled": true,
+    // Độc đáo: bật chế độ thống kê AI cho trải nghiệm cá nhân hóa
+    "editor.uniqueExperience": "enabled"
 }
